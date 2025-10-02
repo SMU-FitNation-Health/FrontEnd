@@ -1,3 +1,4 @@
+<h2>프론트엔드 커밋 타입 정의</h2>
 <table style="width:100%;">
   <thead>
     <tr>
