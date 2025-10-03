@@ -1,5 +1,4 @@
 <h1>프론트엔드 커밋 타입 규칙</h1>
->>>>>>> 8eb833f63d4f9b89388c672f1960e09fdc2bea21
 <table style="width:100%;">
   <thead>
     <tr>
