@@ -7,3 +7,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <MainPage />
   </React.StrictMode>
 );
+export default MainPage;

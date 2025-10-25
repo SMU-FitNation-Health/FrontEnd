@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SiteFooter({ year = new Date().getFullYear() }) {
+export default function Footer({ year = new Date().getFullYear() }) {
   return (
     <footer className="bg-white text-gray-300 border-t border-black/10" role="contentinfo">
       <div className="mx-auto max-w-[1200px] px-8">
