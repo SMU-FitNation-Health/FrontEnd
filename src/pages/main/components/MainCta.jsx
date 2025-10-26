@@ -30,7 +30,7 @@ export default function MainCta({
           </h3>
 
           {/* 서브텍스트*/}
-          <p className="text-[18px] leading-[27px] font-regular text-[#4A5565] opacity-90 mb-32">
+          <p className="text-[18px] leading-[27px] font-regular text-[#4A5565] opacity-90 mb-24">
             Care View와 함께 건강한 삶을 관리하세요
           </p>
 
