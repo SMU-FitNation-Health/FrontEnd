@@ -29,14 +29,16 @@ export default function MainCta({
             시작하기
           </h3>
 
-          {/* 서브텍스트*/}
-          <p className="text-[18px] leading-[27px] font-regular text-[#4A5565] opacity-90 mb-24">
+          {/* 서브텍스트: 아래 여백 강제 축소(위로 당김) */}
+          <p className="text-[18px] leading-[27px] font-regular text-[#4A5565] opacity-90 !mb-8">
             Care View와 함께 건강한 삶을 관리하세요
           </p>
 
-          {/* 버튼들 */}
-          <MainLoginButton href={loginHref} />
-          <MainSignupButton href={signupHref} />
+          {/* 버튼 간격: 첫 번째 자식만 32px 하단 간격(내부 mb-4를 특이성으로 덮어씀) */}
+          <div className="[&>*:first-child]:mb-8">
+            <MainLoginButton href={loginHref} />
+            <MainSignupButton href={signupHref} />
+          </div>
         </div>
       </div>
     </div>
