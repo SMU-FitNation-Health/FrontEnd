@@ -9,7 +9,6 @@ export default function MainSignupButton({ href = "/signup" }) {
         alt="회원가입"
         className="w-[447.99px] h-[55.99px]"
         draggable="false"
-        
       />
     </a>
   );

@@ -7,7 +7,7 @@ export default function MainPage() {
   return (
     // 화면 전체 폭 사용 + 가로 스크롤 방지
     <main className="w-screen overflow-x-hidden bg-white">
-      {/* HERO: 좌우 여백 없이 꽉 차게 */}
+      {/* 좌우 여백 없이 꽉 차게 */}
       <section className="w-screen">
         <img
           src={main1}
@@ -19,7 +19,7 @@ export default function MainPage() {
         />
       </section>
 
-      {/* CTA 섹션: 내부 컨텐츠는 1440 중앙 정렬 유지 */}
+      {/* 내부 컨텐츠는 1440 중앙 정렬 유지 */}
       <section className="w-screen">
         <div className="mx-auto" style={{ width: 1440 }}>
           <MainCta />

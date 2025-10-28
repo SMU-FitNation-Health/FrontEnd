@@ -23,21 +23,30 @@ export default function MainCta({
 
         {/* 오른쪽 텍스트 + 버튼들 */}
         <div className="flex flex-col items-center text-center">
-
-          {/* 제목*/}
+          {/* 제목 */}
           <h3 className="text-[40px] leading-[60px] font-bold text-gray-800 mb-3">
             시작하기
           </h3>
 
-          {/* 서브텍스트: 아래 여백 강제 축소(위로 당김) */}
-          <p className="text-[18px] leading-[27px] font-regular text-[#4A5565] opacity-90 !mb-8">
+          {/* ⬆️ 문구를 위로: 유틸 대신 '인라인'으로 아래 여백 8px 고정 */}
+          <p
+            className="text-[18px] leading-[27px] text-[#4A5565] opacity-90"
+            style={{ marginBottom: 8 }}
+          >
             Care View와 함께 건강한 삶을 관리하세요
           </p>
 
-          {/* 버튼 간격: 첫 번째 자식만 32px 하단 간격(내부 mb-4를 특이성으로 덮어씀) */}
-          <div className="[&>*:first-child]:mb-8">
-            <MainLoginButton href={loginHref} />
-            <MainSignupButton href={signupHref} />
+          {/* ⬆️ 버튼 간격 강제: '랩퍼 + padding-bottom'을 인라인으로 부여 */}
+          <div className="flex flex-col items-center">
+            {/* 로그인 버튼: 아래 간격 32px 확정 */}
+            <div style={{ paddingBottom: 32, lineHeight: 0 }}>
+              <MainLoginButton href={loginHref} />
+            </div>
+
+            {/* 회원가입 버튼 */}
+            <div style={{ lineHeight: 0 }}>
+              <MainSignupButton href={signupHref} />
+            </div>
           </div>
         </div>
       </div>

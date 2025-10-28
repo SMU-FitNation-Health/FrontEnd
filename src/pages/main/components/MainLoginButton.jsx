@@ -1,9 +1,11 @@
 import React from "react";
 import MainLogin from "../../../assets/main/main_login.svg";
 
+console.log("[login-btn] loaded");
+
 export default function MainLoginButton({ href = "/login" }) {
   return (
-    <a href={href} className="block mb-8 drop-shadow-lg">
+    <a href={href} className="block drop-shadow-lg">
       <img
         src={MainLogin}
         alt="로그인"
