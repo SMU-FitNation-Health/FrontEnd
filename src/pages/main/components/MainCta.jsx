@@ -9,7 +9,7 @@ export default function MainCta({
   signupHref = "/signup",
 }) {
   return (
-    <div className="h-[698px] w-full flex items-center">
+    <div className="w-full flex items-center">
       <div className="w-full grid grid-cols-2 gap-x-24 items-center">
         {/* 왼쪽 이미지: 525×395 */}
         <div className="flex justify-center">
