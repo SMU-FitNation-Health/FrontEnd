@@ -22,21 +22,22 @@ export default function MainCta({
         </div>
 
         {/* 오른쪽 텍스트 + 버튼들 */}
-        <div className="flex flex-col items-center text-center">
+        <div className="flex flex-col items-center text-center -mt-[50px]">
+          
           {/* 제목 */}
-          <h3 className="text-[40px] leading-[60px] font-bold text-gray-800 mb-3">
+          <h3 className="text-[42px] leading-[60px] font-bold text-gray-800 mb-[4px]">
             시작하기
           </h3>
 
-          {/* 문구를 위로: 유틸 대신 '인라인'으로 아래 여백 8px 고정 */}
+          {/* 문구*/}
           <p
             className="text-[18px] leading-[27px] text-[#4A5565] opacity-90"
-            style={{ marginBottom: 8 }}
+            style={{ marginBottom: 40 }}
           >
             Care View와 함께 건강한 삶을 관리하세요
           </p>
 
-          {/* 버튼 간격 강제: '랩퍼 + padding-bottom'을 인라인으로 부여 */}
+          {/* 버튼  */}
           <div className="flex flex-col items-center">
             {/* 로그인 버튼: 아래 간격 32px 확정 */}
             <div style={{ paddingBottom: 32, lineHeight: 0 }}>
