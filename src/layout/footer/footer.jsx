@@ -64,8 +64,8 @@ export default function Footer({ year = new Date().getFullYear() }) {
         </div>
 
         {/* 하단 저작권 */}
-        <div className="border-t-[0.8px] border-[#1E2939] w-[82%] mx-auto pb-[1.5vw]"></div>
-          <p className="text-center text-[clamp(13px,0.8vw,15px)] leading-none">
+        <div className="border-t-[0.8px] border-[#1E2939] w-[82%] mx-auto"></div>
+          <p className="text-center text-[clamp(13px,0.8vw,15px)] pb-[1.5vw]">
             © {year} Care View Inc. All rights reserved.
           </p>
       </div>

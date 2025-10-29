@@ -26,6 +26,7 @@ export default function MainPage() {
         </div>
       </section>
 
+      <div className="h-[8vw]" /> 
       <Footer />
     </main>
   );
