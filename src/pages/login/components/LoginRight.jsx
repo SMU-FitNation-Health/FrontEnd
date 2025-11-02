@@ -1,13 +1,13 @@
 import React from "react";
 import bg from "../../../assets/login/login2.svg";
 import logo from "../../../assets/login/login3.svg";
-import wordmark from "../../../assets/login/login4.svg";
+import text from "../../../assets/login/login4.svg"; // 요청대로 텍스트는 login4.svg
 
 export default function LoginRight() {
   return (
     <aside
       className="relative w-full overflow-hidden border-l border-[#E5E7EB]"
-      style={{ minHeight: "inherit" }}  // 부모(min-h-dvh) 상속
+      style={{ minHeight: "inherit" }}
     >
       <img
         src={bg}
@@ -25,22 +25,12 @@ export default function LoginRight() {
         </div>
 
         <div className="flex grow items-center justify-center px-[6vw]">
-          {wordmark ? (
-            <img
-              src={wordmark}
-              alt="Care View 안내"
-              className="w-[min(560px,86%)] h-auto select-none pointer-events-none"
-              draggable="false"
-            />
-          ) : (
-            <div className="text-center text-white">
-              <h2 className="text-xl md:text-2xl font-medium">당신의 건강한 일상</h2>
-              <p className="mt-2 text-sm md:text-base opacity-90">
-                생활혜택을 모아 보고, 개인 데이터와 연계해
-                <br className="hidden md:block" /> 나에게 맞는 서비스를 제안해요
-              </p>
-            </div>
-          )}
+          <img
+            src={text}
+            alt="Care View 소개"
+            className="w-[min(560px,86%)] h-auto select-none pointer-events-none"
+            draggable="false"
+          />
         </div>
       </div>
     </aside>
