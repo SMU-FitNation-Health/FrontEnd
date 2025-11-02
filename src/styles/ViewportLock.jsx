@@ -1,11 +1,8 @@
 import React from "react";
 
-/**
- * 규칙
- * - ≥1200px: 가로 스크롤 불가, 세로 스크롤 동작(스크롤바 숨김)
- * - <1200px : 가로·세로 스크롤 모두 가능(두 바 모두 보임)
- * ※ LoginPage.jsx에는 추가 overflow/min-w 클래스 넣지 말 것.
- */
+//규칙
+//≥1200px: 가로 스크롤 불가, 세로 스크롤 동작, <1200px : 가로·세로 스크롤 모두 가능(두 바 모두 보임)
+
 export default function ViewportLock({ className = "", children }) {
   return (
     <>
