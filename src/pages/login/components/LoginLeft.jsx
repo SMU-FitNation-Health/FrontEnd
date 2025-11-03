@@ -1,80 +1,251 @@
 import React from "react";
+import topLogo from "../../../assets/login/login1.svg";
+import loginBtn from "../../../assets/login/login5.svg";
+import googleBtn from "../../../assets/login/login6.svg";
 
 export default function LoginLeft() {
   return (
-    <section className="w-full min-h-dvh bg-[#F9FAFB] flex items-center justify-center">
-      {/* 좌측 컨텐츠 폭: 데스크톱 기준 520px, 작아지면 clamp로 부드럽게 축소 */}
-      <div className="w-[clamp(320px,42vw,520px)]">
-        {/* 상단 인사/아이콘 */}
-        <div className="flex flex-col items-center mb-8">
-          <div className="h-12 w-12 rounded-2xl bg-[#18C2B5] flex items-center justify-center text-white text-xl font-bold shadow-sm">
-            ✓
-          </div>
-          <h1 className="mt-6 text-[22px] font-semibold text-[#111827]">반가워요!</h1>
-          <p className="mt-2 text-sm text-[#6B7280]">상쾌한 하루를 시작해볼까요?</p>
+    <aside className="w-full min-h-dvh flex items-center justify-center bg-[#F8FAFC]">
+      {/* 래퍼는 칼럼폭(=컨테이너의 절반) 내에서 가운데 정렬 */}
+      <div className="px-[calc(24px*var(--k,1))] w-full max-w-[720px]">
+        {/* 상단 로고/텍스트 */}
+        <div className="flex flex-col items-center">
+          {/* 로고: 60×60 @1440×1024 */}
+          <img
+            src={topLogo}
+            alt="Care View"
+            className="select-none"
+            style={{
+              width: "calc(60px * var(--k,1))",
+              height: "calc(60px * var(--k,1))",
+            }}
+            draggable="false"
+          />
+          <h1
+            className="mt-2 text-center font-semibold text-[#0F172A]"
+            style={{ fontSize: "clamp(18px, calc(28px*var(--k,1)), 28px)" }}
+          >
+            반가워요!
+          </h1>
+          <p
+            className="text-center text-[#6B7280]"
+            style={{
+              marginTop: "calc(10px * var(--k,1))",
+              fontSize: "clamp(12px, calc(16px*var(--k,1)), 16px)",
+            }}
+          >
+            상쾌한 하루를 시작해볼까요?
+          </p>
         </div>
 
-        {/* 카드 */}
-        <div className="rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] p-6">
+        {/* 로그인 카드: 448×505 @1440×1024 */}
+        <div
+          className="mx-auto mt-6 rounded-[16px] bg-white shadow-[0_8px_24px_rgba(2,6,23,0.06)] ring-1 ring-black/5 flex flex-col items-center"
+          style={{
+            width: "calc(448px * var(--k,1))",
+            height: "calc(505px * var(--k,1))",
+            padding: "calc(28px * var(--k,1))",
+          }}
+        >
+          {/* 공통 사이즈: 382×48 @1440×1024  */}
           {/* 이메일 */}
-          <label className="block text-sm font-medium text-[#374151]">이메일</label>
-          <input
-            type="email"
-            placeholder="hello@example.com"
-            className="mt-2 w-full rounded-xl border border-[#E5E7EB] bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#111827]/10"
-          />
+          <label
+            className="self-start text-[#111827]"
+            style={{ fontSize: "clamp(12px, calc(14px*var(--k,1)), 14px)" }}
+          >
+            이메일
+          </label>
+          <div className="relative" style={{ marginTop: "calc(8px*var(--k,1))" }}>
+            {/* 메일 아이콘 */}
+            <svg
+              className="text-[#9CA3AF]"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              style={{
+                position: "absolute",
+                left: "calc(16px*var(--k,1))",
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: "calc(22px*var(--k,1))",
+                height: "calc(22px*var(--k,1))",
+              }}
+            >
+              <path d="M4 6h16v12H4z" />
+              <path d="m22 6-10 7L2 6" />
+            </svg>
 
-          {/* 비밀번호 */}
-          <label className="mt-5 block text-sm font-medium text-[#374151]">비밀번호</label>
-          <div className="mt-2">
             <input
-              type="password"
-              placeholder="********"
-              className="w-full rounded-xl border border-[#E5E7EB] bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#111827]/10"
+              type="email"
+              placeholder="hello@example.com"
+              className="rounded-[12px] border border-[#E5E7EB] outline-none focus:ring-2 focus:ring-[#D1E4FF] max-w-none"
+              style={{
+                width: "calc(382px * var(--k,1))",   // ← 정확히 382
+                height: "calc(48px * var(--k,1))",    // ← 정확히 48
+                paddingLeft: "calc(52px*var(--k,1))",
+                paddingRight: "calc(16px*var(--k,1))",
+                fontSize: "clamp(13px, calc(16px*var(--k,1)), 16px)",
+              }}
             />
           </div>
 
-          {/* 옵션 */}
-          <div className="mt-4 flex items-center justify-between text-sm">
-            <label className="flex items-center gap-2 text-[#4B5563]">
-              <input type="checkbox" className="h-4 w-4 rounded border-[#D1D5DB]" />
+          {/* 비밀번호 */}
+          <label
+            className="self-start text-[#111827]"
+            style={{ marginTop: "calc(18px*var(--k,1))", fontSize: "clamp(12px, calc(14px*var(--k,1)), 14px)" }}
+          >
+            비밀번호
+          </label>
+          <div className="relative" style={{ marginTop: "calc(8px*var(--k,1))" }}>
+            {/* 자물쇠 아이콘 */}
+            <svg
+              className="text-[#9CA3AF]"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              style={{
+                position: "absolute",
+                left: "calc(16px*var(--k,1))",
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: "calc(22px*var(--k,1))",
+                height: "calc(22px*var(--k,1))",
+              }}
+            >
+              <rect x="4" y="11" width="16" height="9" rx="2" />
+              <path d="M8 11V8a4 4 0 1 1 8 0v3" />
+            </svg>
+
+            {/* 눈 아이콘 버튼 */}
+            <button
+              type="button"
+              aria-label="비밀번호 보기"
+              style={{
+                position: "absolute",
+                right: "calc(16px*var(--k,1))",
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: "calc(22px*var(--k,1))",
+                height: "calc(22px*var(--k,1))",
+                color: "#9CA3AF",
+              }}
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="100%" height="100%">
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </button>
+
+            <input
+              type="password"
+              defaultValue="••••••"
+              className="rounded-[12px] border border-[#E5E7EB] outline-none focus:ring-2 focus:ring-[#D1E4FF] max-w-none"
+              style={{
+                width: "calc(382px * var(--k,1))",   // ← 정확히 382
+                height: "calc(48px * var(--k,1))",    // ← 정확히 48
+                paddingLeft: "calc(52px*var(--k,1))",
+                paddingRight: "calc(52px*var(--k,1))",
+                fontSize: "clamp(13px, calc(16px*var(--k,1)), 16px)",
+              }}
+            />
+          </div>
+
+          {/* 옵션 라인 */}
+          <div
+            className="flex items-center justify-between w-full"
+            style={{
+              width: "calc(382px * var(--k,1))",
+              marginTop: "calc(14px*var(--k,1))",
+            }}
+          >
+            <label
+              className="flex items-center text-[#4B5563]"
+              style={{ gap: "calc(11px*var(--k,1))", fontSize: "clamp(12px, calc(14px*var(--k,1)), 14px)" }}
+            >
+              <input
+                type="checkbox"
+                className="accent-[#111827]"
+                style={{ width: "calc(15px*var(--k,1))", height: "calc(15px*var(--k,1))" }}
+              />
               로그인 상태 유지
             </label>
-            <a href="/forgot" className="text-[#4B5563] hover:underline">
+            <a
+              className="text-[#4B5563] hover:text-[#111827]"
+              style={{ fontSize: "clamp(12px, calc(14px*var(--k,1)), 14px)" }}
+              href="#"
+            >
               비밀번호 찾기
             </a>
           </div>
 
-          {/* 로그인 버튼 */}
+          {/* 로그인 버튼(이미지) 382×48 */}
           <button
-            className="mt-5 w-full rounded-xl bg-[#0F172A] py-3 text-white font-medium shadow-md hover:opacity-95 active:scale-[0.995] transition"
+            className="overflow-hidden ring-1 ring-black/10 rounded-[12px] bg-[#111827]"
+            style={{
+              width: "calc(382px * var(--k,1))",
+              height: "calc(48px * var(--k,1))",
+              marginTop: "calc(20px*var(--k,1))",
+            }}
           >
-            로그인하기 →
+            <img
+              src={loginBtn}
+              alt="로그인하기"
+              className="w-full h-full object-contain select-none"
+              draggable="false"
+            />
           </button>
 
           {/* 구분선 */}
-          <div className="my-5 flex items-center gap-3">
-            <div className="h-px w-full bg-[#E5E7EB]" />
-            <span className="text-xs text-[#6B7280]">또는</span>
-            <div className="h-px w-full bg-[#E5E7EB]" />
+          <div
+            className="relative"
+            style={{ width: "calc(382px * var(--k,1))", margin: "calc(18px*var(--k,1)) 0" }}
+          >
+            <div className="h-px bg-[#E5E7EB]" />
+            <span
+              className="absolute left-1/2 -translate-x-1/2 bg-white text-[#9CA3AF]"
+              style={{
+                top: "calc(-10px*var(--k,1))",
+                padding: "0 calc(11px*var(--k,1))",
+                fontSize: "clamp(11px, calc(13px*var(--k,1)), 13px)",
+              }}
+            >
+              또는
+            </span>
           </div>
 
-          {/* 구글 로그인 (아이콘 자산 없으면 텍스트로) */}
+          {/* Google 버튼(이미지) 382×48 */}
           <button
-            className="w-full rounded-xl border border-[#E5E7EB] bg-white py-3 text-[#111827] font-medium hover:bg-[#F9FAFB] transition"
+            className="rounded-[12px] overflow-hidden ring-1 ring-black/10 bg-white"
+            style={{
+              width: "calc(382px * var(--k,1))",
+              height: "calc(48px * var(--k,1))",
+            }}
           >
-            Google로 계속하기
+            <img
+              src={googleBtn}
+              alt="Google로 계속하기"
+              className="w-full h-full object-contain select-none"
+              draggable="false"
+            />
           </button>
         </div>
 
-        {/* 하단 링크 */}
-        <p className="mt-6 text-center text-sm text-[#6B7280]">
+        {/* 하단 문구 */}
+        <div
+          className="text-center text-[#6B7280]"
+          style={{
+            marginTop: "calc(30px*var(--k,1))",
+            fontSize: "clamp(12px, calc(14px*var(--k,1)), 14px)",
+          }}
+        >
           아직 회원이 아니신가요?{" "}
-          <a href="/signup" className="font-medium text-[#0F172A] hover:underline">
-            회원가입하기 →
+          <a href="#" className="text-[#0F172A] hover:underline">
+            회원가입하기
           </a>
-        </p>
+        </div>
       </div>
-    </section>
+    </aside>
   );
 }
