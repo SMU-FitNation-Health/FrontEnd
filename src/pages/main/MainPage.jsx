@@ -1,3 +1,4 @@
+// src/pages/main/MainPage.jsx
 import React from "react";
 import main1 from "../../assets/main/main1.svg";
 import MainCta from "./components/MainCta.jsx";
@@ -5,9 +6,8 @@ import Footer from "../../layout/footer/Footer.jsx";
 
 export default function MainPage() {
   return (
-    // 화면 전체 폭 사용 + 가로 스크롤 방지
     <main className="w-screen overflow-x-hidden bg-white">
-      {/* 좌우 여백 없이 꽉 차게 */}
+      {/* HERO: 풀블리드 1440×900 */}
       <section className="w-screen">
         <img
           src={main1}
@@ -19,14 +19,14 @@ export default function MainPage() {
         />
       </section>
 
-      {/* 내부 컨텐츠는 1440 중앙 정렬 유지 */}
+      {/* 1440 컨테이너 + 위로 124px 여백 */}
       <section className="w-screen">
-        <div className="mx-auto" style={{ width: 1440 }}>
+        <div className="mx-auto mt-[124px]" style={{ width: 1440 }}>
           <MainCta />
         </div>
       </section>
 
-      <div className="h-[8vw]" /> 
+      <div className="h-[8vw]" />
       <Footer />
     </main>
   );
