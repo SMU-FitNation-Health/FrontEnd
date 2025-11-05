@@ -7,7 +7,7 @@ export default function LoginLeft() {
   return (
     <aside className="w-full min-h-dvh flex items-center justify-center bg-[#F8FAFC]">
       {/* 래퍼는 칼럼폭(=컨테이너의 절반) 내에서 가운데 정렬 */}
-      <div className="px-[calc(24px*var(--k,1))] w-full max-w-[720px]">
+      <div className="px-[calc(24px*var(--k,1))] w-full max-w-[720px]">  
         {/* 상단 로고/텍스트 */}
         <div className="flex flex-col items-center">
           {/* 로고: 60×60 @1440×1024 */}
