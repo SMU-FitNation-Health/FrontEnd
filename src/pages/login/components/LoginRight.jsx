@@ -1,8 +1,13 @@
-// src/pages/login/components/LoginRight.jsx
 import React from "react";
 import bg from "../../../assets/login/login2.svg";
 import logo from "../../../assets/login/login3.svg";
 import text from "../../../assets/login/login4.svg";
+
+//조절
+const LIFT   = "clamp(64px, 22vh, 300px)";   //높이
+const LOGO_H = "clamp(100px, 12vh, 220px)";  //로고
+const TEXT_W = "clamp(260px, 30vw, 500px)";  //텍스트
+const GAP    = "clamp(24px, 15vw, 120px)";   //간격
 
 export default function LoginRight({
   logoClass = "",
@@ -12,32 +17,46 @@ export default function LoginRight({
   return (
     <aside
       className="
-        relative w-full min-h-dvh overflow-hidden border-l border-[#E5E7EB]
-        bg-no-repeat bg-center bg-cover lg:bg-contain
+        relative w-full min-h-dvh border-l border-[#E5E7EB]
+        bg-no-repeat bg-center bg-cover
       "
       style={{ backgroundImage: `url(${bg})` }}
     >
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-[3vmin] -mt-[12vmin]">
+      {/* 중앙 기준에서 위로 LIFT 만큼 끌어올림 */}
+      <div
+        className="
+          absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+          px-[clamp(12px,2vw,32px)]
+        "
+        style={{ marginTop: `calc(-1 * ${LIFT})` }}
+      >
         <div
           className={`
             inline-flex flex-col items-center min-w-0
-            gap-[clamp(10vmin,14vmin,18vmin)]
-            px-[4vmin] py-[3vmin] w-fit max-w-[96vw]
+            px-[clamp(12px,2vw,32px)] py-[clamp(10px,2vw,28px)]
+            w-fit max-w-[96vw]
             ${containerClass}
           `}
+
+          //간격
+          style={{ gap: GAP }}
         >
-          {/* 로고: 크기는 그대로, shrink 방지만 추가(선택) */}
+
+          {/* 로고 */}
           <img
             src={logo}
             alt="Care View 로고"
-            className={`h-[clamp(11.5vmin,12.5vmin,19.5vmin)] w-auto shrink-0 ${logoClass}`}
+            className={`w-auto shrink-0 ${logoClass}`}
+            style={{ height: LOGO_H }}
             draggable="false"
           />
-          {/* 텍스트: 커지지 않던 원인을 제거 (핵심: shrink-0 max-w-none) */}
+
+          {/* 텍스트*/}
           <img
             src={text}
             alt="Care View 텍스트"
-            className={`w-[clamp(40vmin,43vmin,59vmin)] max-w-none h-auto shrink-0 ${textClass}`}
+            className={`max-w-none h-auto shrink-0 ${textClass}`}
+            style={{ width: TEXT_W }}
             draggable="false"
           />
         </div>

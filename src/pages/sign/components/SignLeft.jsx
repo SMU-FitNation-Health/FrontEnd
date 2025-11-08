@@ -3,7 +3,7 @@ import topLogo from "../../../assets/login/login1.svg";
 import loginBtn from "../../../assets/login/login5.svg";
 import googleBtn from "../../../assets/login/login6.svg";
 
-export default function LoginLeft() {
+export default function SignLeft() {
   return (
     <aside className="w-full min-h-dvh flex items-center justify-center bg-[#F8FAFC]">
       {/* 래퍼는 칼럼폭(=컨테이너의 절반) 내에서 가운데 정렬 */}
@@ -25,7 +25,7 @@ export default function LoginLeft() {
             className="mt-2 text-center font-semibold text-[#0F172A]"
             style={{ fontSize: "clamp(18px, calc(28px*var(--k,1)), 28px)" }}
           >
-            반가워요!
+            환영합니다!
           </h1>
           <p
             className="text-center text-[#6B7280]"
@@ -34,7 +34,7 @@ export default function LoginLeft() {
               fontSize: "clamp(12px, calc(16px*var(--k,1)), 16px)",
             }}
           >
-            상쾌한 하루를 시작해볼까요?
+            건강한 삶의 시작, 지금 함께해요
           </p>
         </div>
 
