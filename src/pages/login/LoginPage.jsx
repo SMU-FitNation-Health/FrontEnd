@@ -6,7 +6,7 @@ import LoginRight from "./components/LoginRight.jsx";
 export default function LoginPage() {
   return (
     <ViewportLock>
-      <div className="grid grid-cols-2 min-h-dvh w-full">
+      <div className="grid grid-cols-2 w-full">
         <LoginLeft />
         <LoginRight />
       </div>
