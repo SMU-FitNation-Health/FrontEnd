@@ -4,7 +4,7 @@ import logo from "../../../assets/login/login3.svg";
 import text from "../../../assets/login/login4.svg";
 
 // 조절 노브
-const LIFT   = "clamp(64px, 22vh, 300px)";   // 위로 올리는 정도
+const LIFT   = "clamp(50px, 10vh, 200px)";   // 위로 올리는 정도
 const LOGO_H = "clamp(100px, 12vh, 220px)";  // 로고 높이
 const TEXT_W = "clamp(260px, 30vw, 500px)";  // 텍스트 폭
 const GAP    = "clamp(24px, 15vw, 120px)";   // 로고↔텍스트 간격
