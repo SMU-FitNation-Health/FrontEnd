@@ -4,7 +4,7 @@ import { global } from "../../utils/global";
 export default function Footer({ year = new Date().getFullYear() }) {
   return (
     <footer className="bg-[#F9FAFB] text-[#1E2939]" role="contentinfo">
-      <div className="border-t border-[#D1D5DB] pb-[0.4vw]"></div>
+      <div className="border-t border-[#D1D5DB] pb-[0.1vw]"></div>
 
       {/* 전역 스타일 적용 (1440px 고정 + 중앙 정렬) */}
       <div {...global()}>
@@ -64,8 +64,8 @@ export default function Footer({ year = new Date().getFullYear() }) {
         </div>
 
         {/* 하단 저작권 */}
-        <div className="border-t-[0.8px] border-[#1E2939] w-[82%] mx-auto"></div>
-          <p className="text-center text-[clamp(13px,0.8vw,15px)] pb-[1.5vw]">
+        <div className="border-t-[0.8px] border-[#1E2939] w-[86%] mx-auto"></div>
+          <p className="text-center text-[clamp(13px,0.8vw,15px)] pb-[1.5vw] pt-[0.5vw]">
             © {year} Care View Inc. All rights reserved.
           </p>
       </div>
