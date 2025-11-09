@@ -9,7 +9,7 @@ const H      = "clamp(40px, 7.2vh, 48px)";    // 인풋/버튼 높이
 const CARD_W = "clamp(280px, 68vw, 448px)";   // 카드 가로
 const CARD_H = "clamp(340px, 66vh, 505px)";   // 카드 최소 높이(작은 화면에서 잘 줄어듦)
 const LOGO   = "clamp(30px, 8vmin, 50px)";   // 상단 로고 크기
-const VPAD   = "clamp(16px, 10dvh, 140px)";      // 상·하 여백(dvh로 툴바 변동 대응)
+const VPAD   = "clamp(16px, 11dvh, 190px)";      // 상·하 여백(dvh로 툴바 변동 대응)
 const BOTPAD = "max(env(safe-area-inset-bottom), 0)"; // ↓ 하단은 안전영역만
 
 const GAP_LOGIN_TO_OR  = "clamp(24px, 6vh, 44px)";
