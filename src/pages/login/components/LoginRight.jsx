@@ -5,9 +5,9 @@ import text from "../../../assets/login/login4.svg";
 
 // 반응형 조절 노브
 const LIFT   = "clamp(0px, 9vh, 140px)";       // 작은 화면에서 과한 상승 방지
-const LOGO_H = "clamp(66px, 13vmin, 250px)";   // 로고 높이
-const TEXT_W = "clamp(300px, 50vw, 400px)";    // 텍스트 폭
-const GAP    = "clamp(16px, 8vmin, 120px)";    // 로고↔텍스트 간격
+const LOGO_H = "clamp(66px, 15vmin, 250px)";   // 로고 높이
+const TEXT_W = "clamp(300px, 50vw, 380px)";    // 텍스트 폭
+const GAP    = "clamp(16px, 16vmin, 160px)";    // 로고↔텍스트 간격
 const VPAD   = "clamp(12px, 6vh, 80px)";       // 상·하 여백
 
 export default function LoginRight({
