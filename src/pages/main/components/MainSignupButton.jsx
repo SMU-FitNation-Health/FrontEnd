@@ -1,7 +1,7 @@
 import React from "react";
 import MainSign from "../../../assets/main/main_sign.svg";
 
-export default function MainSignupButton({ href = "/signup" }) {
+export default function MainSignupButton({ href = "/sign" }) {
   return (
     <a href={href} className="block drop-shadow-lg">
       <img

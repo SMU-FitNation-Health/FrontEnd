@@ -3,13 +3,13 @@ import topLogo from "../../../assets/login/login1.svg";
 import loginBtn from "../../../assets/login/login5.svg";   // 382×48 SVG
 import googleBtn from "../../../assets/login/login6.svg";  // 382×48 SVG
 
-// 반응형 치수
-const W      = "clamp(240px, 62vw, 382px)";
-const H      = "clamp(40px, 7.2vh, 48px)";
-const CARD_W = "clamp(280px, 68vw, 448px)";
-const CARD_H = "clamp(420px, 78vh, 505px)";
-const LOGO   = "clamp(40px, 10vmin, 60px)";
-const VPAD   = "clamp(16px, 6vh, 80px)";
+// 반응형 치수: 화면이 작아질수록 축소, 커지면 디자인 최대 유지
+const W      = "clamp(240px, 62vw, 382px)";   // 인풋/버튼 가로
+const H      = "clamp(40px, 7.2vh, 48px)";    // 인풋/버튼 높이
+const CARD_W = "clamp(280px, 68vw, 448px)";   // 카드 가로
+const CARD_H = "clamp(360px, 74vh, 505px)";   // 카드 최소 높이(작은 화면에서 잘 줄어듦)
+const LOGO   = "clamp(40px, 10vmin, 60px)";   // 상단 로고 크기
+const VPAD   = "clamp(8px, 4dvh, 80px)";      // 상·하 여백(dvh로 툴바 변동 대응)
 
 const GAP_LOGIN_TO_OR  = "clamp(24px, 6vh, 44px)";
 const GAP_OR_TO_GOOGLE = "clamp(18px, 5vh, 36px)";
@@ -50,13 +50,9 @@ export default function LoginLeft() {
   const handleGoogle = () => {};
 
   return (
-    // 핵심 변경:
-    // 1) items-start (모바일 상단 정렬) + lg:items-center
-    // 2) overflow-y-auto 유지 + min-h-0 (그리드 자식 내부 스크롤 허용)
-    // 3) 상단 safe-area까지 고려한 paddingTop
+    // 항상 상단 정렬 + 내부 스크롤 제거(페이지 스크롤만 사용)
     <aside
-      className="w-full min-h-dvh lg:h-dvh lg:box-border flex items-start lg:items-center justify-center bg-[#F8FAFC]
-                 overflow-y-auto lg:overflow-visible min-h-0"
+      className="w-full min-h-dvh lg:min-h-dvh lg:box-border flex items-start justify-center bg-[#F8FAFC] min-h-0 lg:overflow-visible"
       style={{
         paddingTop: `calc(${VPAD} + env(safe-area-inset-top))`,
         paddingBottom: VPAD,
@@ -89,7 +85,7 @@ export default function LoginLeft() {
           </p>
         </div>
 
-        {/* 카드 */}
+        {/* 카드: 반응형 축소 */}
         <div
           className="mx-auto mt-6 rounded-[16px] bg-white shadow-[0_8px_24px_rgba(2,6,23,0.06)] border border-[#E5E7EB] flex flex-col items-center"
           style={{
@@ -102,7 +98,10 @@ export default function LoginLeft() {
           {/* 이메일 */}
           <label
             className="self-center text-[#364153]"
-            style={{ width: W, fontSize: "clamp(12px, 2.3vmin, 14px)" }}
+            style={{
+              width: W,
+              fontSize: "clamp(12px, 2.3vmin, 14px)",
+            }}
           >
             이메일
           </label>
@@ -111,6 +110,7 @@ export default function LoginLeft() {
             className="relative self-center"
             style={{ width: W, height: H, marginTop: "clamp(6px, 1.6vmin, 8px)" }}
           >
+            {/* 왼쪽 아이콘 */}
             <svg
               aria-hidden="true"
               className="absolute block text-[#9CA3AF]"
@@ -161,6 +161,7 @@ export default function LoginLeft() {
             className="relative self-center"
             style={{ width: W, height: H, marginTop: "clamp(6px, 1.6vmin, 8px)" }}
           >
+            {/* 자물쇠 아이콘 */}
             <svg
               aria-hidden="true"
               className="absolute block text-[#9CA3AF]"
