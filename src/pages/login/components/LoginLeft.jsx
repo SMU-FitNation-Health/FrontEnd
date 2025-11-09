@@ -1,15 +1,16 @@
 import React from "react";
 import topLogo from "../../../assets/login/login1.svg";
-import loginBtn from "../../../assets/login/login5.svg";   // 382×48 SVG
-import googleBtn from "../../../assets/login/login6.svg";  // 382×48 SVG
+import loginBtn from "../../../assets/login/login5.svg";  
+import googleBtn from "../../../assets/login/login6.svg";
 
-// 반응형 치수: 화면이 작아질수록 축소, 커지면 디자인 최대 유지
+
 const W      = "clamp(240px, 62vw, 382px)";   // 인풋/버튼 가로
 const H      = "clamp(40px, 7.2vh, 48px)";    // 인풋/버튼 높이
 const CARD_W = "clamp(280px, 68vw, 448px)";   // 카드 가로
 const CARD_H = "clamp(340px, 66vh, 505px)";   // 카드 최소 높이(작은 화면에서 잘 줄어듦)
-const LOGO   = "clamp(40px, 10vmin, 60px)";   // 상단 로고 크기
-const VPAD   = "clamp(0px, 2.5dvh, 56px)";      // 상·하 여백(dvh로 툴바 변동 대응)
+const LOGO   = "clamp(30px, 8vmin, 50px)";   // 상단 로고 크기
+const VPAD   = "clamp(16px, 10dvh, 140px)";      // 상·하 여백(dvh로 툴바 변동 대응)
+const BOTPAD = "max(env(safe-area-inset-bottom), 0)"; // ↓ 하단은 안전영역만
 
 const GAP_LOGIN_TO_OR  = "clamp(24px, 6vh, 44px)";
 const GAP_OR_TO_GOOGLE = "clamp(18px, 5vh, 36px)";
@@ -54,20 +55,20 @@ export default function LoginLeft() {
     <aside
       className="w-full min-h-dvh lg:min-h-dvh lg:box-border flex items-start justify-center bg-[#F8FAFC] min-h-0 lg:overflow-hidden"
       style={{
-        paddingTop: `calc(${VPAD} + env(safe-area-inset-top))`,
-        paddingBottom: VPAD,
-      }}
-    >
+       paddingTop: `calc(${VPAD} + env(safe-area-inset-top))`,
+       paddingBottom: BOTPAD,
+     }}
+   >
       <div className="w-full max-w-[720px] px-[clamp(12px,3vw,24px)]">
         {/* 상단 로고/타이틀 */}
         <div className="flex flex-col items-center">
-          <img
+          {/* <img
             src={topLogo}
             alt="Care View"
             className="select-none block"
             style={{ width: LOGO, height: LOGO }}
             draggable="false"
-          />
+          /> */}
           <h1
             className="mt-2 text-center font-semibold text-[#0F172A]"
             style={{ fontSize: "clamp(16px, 3.2vmin, 28px)" }}

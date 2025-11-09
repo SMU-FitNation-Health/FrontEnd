@@ -241,7 +241,7 @@ export default function SignLeft() {
           }}
         >
           이미 계정이 있으신가요?{" "}
-          <a href="#" className="text-[#0F172A] hover:underline">
+          <a href="/login" className="text-[#0F172A] hover:underline">
             로그인하기
           </a>
         </div>
