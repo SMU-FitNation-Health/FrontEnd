@@ -3,21 +3,18 @@ import topLogo from "../../../assets/login/login1.svg";
 import loginBtn from "../../../assets/login/login5.svg";   // 382×48 SVG
 import googleBtn from "../../../assets/login/login6.svg";  // 382×48 SVG
 
-// 고정 규격 + 스케일 변수
-const W = "calc(382px * var(--k,1))";
-const H = "calc(48px * var(--k,1))";
-const CARD_W = "calc(448px * var(--k,1))";
-const CARD_H = "calc(505px * var(--k,1))"; // ← 505 정확히
-const LOGO = "calc(60px * var(--k,1))";
+// 반응형 치수
+const W      = "clamp(240px, 62vw, 382px)";
+const H      = "clamp(40px, 7.2vh, 48px)";
+const CARD_W = "clamp(280px, 68vw, 448px)";
+const CARD_H = "clamp(420px, 78vh, 505px)";
+const LOGO   = "clamp(40px, 10vmin, 60px)";
+const VPAD   = "clamp(16px, 6vh, 80px)";
 
-// 상·하 여백
-const VPAD = "clamp(40px, 8vh, 120px)";
+const GAP_LOGIN_TO_OR  = "clamp(24px, 6vh, 44px)";
+const GAP_OR_TO_GOOGLE = "clamp(18px, 5vh, 36px)";
 
-// 간격
-const GAP_LOGIN_TO_OR  = "calc(44px * var(--k,1))";
-const GAP_OR_TO_GOOGLE = "calc(36px * var(--k,1))";
-
-// SVG 버튼 공통
+// 공통 SVG 버튼
 function ClickableSvg({ src, alt, onClick, style = {} }) {
   return (
     <img
@@ -53,11 +50,19 @@ export default function LoginLeft() {
   const handleGoogle = () => {};
 
   return (
+    // 핵심 변경:
+    // 1) items-start (모바일 상단 정렬) + lg:items-center
+    // 2) overflow-y-auto 유지 + min-h-0 (그리드 자식 내부 스크롤 허용)
+    // 3) 상단 safe-area까지 고려한 paddingTop
     <aside
-      className="w-full min-h-dvh flex items-center justify-center bg-[#F8FAFC]"
-      style={{ paddingTop: VPAD, paddingBottom: VPAD }}
+      className="w-full min-h-dvh lg:h-dvh lg:box-border flex items-start lg:items-center justify-center bg-[#F8FAFC]
+                 overflow-y-auto lg:overflow-visible min-h-0"
+      style={{
+        paddingTop: `calc(${VPAD} + env(safe-area-inset-top))`,
+        paddingBottom: VPAD,
+      }}
     >
-      <div className="w-full max-w-[720px] px-[calc(24px*var(--k,1))]">
+      <div className="w-full max-w-[720px] px-[clamp(12px,3vw,24px)]">
         {/* 상단 로고/타이틀 */}
         <div className="flex flex-col items-center">
           <img
@@ -69,47 +74,43 @@ export default function LoginLeft() {
           />
           <h1
             className="mt-2 text-center font-semibold text-[#0F172A]"
-            style={{ fontSize: "clamp(18px, calc(28px*var(--k,1)), 28px)" }}
+            style={{ fontSize: "clamp(16px, 3.2vmin, 28px)" }}
           >
             반가워요!
           </h1>
           <p
             className="text-center text-[#6B7280]"
             style={{
-              marginTop: "calc(10px*var(--k,1))",
-              fontSize: "clamp(12px, calc(16px*var(--k,1)), 16px)",
+              marginTop: "clamp(6px, 1.4vmin, 10px)",
+              fontSize: "clamp(12px, 2.4vmin, 16px)",
             }}
           >
             상쾌한 하루를 시작해볼까요?
           </p>
         </div>
 
-        {/* 카드: 448×505 */}
+        {/* 카드 */}
         <div
           className="mx-auto mt-6 rounded-[16px] bg-white shadow-[0_8px_24px_rgba(2,6,23,0.06)] border border-[#E5E7EB] flex flex-col items-center"
           style={{
             width: CARD_W,
-            height: CARD_H,
-            padding: "calc(28px*var(--k,1))",
+            minHeight: CARD_H,
+            padding: "clamp(16px, 3.5vmin, 28px)",
             boxSizing: "border-box",
           }}
         >
           {/* 이메일 */}
           <label
             className="self-center text-[#364153]"
-            style={{
-              width: W,
-              fontSize: "clamp(12px, calc(14px*var(--k,1)), 14px)",
-            }}
+            style={{ width: W, fontSize: "clamp(12px, 2.3vmin, 14px)" }}
           >
             이메일
           </label>
 
           <div
             className="relative self-center"
-            style={{ width: W, height: H, marginTop: "calc(8px*var(--k,1))" }}
+            style={{ width: W, height: H, marginTop: "clamp(6px, 1.6vmin, 8px)" }}
           >
-            {/* 왼쪽 아이콘 */}
             <svg
               aria-hidden="true"
               className="absolute block text-[#9CA3AF]"
@@ -118,11 +119,11 @@ export default function LoginLeft() {
               stroke="currentColor"
               strokeWidth="1.8"
               style={{
-                left: "calc(16px*var(--k,1))",
+                left: "clamp(10px, 2.2vmin, 16px)",
                 top: "50%",
                 transform: "translateY(-50%)",
-                width: "calc(22px*var(--k,1))",
-                height: "calc(22px*var(--k,1))",
+                width: "clamp(18px, 2.6vmin, 22px)",
+                height: "clamp(18px, 2.6vmin, 22px)",
               }}
             >
               <path d="M4 6h16v12H4z" />
@@ -137,9 +138,9 @@ export default function LoginLeft() {
                 width: "100%",
                 height: "100%",
                 boxSizing: "border-box",
-                paddingLeft: "calc(52px*var(--k,1))",
-                paddingRight: "calc(16px*var(--k,1))",
-                fontSize: "clamp(13px, calc(16px*var(--k,1)), 16px)",
+                paddingLeft: "clamp(40px, 5.5vmin, 52px)",
+                paddingRight: "clamp(12px, 2.2vmin, 16px)",
+                fontSize: "clamp(12px, 2.2vmin, 16px)",
               }}
             />
           </div>
@@ -149,8 +150,8 @@ export default function LoginLeft() {
             className="self-center text-[#364153]"
             style={{
               width: W,
-              marginTop: "calc(18px*var(--k,1))",
-              fontSize: "clamp(12px, calc(14px*var(--k,1)), 14px)",
+              marginTop: "clamp(12px, 2.8vmin, 18px)",
+              fontSize: "clamp(12px, 2.3vmin, 14px)",
             }}
           >
             비밀번호
@@ -158,9 +159,8 @@ export default function LoginLeft() {
 
           <div
             className="relative self-center"
-            style={{ width: W, height: H, marginTop: "calc(8px*var(--k,1))" }}
+            style={{ width: W, height: H, marginTop: "clamp(6px, 1.6vmin, 8px)" }}
           >
-            {/* 자물쇠 아이콘 */}
             <svg
               aria-hidden="true"
               className="absolute block text-[#9CA3AF]"
@@ -169,11 +169,11 @@ export default function LoginLeft() {
               stroke="currentColor"
               strokeWidth="1.8"
               style={{
-                left: "calc(16px*var(--k,1))",
+                left: "clamp(10px, 2.2vmin, 16px)",
                 top: "50%",
                 transform: "translateY(-50%)",
-                width: "calc(22px*var(--k,1))",
-                height: "calc(22px*var(--k,1))",
+                width: "clamp(18px, 2.6vmin, 22px)",
+                height: "clamp(18px, 2.6vmin, 22px)",
               }}
             >
               <rect x="4" y="11" width="16" height="9" rx="2" />
@@ -187,9 +187,9 @@ export default function LoginLeft() {
                 width: "100%",
                 height: "100%",
                 boxSizing: "border-box",
-                paddingLeft: "calc(52px*var(--k,1))",
-                paddingRight: "calc(16px*var(--k,1))",
-                fontSize: "clamp(13px, calc(16px*var(--k,1)), 16px)",
+                paddingLeft: "clamp(40px, 5.5vmin, 52px)",
+                paddingRight: "clamp(12px, 2.2vmin, 16px)",
+                fontSize: "clamp(12px, 2.2vmin, 16px)",
               }}
               placeholder="••••••"
             />
@@ -198,46 +198,37 @@ export default function LoginLeft() {
           {/* 옵션 라인 */}
           <div
             className="self-center flex items-center justify-between"
-            style={{ width: W, marginTop: "calc(14px*var(--k,1))" }}
+            style={{ width: W, marginTop: "clamp(10px, 2.4vmin, 14px)" }}
           >
             <label
               className="flex items-center text-[#4A5565]"
               style={{
-                gap: "calc(11px*var(--k,1))",
-                fontSize: "clamp(12px, calc(14px*var(--k,1)), 14px)",
+                gap: "clamp(8px, 2.2vmin, 11px)",
+                fontSize: "clamp(12px, 2.3vmin, 14px)",
               }}
             >
               <input
                 type="checkbox"
                 className="accent-[#111827]"
                 style={{
-                  width: "calc(15px*var(--k,1))",
-                  height: "calc(15px*var(--k,1))",
+                  width: "clamp(13px, 2.2vmin, 15px)",
+                  height: "clamp(13px, 2.2vmin, 15px)",
                 }}
               />
               로그인 상태 유지
             </label>
             <a
               className="text-[#4A5565] hover:text-[#111827]"
-              style={{
-                fontSize: "clamp(12px, calc(14px*var(--k,1)), 14px)",
-              }}
+              style={{ fontSize: "clamp(12px, 2.3vmin, 14px)" }}
               href="#"
             >
               비밀번호 찾기
             </a>
           </div>
 
-          {/* 로그인 버튼 (SVG 382×48) */}
-          <div
-            className="self-center"
-            style={{ width: W, marginTop: "calc(20px*var(--k,1))" }}
-          >
-            <ClickableSvg
-              src={loginBtn}
-              alt="로그인하기"
-              onClick={handleLogin}
-            />
+          {/* 로그인 버튼 */}
+          <div className="self-center" style={{ width: W, marginTop: "clamp(14px, 3vmin, 20px)" }}>
+            <ClickableSvg src={loginBtn} alt="로그인하기" onClick={handleLogin} />
           </div>
 
           {/* 구분선/문구 */}
@@ -253,22 +244,18 @@ export default function LoginLeft() {
             <span
               className="absolute left-1/2 -translate-x-1/2 bg-white text-[#9CA3AF]"
               style={{
-                top: "calc(-10px*var(--k,1))",
-                padding: "0 calc(11px*var(--k,1))",
-                fontSize: "clamp(11px, calc(13px*var(--k,1)), 13px)",
+                top: "clamp(-8px, -1.8vmin, -10px)",
+                padding: "0 clamp(8px, 2.1vmin, 11px)",
+                fontSize: "clamp(11px, 2.1vmin, 13px)",
               }}
             >
               또는
             </span>
           </div>
 
-          {/* Google 버튼 (SVG 382×48) */}
+          {/* Google 버튼 */}
           <div className="self-center" style={{ width: W }}>
-            <ClickableSvg
-              src={googleBtn}
-              alt="Google로 계속하기"
-              onClick={handleGoogle}
-            />
+            <ClickableSvg src={googleBtn} alt="Google로 계속하기" onClick={handleGoogle} />
           </div>
         </div>
 
@@ -276,8 +263,8 @@ export default function LoginLeft() {
         <div
           className="text-center text-[#6B7280]"
           style={{
-            marginTop: "calc(30px*var(--k,1))",
-            fontSize: "clamp(12px, calc(14px*var(--k,1)), 14px)",
+            marginTop: "clamp(18px, 3.2vmin, 30px)",
+            fontSize: "clamp(12px, 2.3vmin, 14px)",
           }}
         >
           아직 회원이 아니신가요?{" "}
