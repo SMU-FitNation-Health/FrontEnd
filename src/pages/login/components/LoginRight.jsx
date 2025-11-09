@@ -27,7 +27,7 @@ export default function LoginRight({
       <div
         className="min-h-dvh lg:h-dvh lg:box-border flex items-center justify-center
                    translate-y-0 lg:-translate-y-[var(--lift)]
-                   overflow-y-auto lg:overflow-visible"
+                   overflow-y-auto lg:overflow-hidden"
         style={{
           paddingTop: VPAD,
           paddingBottom: VPAD,

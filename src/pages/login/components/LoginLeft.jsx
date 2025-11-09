@@ -7,9 +7,9 @@ import googleBtn from "../../../assets/login/login6.svg";  // 382×48 SVG
 const W      = "clamp(240px, 62vw, 382px)";   // 인풋/버튼 가로
 const H      = "clamp(40px, 7.2vh, 48px)";    // 인풋/버튼 높이
 const CARD_W = "clamp(280px, 68vw, 448px)";   // 카드 가로
-const CARD_H = "clamp(360px, 74vh, 505px)";   // 카드 최소 높이(작은 화면에서 잘 줄어듦)
+const CARD_H = "clamp(340px, 66vh, 505px)";   // 카드 최소 높이(작은 화면에서 잘 줄어듦)
 const LOGO   = "clamp(40px, 10vmin, 60px)";   // 상단 로고 크기
-const VPAD   = "clamp(8px, 4dvh, 80px)";      // 상·하 여백(dvh로 툴바 변동 대응)
+const VPAD   = "clamp(0px, 2.5dvh, 56px)";      // 상·하 여백(dvh로 툴바 변동 대응)
 
 const GAP_LOGIN_TO_OR  = "clamp(24px, 6vh, 44px)";
 const GAP_OR_TO_GOOGLE = "clamp(18px, 5vh, 36px)";
@@ -52,7 +52,7 @@ export default function LoginLeft() {
   return (
     // 항상 상단 정렬 + 내부 스크롤 제거(페이지 스크롤만 사용)
     <aside
-      className="w-full min-h-dvh lg:min-h-dvh lg:box-border flex items-start justify-center bg-[#F8FAFC] min-h-0 lg:overflow-visible"
+      className="w-full min-h-dvh lg:min-h-dvh lg:box-border flex items-start justify-center bg-[#F8FAFC] min-h-0 lg:overflow-hidden"
       style={{
         paddingTop: `calc(${VPAD} + env(safe-area-inset-top))`,
         paddingBottom: VPAD,
@@ -87,7 +87,7 @@ export default function LoginLeft() {
 
         {/* 카드: 반응형 축소 */}
         <div
-          className="mx-auto mt-6 rounded-[16px] bg-white shadow-[0_8px_24px_rgba(2,6,23,0.06)] border border-[#E5E7EB] flex flex-col items-center"
+          className="mx-auto mt-4 rounded-[16px] bg-white shadow-[0_8px_24px_rgba(2,6,23,0.06)] border border-[#E5E7EB] flex flex-col items-center"
           style={{
             width: CARD_W,
             minHeight: CARD_H,
