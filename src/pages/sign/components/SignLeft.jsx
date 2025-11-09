@@ -240,9 +240,9 @@ export default function SignLeft() {
             fontSize: "clamp(12px, calc(14px*var(--k,1)), 14px)",
           }}
         >
-          아직 회원이 아니신가요?{" "}
+          이미 계정이 있으신가요?{" "}
           <a href="#" className="text-[#0F172A] hover:underline">
-            회원가입하기
+            로그인하기
           </a>
         </div>
       </div>

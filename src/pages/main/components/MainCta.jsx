@@ -6,7 +6,7 @@ import MainSignupButton from "./MainSignupButton.jsx";
 /** 하단 698px 영역 */
 export default function MainCta({
   loginHref = "/login",
-  signupHref = "/signup",
+  signupHref = "/sign",
 }) {
   return (
     <div className="w-full flex items-center">

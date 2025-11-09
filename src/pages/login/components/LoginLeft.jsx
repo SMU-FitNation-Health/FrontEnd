@@ -269,7 +269,7 @@ export default function LoginLeft() {
           }}
         >
           아직 회원이 아니신가요?{" "}
-          <a href="/signup" className="text-[#0F172A] hover:underline">
+          <a href="/sign" className="text-[#0F172A] hover:underline">
             회원가입하기
           </a>
         </div>
