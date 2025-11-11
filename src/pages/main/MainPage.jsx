@@ -5,7 +5,6 @@ import MainCta from "./components/MainCta.jsx";
 import Footer from "../../layout/footer/Footer.jsx";
 
 export default function MainPage() {
-  // 124px @ 1024 기준 → 12.11vh
   const heroGap = "clamp(64px, 12.11vh, 160px)";
 
   return (
@@ -27,10 +26,7 @@ export default function MainPage() {
       >
         온보딩 테스트 이동
       </Link>
-
-      {/* 히어로: 첫 화면에서 이미지 + 아래 여백이 함께 보이도록 구성 */}
       <section className="w-screen" style={{ "--hero-gap": heroGap }}>
-        {/* 히어로 높이 = 화면 높이 - 여백 */}
         <div className="w-screen h-[calc(100vh-var(--hero-gap))] select-none">
           <img
             src={main1}
@@ -39,14 +35,11 @@ export default function MainPage() {
             draggable="false"
           />
         </div>
-
-        {/* 디자인 기준 하단 여백: 124px@1024 → 12.11vh (clamp로 상/하한) */}
         <div style={{ height: "var(--hero-gap)" }} />
       </section>
 
       {/* 이후 섹션들 */}
       <main className="w-screen">
-        {/* 🔼 여기서 푸터와의 간격을 하단 padding으로 넉넉하게 확보 */}
         <section className="px-[clamp(16px,4vw,72px)] pt-[clamp(48px,8vh,96px)] pb-[clamp(130px,12vh,150px)]">
           <MainCta />
         </section>
