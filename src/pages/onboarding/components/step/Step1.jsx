@@ -2,11 +2,9 @@ import React from "react";
 import fatIcon  from "../../../../assets/onboarding/ob6.svg";
 import musIcon  from "../../../../assets/onboarding/ob7.svg";
 
-/** 사각형 카드 + 포커스 아웃라인 제거(녹색만 보이게) */
 const cardBase =
   "w-full text-left bg-white border transition hover:shadow-md rounded-none " +
-  "flex items-center gap-[clamp(14px,2vmin,18px)] " + // 가운데 정렬
-  "outline-none focus:outline-none focus:ring-0 focus-visible:ring-0"; // 검정/파란 포커스 제거
+  "flex items-center gap-[clamp(14px,2vmin,18px)] " ;
 
 export default function Step1({ value, onChange }) {
   const Card = ({ active, icon, title, desc, onClick }) => (
@@ -15,10 +13,10 @@ export default function Step1({ value, onChange }) {
       onClick={onClick}
       className={[
         cardBase,
-        active ? "border-[#0B5D51] ring-2 ring-[#0B5D51]/30" : "border-[#E5E7EB]",
+        active ? "border-2 border-[#009689]" : "border-2 border-[#E5E7EB]",
       ].join(" ")}
       style={{
-        padding: "clamp(18px,3.2vmin,28px)",
+        padding: "clamp(30px,5vmin,60px)",
         minHeight: "clamp(110px,18vmin,160px)", //높이
       }}
     >

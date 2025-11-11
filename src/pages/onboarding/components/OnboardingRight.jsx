@@ -8,8 +8,14 @@ import Bottom from "./bottom/Bottom.jsx";
 
 const TK = {
   outer: "clamp(18px,4vw,72px)",
-  title: "clamp(18px,2.6vmin,22px)",
+  title: "clamp(12px,2.2vmin,20px)",
   lead:  "clamp(16px,2.3vmin,20px)",
+};
+
+const HEAD = {
+  offsetX: "clamp(10px, 2.5vw, 60px)", //오른쪽 이동
+  offsetY: "clamp(8px, 2.5vh, 40px)", //아래
+  gap:     "clamp(8px, 2.2vmin, 18px)", //title lead
 };
 
 // 폼 상태(백엔드 연결 전)
@@ -60,11 +66,18 @@ export default function OnboardingRight({ step: stepProp, onStepChange, onComple
     <section className="min-h-dvh grid grid-rows-[1fr_auto] bg-white">
       {/* 본문 */}
       <div className="min-w-0 overflow-y-auto" style={{ padding: TK.outer }}>
-        <header className="mb-[clamp(12px,3vh,24px)]">
-          <div className="text-[#111827] font-semibold" style={{ fontSize: TK.title }}>
+        {/* ⬇️ 헤더를 아래/오른쪽으로 이동 */}
+        <header
+          className="mb-[clamp(12px,3vh,24px)]"
+          style={{ marginTop: HEAD.offsetY, marginLeft: HEAD.offsetX }}
+        >
+          <div className="text-[#101828] font-semibold" style={{ fontSize: TK.title }}>
             {["건강 목표 선택","운동 가능 시간","기본 정보","직업 선택","모든 준비 완료"][step-1]}
           </div>
-          <p className="text-[#4B5563] mt-[6px]" style={{ fontSize: TK.lead }}>
+          <p
+            className="text-[#6A7282] font-medium"
+            style={{ fontSize: TK.lead, marginTop: HEAD.gap }}
+          >
             {step===1 && "당신의 목표에 맞춘 개인화된 플랜을 제공합니다"}
             {step===2 && "운동 가능한 요일과 시간을 선택해주세요"}
             {step===3 && "정확한 분석을 위해 나이·신장·체중을 입력하세요"}
