@@ -12,7 +12,7 @@ export default function Bottom({
   padX = "clamp(18px,4vw,72px)", //좌우 패딩
 }) {
   return (
-    <footer className="bg-white border-t" style={{ borderColor: "#E5E7EB" }}>
+    <footer className="bg-white border-t-2" style={{ borderColor: "#E5E7EB" }}>
       <div
         className="flex items-center justify-between"
         style={{ padding: `clamp(10px,2vh,14px) ${padX}` }}
