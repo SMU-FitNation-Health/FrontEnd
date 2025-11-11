@@ -51,7 +51,7 @@ const FOOTER_TEXTS = {
   },
 };
 
-export default function OnboardingSidebar({ currentStep = 1 }) {
+export default function OnboardingLeft({ currentStep = 1 }) {
   const stepTexts = FOOTER_TEXTS[currentStep] ?? FOOTER_TEXTS[1];
 
   return (
