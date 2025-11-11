@@ -23,7 +23,7 @@ export default function Bottom({
           onClick={onPrev}
           disabled={step === 1}
           className={[
-            "text-[#6B7280]",
+            "text-[#4A5565]",
             step === 1 ? "opacity-40 cursor-not-allowed" : "hover:opacity-80",
           ].join(" ")}
         >
