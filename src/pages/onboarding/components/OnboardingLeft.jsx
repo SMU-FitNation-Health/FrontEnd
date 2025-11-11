@@ -11,16 +11,16 @@ export const ONBOARDING_STEP_LABELS = [
 ];
 
 const KNOBS = {
-  logoH: "clamp(60px, 9.2vmin, 86px)", //상단 로고 높이
-  circle: "clamp(20px, 5.2vmin, 80px)", //원 크기
-  circleFont: "clamp(14px, 1.8vmin, 20px)", //원 숫자 
-  labelFont: "clamp(15px, 1.9vmin, 22px)", //단계 라벨 
-  itemGap: "clamp(20px, 2.0vmin, 30px)", //원-라벨 간격
-  listSpaceY: "clamp(20px, 3.5vh, 38px)", //단계별 간격
-  padL: "clamp(25px, 5vw, 70px)", //왼쪽 패딩
-  padR: "clamp(16px, 2.8vw, 40px)", //오른쪽 패딩
-  topPad: "clamp(30px, 4.2vw, 80px)", //상단 패딩
-  bottomPad: "clamp(20px, 3.2vh, 36px)", //하단 패딩
+  logoH: "clamp(60px, 9.2vmin, 86px)",
+  circle: "clamp(20px, 5.2vmin, 80px)",
+  circleFont: "clamp(14px, 1.8vmin, 20px)",
+  labelFont: "clamp(15px, 1.9vmin, 22px)",
+  itemGap: "clamp(20px, 2.0vmin, 30px)",
+  listSpaceY: "clamp(20px, 3.5vh, 38px)",
+  padL: "clamp(25px, 5vw, 70px)",
+  padR: "clamp(16px, 2.8vw, 40px)",
+  topPad: "clamp(30px, 4.2vw, 80px)",
+  bottomPad: "clamp(20px, 3.2vh, 36px)",
 };
 
 const FOOTER_TEXTS = {
@@ -56,57 +56,25 @@ export default function OnboardingLeft({ currentStep = 1 }) {
 
   return (
     <aside className="relative min-h-dvh text-white overflow-hidden">
-      {/* 배경 */}
-      <img
-        src={bg}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover"
-        draggable="false"
-      />
+      <img src={bg} alt="" className="absolute inset-0 w-full h-full object-cover" draggable="false" />
 
       <div className="relative flex flex-col h-full">
-        {/* 상단 로고 (좌우 패딩 분리 적용) */}
         <div
           className="pt-[var(--topPad)] pl-[var(--padL)] pr-[var(--padR)]"
-          style={{
-            ["--padL"]: KNOBS.padL,
-            ["--padR"]: KNOBS.padR,
-            ["--topPad"]: KNOBS.topPad,
-          }}
+          style={{ ["--padL"]: KNOBS.padL, ["--padR"]: KNOBS.padR, ["--topPad"]: KNOBS.topPad }}
         >
-          <img
-            src={logo}
-            alt="Care View"
-            className="select-none"
-            style={{ height: KNOBS.logoH }}
-            draggable="false"
-          />
+          <img src={logo} alt="Care View" className="select-none" style={{ height: KNOBS.logoH }} draggable="false" />
         </div>
 
-        {/* 단계 네비게이션 */}
-        <ol
-          className="grow pl-[var(--padL)] pr-[var(--padR)]"
-          style={{ ["--padL"]: KNOBS.padL, ["--padR"]: KNOBS.padR }}
-        >
-          <div
-            className="mt-[clamp(18px,4vh,44px)] space-y-[var(--listSpaceY)]"
-            style={{ ["--listSpaceY"]: KNOBS.listSpaceY }}
-          >
+        <ol className="grow pl-[var(--padL)] pr-[var(--padR)]" style={{ ["--padL"]: KNOBS.padL, ["--padR"]: KNOBS.padR }}>
+          <div className="mt-[clamp(18px,4vh,44px)] space-y-[var(--listSpaceY)]" style={{ ["--listSpaceY"]: KNOBS.listSpaceY }}>
             {ONBOARDING_STEP_LABELS.map((label, idx) => {
               const step = idx + 1;
               const active = step === currentStep;
-              const done =
-                step < currentStep &&
-                step !== ONBOARDING_STEP_LABELS.length;
+              const done = step < currentStep && step !== ONBOARDING_STEP_LABELS.length;
 
               return (
-                <li
-                  key={label}
-                  className="flex items-center"
-                  style={{ gap: KNOBS.itemGap }}
-                  aria-current={active ? "step" : undefined}
-                >
-                  {/* 원형 번호 */}
+                <li key={label} className="flex items-center" style={{ gap: KNOBS.itemGap }} aria-current={active ? "step" : undefined}>
                   <span
                     className={[
                       "grid place-items-center rounded-full border select-none shrink-0",
@@ -116,24 +84,12 @@ export default function OnboardingLeft({ currentStep = 1 }) {
                         ? "bg-white/25 text-white border-white/60"
                         : "text-white/90 border-white/45",
                     ].join(" ")}
-                    style={{
-                      width: KNOBS.circle,
-                      height: KNOBS.circle,
-                      fontSize: KNOBS.circleFont,
-                      fontWeight: 700,
-                    }}
+                    style={{ width: KNOBS.circle, height: KNOBS.circle, fontSize: KNOBS.circleFont, fontWeight: 700 }}
                   >
                     {step}
                   </span>
 
-                  {/* 라벨 */}
-                  <span
-                    className={[
-                      "leading-snug",
-                      active ? "font-semibold" : "opacity-95",
-                    ].join(" ")}
-                    style={{ fontSize: KNOBS.labelFont }}
-                  >
+                  <span className={["leading-snug", active ? "font-semibold" : "opacity-95"].join(" ")} style={{ fontSize: KNOBS.labelFont }}>
                     {label}
                   </span>
                 </li>
@@ -142,19 +98,11 @@ export default function OnboardingLeft({ currentStep = 1 }) {
           </div>
         </ol>
 
-        {/* 하단 카피 – 페이지마다 변경 (줄바꿈 제어) */}
         <div
           className="pl-[var(--padL)] pr-[var(--padR)] pb-[var(--bottomPad)]"
-          style={{
-            ["--padL"]: KNOBS.padL,
-            ["--padR"]: KNOBS.padR,
-            ["--bottomPad"]: KNOBS.bottomPad,
-          }}
+          style={{ ["--padL"]: KNOBS.padL, ["--padR"]: KNOBS.padR, ["--bottomPad"]: KNOBS.bottomPad }}
         >
-          <p className="text-[clamp(14px,1.6vmin,20px)] font-semibold">
-            {stepTexts.line1}
-          </p>
-          {/* \n로 줄바꿈 가능하게 */}
+          <p className="text-[clamp(14px,1.6vmin,20px)] font-semibold">{stepTexts.line1}</p>
           <p
             className="mt-[clamp(25px,2.5vmin,40px)] text-[clamp(15px,2.0vmin,30px)] opacity-95 leading-relaxed"
             style={{ whiteSpace: "pre-line" }}
