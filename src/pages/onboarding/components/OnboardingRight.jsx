@@ -72,7 +72,7 @@ export default function OnboardingRight({ step: stepProp, onStepChange, onComple
           style={{ marginTop: HEAD.offsetY, marginLeft: HEAD.offsetX }}
         >
           <div className="text-[#101828] font-semibold" style={{ fontSize: TK.title }}>
-            {["건강 목표 선택","운동 가능 시간","기본 정보","직업 선택","모든 준비 완료"][step-1]}
+            {["건강 목표 선택","운동 가능 시간","기본 정보","직업 선택"][step-1]}
           </div>
           <p
             className="text-[#6A7282] font-medium"
@@ -82,7 +82,6 @@ export default function OnboardingRight({ step: stepProp, onStepChange, onComple
             {step===2 && "운동 가능한 요일과 시간을 선택해주세요"}
             {step===3 && "정확한 분석을 위해 나이·신장·체중을 입력하세요"}
             {step===4 && "라이프스타일에 맞는 건강 관리를 제공합니다"}
-            {step===5 && "이제 AI 기반 맞춤형 건강 관리를 시작할 수 있습니다"}
           </p>
         </header>
 
