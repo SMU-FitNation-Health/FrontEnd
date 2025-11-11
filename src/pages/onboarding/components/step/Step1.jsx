@@ -4,7 +4,7 @@ import musIcon  from "../../../../assets/onboarding/ob7.svg";
 
 const cardBase =
   "w-full text-left bg-white border transition hover:shadow-md rounded-none " +
-  "flex items-center gap-[clamp(14px,2vmin,18px)] " ;
+  "flex items-center gap-[clamp(12px,5vmin,40px)] " ;
 
 export default function Step1({ value, onChange }) {
   const Card = ({ active, icon, title, desc, onClick }) => (
@@ -39,7 +39,7 @@ export default function Step1({ value, onChange }) {
 
   return (
     // 전체를 아래로 내리고, 너비를 줄여서 가운데 배치
-    <div className="mx-auto w-full max-w-[720px] mt-[clamp(24px,10vh,120px)] grid gap-[clamp(40px,4vmin,65px)]">
+    <div className="mx-auto w-full px-[clamp(9px,2.8vw,70px)] mt-[clamp(30px,12vh,140px)] grid gap-[clamp(40px,4vmin,80px)]">
       <Card
         active={value === "fat"}
         icon={fatIcon}
