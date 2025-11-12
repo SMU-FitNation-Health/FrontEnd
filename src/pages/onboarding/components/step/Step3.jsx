@@ -1,5 +1,5 @@
 import React from "react";
-import AllergyPicker from "./AllergyPicker";
+import AllergyPicker from "../allergy/AllergyPicker";
 
 export default function Step3({ value, onChange }) {
   const set = (patch) => onChange({ ...value, ...patch });

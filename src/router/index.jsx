@@ -4,7 +4,7 @@ import Main from '../pages/main'; //폴더 명만 적어도 알아서 Min을 찾
 import LoginPage from "../pages/login/LoginPage.jsx";
 import SignPage from "../pages/sign/SignPage.jsx";
 import OnboardingPage from "../pages/onboarding/OnboardingPage.jsx";
-
+import DashBoardPage from "../pages/dashboard/DashBoardPage.jsx";
 
 const router = createBrowserRouter([
 
@@ -12,6 +12,7 @@ const router = createBrowserRouter([
   { path: "/login", element: <LoginPage /> },
   { path: "/sign", element: <SignPage /> },
   { path: "/onboarding", element: <OnboardingPage /> },
+  { path: "/dashboard", element: <DashBoardPage /> },
 
 ]);
 export default router;

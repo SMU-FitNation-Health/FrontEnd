@@ -1,6 +1,6 @@
 // src/pages/onboarding/state/onboardingLocal.js
 export const onboardingLocal = {
-  goal: null,                              // 'fat_loss' | 'muscle_gain'
+  goal: null,                              
   schedule: { days: [], time: null },      // 2단계
   basic:   { age: null, heightCm: null, weightKg: null, sex: null }, // 3단계
   job:     { type: null, activityLevel: null, shift: null },         // 4단계
