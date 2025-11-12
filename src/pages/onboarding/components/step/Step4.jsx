@@ -2,7 +2,6 @@ import React from "react";
 import stuIcon  from "../../../../assets/onboarding/ob8.svg";
 import workIcon from "../../../../assets/onboarding/ob9.svg";
 
-// 1페이지와 동일한 카드 베이스
 const cardBase =
   "w-full text-left bg-white border-2 transition hover:shadow-md " +
   "flex items-center gap-[clamp(12px,5vmin,40px)]";

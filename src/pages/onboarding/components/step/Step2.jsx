@@ -19,7 +19,7 @@ export default function Step2({ value, onChange }) {
   const setRow = (k, patch) =>
     onChange({ ...value, [k]: { ...value[k], ...patch } });
 
-  // 간격 노브
+  // 간격
   const GAP = {
     group:    "clamp(28px,5vmin,72px)",   // 시작 종료 그룹 간
     inner:    "clamp(6px,1.1vmin,12px)",  // 각 그룹 내부
@@ -55,13 +55,13 @@ export default function Step2({ value, onChange }) {
             {label}
           </label>
 
-          {/* 시작/종료 세트 */}
+          {/* 시작/종료*/}
           {r.enabled && (
             <div
               className={`flex items-center max-[520px]:flex-wrap max-[520px]:ml-0`}
               style={{ gap: GAP.group, marginLeft: GAP.afterDay }}
             >
-              {/* 시작 그룹 */}
+              {/* 시작 */}
               <div className="flex items-center" style={{ gap: GAP.inner }}>
                 <label
                   htmlFor={startId}
@@ -87,7 +87,7 @@ export default function Step2({ value, onChange }) {
                 </select>
               </div>
 
-              {/* 종료 그룹 */}
+              {/* 종료 */}
               <div className="flex items-center" style={{ gap: GAP.inner }}>
                 <label
                   htmlFor={endId}
