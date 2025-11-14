@@ -71,7 +71,7 @@ export default function MetricCard({
         p-[clamp(14px,3vmin,30px)]
         min-h-[clamp(170px,42vmin,550px)]
         w-[clamp(200px,16vw,320px)]
-        my-[clamp(20px,7vmin,60px)]
+        my-[clamp(20px,10vmin,80px)]
         ${className}
       `}
     >

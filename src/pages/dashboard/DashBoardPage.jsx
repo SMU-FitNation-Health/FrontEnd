@@ -1,10 +1,10 @@
-// src/pages/dashboard/DashBoardPage.jsx
+
 import React from "react";
 import Footer from "../../layout/footer/Footer.jsx";
 
 import DashBanner from "./components/banner/DashBanner.jsx";
 import MetricsRow from "./components/card/MetricsRow.jsx";
-import CalendarSection from "./components/calendar/CalendarSection.jsx";
+import Calendar from "./components/calendar/Calendar.jsx";
 import QuickLinks from "./components/QuickLinks.jsx";
 
 export default function DashBoardPage() {
@@ -25,7 +25,7 @@ export default function DashBoardPage() {
         sleepSeries={mockSeries.sleep}
       />
 
-      <CalendarSection />
+      <Calendar />
 
       <QuickLinks />
 
