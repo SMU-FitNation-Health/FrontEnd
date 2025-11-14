@@ -1,23 +1,30 @@
 import React from "react";
-import { global } from "../../utils/global";
 
 export default function Footer({ year = new Date().getFullYear() }) {
   return (
     <footer className="bg-[#F9FAFB] text-[#1E2939]" role="contentinfo">
-      <div className="border-t border-[#D1D5DB] pb-[0.1vw]"></div>
+      {/* 상단 경계선 */}
+      <div className="border-t border-[#D1D5DB] pb-[0.1vw]" />
 
-      {/* 전역 스타일 적용 (1440px 고정 + 중앙 정렬) */}
-      <div {...global()}>
-
+      <div className="w-full px-[clamp(16px,5vw,72px)]">
+        {/* 본문 영역*/}
         <div className="flex justify-center">
-          <div className="grid grid-cols-4 gap-x-[8vw] py-[3.5vw] pb-[1vw] items-start">
-            
+          <div
+            className="
+              w-full
+              grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4
+              gap-x-[clamp(24px,6vw,92px)]
+              gap-y-[clamp(20px,3vw,40px)]
+              py-[clamp(24px,4vw,56px)]
+              items-start
+            "
+          >
             {/* 회사 정보 */}
             <div>
-              <div className="text-[clamp(16px,1vw,22px)] pb-[2vw] font-semibold">
+              <div className="text-[clamp(12px,1.0vw,30px)] pb-[clamp(12px,1.5vw,24px)] font-semibold">
                 회사 정보
               </div>
-              <div className="space-y-[0.7vw] text-[clamp(14px,0.9vw,18px)] leading-relaxed">
+              <div className="space-y-[0.7vw] text-[clamp(10px,0.9vw,24px)] leading-relaxed">
                 <p>회사명: Care View Inc.</p>
                 <p>대표자: 이원준</p>
                 <p>사업자등록번호: 123-45-67890</p>
@@ -27,10 +34,10 @@ export default function Footer({ year = new Date().getFullYear() }) {
 
             {/* 약관 및 정책 */}
             <div>
-              <div className="text-[clamp(16px,1vw,22px)] pb-[2vw] font-semibold">
+              <div className="text-[clamp(12px,1.0vw,30px)] pb-[clamp(12px,1.5vw,24px)] font-semibold">
                 약관 및 정책
               </div>
-              <div className="space-y-[0.7vw] text-[clamp(14px,0.9vw,18px)] leading-relaxed">
+              <div className="space-y-[0.7vw] text-[clamp(10px,0.9vw,24px)] leading-relaxed">
                 <p>이용 약관</p>
                 <p>개인정보 수집 및 이용 동의</p>
                 <p>개인정보 처리방침</p>
@@ -39,10 +46,10 @@ export default function Footer({ year = new Date().getFullYear() }) {
 
             {/* 인증서 */}
             <div>
-              <div className="text-[clamp(16px,1vw,22px)] pb-[2vw] font-semibold">
+              <div className="text-[clamp(12px,1.0vw,30px)] pb-[clamp(12px,1.5vw,24px)] font-semibold">
                 인증서
               </div>
-              <div className="space-y-[0.7vw] text-[clamp(14px,0.9vw,18px)] leading-relaxed">
+              <div className="space-y-[0.7vw] text-[clamp(10px,0.9vw,24px)] leading-relaxed">
                 <p>의료기기 인증서</p>
                 <p>정보보호 인증서</p>
                 <p>ISO 9001</p>
@@ -51,10 +58,10 @@ export default function Footer({ year = new Date().getFullYear() }) {
 
             {/* 고객 지원 */}
             <div>
-              <div className="text-[clamp(16px,1vw,22px)] pb-[2vw] font-semibold">
+              <div className="text-[clamp(12px,1.0vw,30px)] pb-[clamp(12px,1.5vw,24px)] font-semibold">
                 고객 지원
               </div>
-              <div className="space-y-[0.7vw] text-[clamp(14px,0.9vw,18px)] leading-relaxed">
+              <div className="space-y-[0.7vw] text-[clamp(10px,0.9vw,24px)] leading-relaxed">
                 <p>이메일: support@careview.com</p>
                 <p>전화: 1588-1234</p>
                 <p>운영시간: 평일 09:00-18:00</p>
@@ -64,10 +71,10 @@ export default function Footer({ year = new Date().getFullYear() }) {
         </div>
 
         {/* 하단 저작권 */}
-        <div className="border-t-[0.8px] border-[#1E2939] w-[86%] mx-auto"></div>
-          <p className="text-center text-[clamp(13px,0.8vw,15px)] pb-[1.5vw] pt-[0.5vw]">
-            © {year} Care View Inc. All rights reserved.
-          </p>
+        <div className="border-t-[0.8px] border-[#1E2939] w-[86%] mx-auto mt-[clamp(2px,0.5vw,10px)]" />
+        <p className="text-center text-[clamp(13px,0.8vw,15px)] pb-[1.5vw] pt-[0.5vw]">
+          © {year} Care View Inc. All rights reserved.
+        </p>
       </div>
     </footer>
   );
