@@ -15,7 +15,7 @@ export default function Footer({ year = new Date().getFullYear() }) {
               grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4
               gap-x-[clamp(24px,6vw,92px)]
               gap-y-[clamp(20px,3vw,40px)]
-              py-[clamp(24px,4vw,56px)]
+              py-[clamp(10px,2.5vw,46px)]
               items-start
             "
           >
