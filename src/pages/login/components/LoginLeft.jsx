@@ -62,13 +62,6 @@ export default function LoginLeft() {
       <div className="w-full max-w-[720px] px-[clamp(12px,3vw,24px)]">
         {/* 상단 로고/타이틀 */}
         <div className="flex flex-col items-center">
-          {/* <img
-            src={topLogo}
-            alt="Care View"
-            className="select-none block"
-            style={{ width: LOGO, height: LOGO }}
-            draggable="false"
-          /> */}
           <h1
             className="mt-2 text-center font-semibold text-[#0F172A]"
             style={{ fontSize: "clamp(16px, 3.2vmin, 28px)" }}

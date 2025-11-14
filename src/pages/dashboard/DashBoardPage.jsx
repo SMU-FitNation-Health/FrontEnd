@@ -2,9 +2,9 @@
 import React from "react";
 import Footer from "../../layout/footer/Footer.jsx";
 
-import HeroBanner from "./components/HeroBanner.jsx";
-import MetricsRow from "./components/MetricsRow.jsx";
-import CalendarSection from "./components/CalendarSection.jsx";
+import DashBanner from "./components/banner/DashBanner.jsx";
+import MetricsRow from "./components/card/MetricsRow.jsx";
+import CalendarSection from "./components/calendar/CalendarSection.jsx";
 import QuickLinks from "./components/QuickLinks.jsx";
 
 export default function DashBoardPage() {
@@ -17,7 +17,7 @@ export default function DashBoardPage() {
 
   return (
     <>
-      <HeroBanner />
+      <DashBanner />
 
       <MetricsRow
         weightSeries={mockSeries.weight}

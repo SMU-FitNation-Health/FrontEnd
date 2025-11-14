@@ -1,7 +1,7 @@
 import React from "react";
-import das1 from "../../../assets/dashboard/das1.svg";
+import das1 from "../../../../assets/dashboard/das1.svg";
 
-export default function HeroBanner() {
+export default function DashBanner() {
   return (
     <section
       aria-label="대시보드 상단 배너"
