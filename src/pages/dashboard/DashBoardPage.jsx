@@ -1,5 +1,5 @@
+// src/pages/dashboard/DashBoardPage.jsx
 import React from "react";
-import { global } from "../../utils/global";
 import Footer from "../../layout/footer/Footer.jsx";
 
 import HeroBanner from "./components/HeroBanner.jsx";
@@ -16,22 +16,20 @@ export default function DashBoardPage() {
   };
 
   return (
-    <div className="w-full min-h-dvh bg-[#F7F8FA] text-[#0F172A]">
-      <div {...global()} className="py-[clamp(12px,2.2vmin,28px)] space-y-[clamp(14px,2.5vmin,32px)]">
-        <HeroBanner />
+    <>
+      <HeroBanner />
 
-        <MetricsRow
-          weightSeries={mockSeries.weight}
-          bodyFatSeries={mockSeries.bodyFat}
-          sleepSeries={mockSeries.sleep}
-        />
+      <MetricsRow
+        weightSeries={mockSeries.weight}
+        bodyFatSeries={mockSeries.bodyFat}
+        sleepSeries={mockSeries.sleep}
+      />
 
-        <CalendarSection />
+      <CalendarSection />
 
-        <QuickLinks />
-      </div>
+      <QuickLinks />
 
       <Footer />
-    </div>
+    </>
   );
 }

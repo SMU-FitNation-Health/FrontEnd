@@ -1,16 +1,24 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";   // ⬅ 추가
 import nextIcon  from "../../../../assets/onboarding/ob2.svg"; 
 import startIcon from "../../../../assets/onboarding/ob4.svg";
 
 export default function Bottom({
-  step,                 //현재 단계
-  total = 5,            //전체 단계
-  canNext,              //다음 활성 여부(true/false)
-  onPrev,               //이전
-  onNext,               //다음
-  onStart,              //시작하기
-  padX = "clamp(18px,4vw,72px)", //좌우 패딩
+  step,
+  total = 5,
+  canNext,
+  onPrev,
+  onNext,
+  onStart, // 선택: 있으면 먼저 실행 후 이동
+  padX = "clamp(18px,4vw,72px)",
 }) {
+  const navigate = useNavigate();                 // ⬅ 추가
+
+  const handleStart = () => {                     // ⬅ 추가
+    if (typeof onStart === "function") onStart(); // 부모 콜백 보존
+    navigate("/dashboard");                       // 대시보드로 이동
+  };
+
   return (
     <footer className="bg-white border-t-2" style={{ borderColor: "#E5E7EB" }}>
       <div
@@ -33,7 +41,7 @@ export default function Bottom({
         {/* 진행 바 */}
         <ProgressDots current={step} total={total} />
 
-        {/* 다음 / 시작하기*/}
+        {/* 다음 / 시작하기 */}
         {step < total ? (
           <img
             src={nextIcon}
@@ -49,7 +57,7 @@ export default function Bottom({
           <img
             src={startIcon}
             alt="시작하기"
-            onClick={onStart}
+            onClick={handleStart}                
             className="select-none cursor-pointer hover:opacity-90"
             style={{ width: "clamp(96px,10vmin,120px)" }}
           />
