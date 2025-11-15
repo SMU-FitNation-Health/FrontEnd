@@ -41,7 +41,7 @@ export default function CalendarRight({
     >
       {/* 상단 날짜 + 추가 버튼 */}
       <div className="flex items-center justify-between gap-2">
-        <h3 className="ml-[clamp(10px,4vmin,40px)] text-[clamp(18px,3vmin,26px)] font-semibold tracking-tight">
+        <h3 className="ml-[clamp(10px,4vmin,40px)] text-[clamp(12px,3.5vmin,40px)] font-semibold tracking-tight">
           {selected.getFullYear()}-
           {String(selected.getMonth() + 1).padStart(2, "0")}-
           {String(selected.getDate()).padStart(2, "0")} 할 일
@@ -52,9 +52,9 @@ export default function CalendarRight({
             type="button"
             onClick={handleAddClick}
             className="
-              px-3 py-1 rounded-md 
+              px-3 py-1.5 rounded-md 
               bg-[#009689] hover:bg-[#008378] 
-              text-white text-sm 
+              text-white text-m 
               focus:outline-none focus:ring-2 focus:ring-[#009689]/70
               whitespace-nowrap
             "
@@ -65,7 +65,7 @@ export default function CalendarRight({
       </div>
 
       {/* 리스트 / placeholder */}
-      <div className="mt-5 flex-1 overflow-auto max-h-[clamp(180px,28vmin,320px)] pr-1">
+      <div className="mt-7 flex-1 overflow-auto max-h-[clamp(180px,28vmin,320px)] pr-1">
         <InputList
           items={selList}
           onToggle={(id) => toggleTask(selKey, id)}

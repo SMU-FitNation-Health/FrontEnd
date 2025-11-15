@@ -26,8 +26,8 @@ export default function InputList({ items, onToggle, onRemove }) {
               onChange={() => onToggle(item.id)}
               className="
                 accent-[#009689]
-                w-[clamp(18px,2.4vmin,22px)]
-                h-[clamp(18px,2.4vmin,22px)]
+                w-[clamp(20px,3vmin,70px)]
+                h-[clamp(12px,2.4vmin,30px)]
               "
             />
             {/* "시작 ~ 종료. 제목" */}

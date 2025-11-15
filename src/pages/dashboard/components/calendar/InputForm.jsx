@@ -39,7 +39,7 @@ export default function InputForm({ onSave, onCancel }) {
         {/* 시간 선택 */}
         <div className="grid grid-cols-2 gap-3">
           <div className="flex flex-col gap-1">
-            <label className="text-[clamp(12px,1.5vmin,14px)] text-gray-700">
+            <label className="text-[clamp(12px,1.5vmin,60px)] font-semibold text-gray-700">
               시작 시간
             </label>
             <select
@@ -61,7 +61,7 @@ export default function InputForm({ onSave, onCancel }) {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-[clamp(12px,1.5vmin,14px)] text-gray-700">
+            <label className="text-[clamp(12px,1.5vmin,60px)] font-semibold text-gray-700">
               종료 시간
             </label>
             <select
@@ -85,7 +85,7 @@ export default function InputForm({ onSave, onCancel }) {
 
         {/* 제목 */}
         <div className="flex flex-col gap-1">
-          <label className="text-[clamp(12px,1.5vmin,14px)] text-gray-700">
+          <label className="text-[clamp(12px,1.5vmin,14px)] font-semibold text-gray-700">
             제목
           </label>
           <input
@@ -103,7 +103,7 @@ export default function InputForm({ onSave, onCancel }) {
 
         {/* 내용 (현재는 저장 포맷엔 안 쓰지만, UI는 유지) */}
         <div className="flex flex-col gap-1">
-          <label className="text-[clamp(12px,1.5vmin,14px)] text-gray-700">
+          <label className="text-[clamp(12px,1.5vmin,14px)] font-semibold text-gray-700">
             내용
           </label>
           <textarea
