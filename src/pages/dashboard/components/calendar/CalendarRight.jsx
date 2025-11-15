@@ -32,11 +32,9 @@ export default function CalendarRight({
 
   function handleSave(e) {
     e.preventDefault();
-    if (!title.trim()) return; // 제목 없으면 저장 안 함 (원하면 alert로 바꿔도 됨)
+    if (!title.trim()) return;
 
-    // 표시 형식: "시작 ~ 종료. 제목"
     const label = `${startTime} ~ ${endTime}. ${title.trim()}`;
-
     addTask(selKey, label);
 
     setIsAdding(false);
@@ -65,7 +63,7 @@ export default function CalendarRight({
     >
       {/* 상단 날짜 + 추가 버튼 */}
       <div className="flex items-center justify-between gap-2">
-        <h3 className="text-[clamp(18px,3vmin,26px)] font-semibold tracking-tight">
+        <h3 className="ml-[clamp(10px,4vmin,40px)] text-[clamp(18px,3vmin,26px)] font-semibold tracking-tight">
           {selected.getFullYear()}-
           {String(selected.getMonth() + 1).padStart(2, "0")}-
           {String(selected.getDate()).padStart(2, "0")} 할 일
@@ -103,14 +101,19 @@ export default function CalendarRight({
                 key={item.id}
                 className="flex items-center justify-between gap-3 bg-gray-50 rounded-md px-3 py-2"
               >
-                <label className="flex items-center gap-2 text-[clamp(12px,1.6vmin,16px)]">
+                <label className="flex items-center gap-[clamp(8px,1.5vmin,14px)] text-[clamp(14px,2vmin,20px)]">
+                  {/* ✅ 체크박스 크기 키움 */}
                   <input
                     type="checkbox"
                     checked={item.done}
                     onChange={() => toggleTask(selKey, item.id)}
-                    className="accent-[#009689]"
+                    className="
+                      accent-[#009689]
+                      w-[clamp(18px,2.4vmin,22px)]
+                      h-[clamp(18px,2.4vmin,22px)]
+                    "
                   />
-                  {/* label에 "시작 ~ 종료. 제목" 문자열이 그대로 들어있음 */}
+                  {/* ✅ 시간~제목 폰트도 더 크게 */}
                   <span
                     className={
                       item.done
@@ -124,7 +127,7 @@ export default function CalendarRight({
                 <button
                   type="button"
                   onClick={() => removeTask(selKey, item.id)}
-                  className="text-[clamp(10px,1.3vmin,13px)] text-gray-500 hover:text-red-600"
+                  className="text-[clamp(11px,1.5vmin,14px)] text-gray-500 hover:text-red-600"
                   aria-label="삭제"
                 >
                   삭제
@@ -227,7 +230,7 @@ export default function CalendarRight({
               />
             </div>
 
-            {/* 버튼 영역: 하단 중앙 */}
+            {/* 버튼 영역 */}
             <div className="flex justify-center gap-3 pt-1">
               <button
                 type="button"
