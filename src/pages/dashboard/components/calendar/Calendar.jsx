@@ -1,4 +1,3 @@
-// src/...(경로)/Calendar.jsx
 import React, { useMemo, useState } from "react";
 import { fmt, startOfMonth, buildMonthGrid } from "../../utils/dateUtils";
 import { useCalendar } from "../../hooks/useCalendar";
