@@ -57,7 +57,7 @@ export default function QuickLinks() {
       }}
     >
       <SvgButton Svg={Das2} to="#" label="Sports" />
-      <SvgButton Svg={Das3} to="#" label="Food" />
+      <SvgButton Svg={Das3} to="/dailyfood" label="Food" />
       <SvgButton Svg={Das4} to="#" label="Record" />
     </section>
   );
