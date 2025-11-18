@@ -18,10 +18,12 @@ export default function InputForm({ onSave, onCancel }) {
     e.preventDefault();
     if (!title.trim()) return;
 
-    // "시작 ~ 종료. 제목" 형식으로 label 생성
+    // 시작 ~ 종료. 제목 형식
     const label = `${startTime} ~ ${endTime}. ${title.trim()}`;
+    const body = content.trim();
+    const text = body ? `${label}\n${body}` : label;
 
-    onSave(label);
+    onSave(text);
     reset();
   };
 
@@ -101,21 +103,19 @@ export default function InputForm({ onSave, onCancel }) {
           />
         </div>
 
-        {/* 내용 (현재는 저장 포맷엔 안 쓰지만, UI는 유지) */}
+        {/* 내용부분 */}
         <div className="flex flex-col gap-1">
           <label className="text-[clamp(12px,1.5vmin,14px)] font-semibold text-gray-700">
             내용
           </label>
-          <textarea
+          <input
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            placeholder="상세 내용을 적어주세요 (선택)"
-            rows={3}
+            placeholder="내용을 간단하게 적어주세요."
             className="
-              rounded-md border border-gray-300 
+              h-9 rounded-md border border-gray-300 
               text-[clamp(12px,1.6vmin,14px)]
-              px-2 py-1
-              resize-none
+              px-2
               focus:outline-none focus:ring-2 focus:ring-[#009689]
             "
           />

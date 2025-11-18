@@ -15,10 +15,9 @@ export default function CalendarRight({
   const [isAdding, setIsAdding] = useState(false);
 
   const handleAddClick = () => setIsAdding(true);
-
-  const handleSaveTask = (label) => {
-    // 기존 기능 유지: dateKey + text만 저장
-    addTask(selKey, label);
+  
+  const handleSaveTask = (text) => {
+    addTask(selKey, text);
     setIsAdding(false);
   };
 
@@ -54,7 +53,7 @@ export default function CalendarRight({
             className="
               px-3 py-1.5 rounded-md 
               bg-[#009689] hover:bg-[#008378] 
-              text-white text-m 
+              text-white text-sm 
               focus:outline-none focus:ring-2 focus:ring-[#009689]/70
               whitespace-nowrap
             "
@@ -68,12 +67,11 @@ export default function CalendarRight({
       <div className="mt-7 flex-1 overflow-auto max-h-[clamp(180px,28vmin,320px)] pr-1">
         <InputList
           items={selList}
-          onToggle={(id) => toggleTask(selKey, id)}
           onRemove={(id) => removeTask(selKey, id)}
         />
       </div>
 
-      {/* 하단 중앙 추가 폼 */}
+      {/* 하단 중앙 추가 */}
       {isAdding && (
         <InputForm onSave={handleSaveTask} onCancel={handleCancelForm} />
       )}
