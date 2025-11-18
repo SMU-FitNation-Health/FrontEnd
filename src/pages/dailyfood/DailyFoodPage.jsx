@@ -1,10 +1,8 @@
 import React from "react";
-
 import SummaryCard from "./components/SummaryCard.jsx";
 import DailyCard from "./components/DailyCard.jsx";
 import DailyHeader from "./components/DailyHeader.jsx";
 import DailyHero from "./components/DailyHero.jsx";
-import DailyNewCard from "./components/DailyNewCard.jsx";
 
 import {
   useTodayMeals,
@@ -13,14 +11,7 @@ import {
 import { DailyDate } from "./utils/DailyDate.js";
 
 export default function DailyFoodPage() {
-  const {
-    meals,
-    totals,
-    candidates,
-    refreshCandidates,
-    applyCandidate,
-    clearCandidates,
-  } = useTodayMeals();
+  const { meals, totals, refreshMeal } = useTodayMeals();
 
   const dateLabel = DailyDate();
 
@@ -33,8 +24,8 @@ export default function DailyFoodPage() {
         {/* 상단 헤더 */}
         <DailyHeader />
 
-        {/* 날짜/타이틀/CTA */}
-        <DailyHero dateLabel={dateLabel} onRefresh={refreshCandidates} />
+        {/* 날짜/타이틀 (버튼 없음) */}
+        <DailyHero dateLabel={dateLabel} />
 
         {/* 상단 4개 요약 카드 */}
         <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-[clamp(10px,2vmin,18px)]">
@@ -50,17 +41,14 @@ export default function DailyFoodPage() {
           <SummaryCard label="지방" value={totals.fat} unit="g" />
         </section>
 
-        {/* 새로 추천된 식단 섹션 (있을 때만) */}
-        <DailyNewCard
-          candidates={candidates}
-          applyCandidate={applyCandidate}
-          clearCandidates={clearCandidates}
-        />
-
         {/* 현재 적용된 아침/점심/저녁 카드 */}
         <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[clamp(16px,2.4vmin,22px)] pb-[clamp(24px,4vh,40px)]">
           {meals.map((meal) => (
-            <DailyCard key={meal.id} meal={meal} />
+            <DailyCard
+              key={meal.id}
+              meal={meal}
+              onRefresh={() => refreshMeal(meal.mealType)}
+            />
           ))}
         </section>
       </div>

@@ -1,6 +1,7 @@
-//아침 점심 저녁 카드
+// 아침 점심 저녁 카드
 
 import React from "react";
+import refreshIcon from "../../../assets/dailyfood/df1.svg";
 
 function MacroPill({ label, value, unit }) {
   return (
@@ -16,10 +17,10 @@ function MacroPill({ label, value, unit }) {
   );
 }
 
-export default function DailyCard({ meal }) {
+export default function DailyCard({ meal, onRefresh }) {
   return (
     <article className="rounded-2xl border border-[#E5E7EB] bg-white/70 overflow-hidden flex flex-col h-full">
-      {/* 이미지 영역 – 나중에 meal.image 생기면 img로 연결 */}
+      {/* 이미지 영역*/}
       <div className="relative h-[clamp(180px,22vmin,220px)] bg-slate-200">
         {meal.image && (
           <img
@@ -29,8 +30,28 @@ export default function DailyCard({ meal }) {
           />
         )}
 
-        <div className="absolute left-4 top-4 px-3 py-1 rounded-full bg-black/55 text-white text-[clamp(11px,1.3vmin,12px)]">
-          {meal.mealType}
+        {/* 왼쪽 하단: 새로고침 아이콘, 끼니 로고 */}
+        <div className="absolute left-[clamp(10px,1.6vmin,14px)] bottom-[clamp(10px,1.6vmin,14px)] flex flex-col gap-[clamp(6px,0.9vmin,8px)] items-start">
+          {/* svg */}
+          <img
+            src={refreshIcon}
+            alt={`${meal.mealType} 식단 새로 추천`}
+            className="w-[clamp(20px,6vmin,60px)] h-auto cursor-pointer select-none"
+            onClick={onRefresh}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onRefresh?.();
+              }
+            }}
+          />
+
+          {/*아침/점심/저녁 로고*/}
+          <div className="px-3 py-1 rounded-full bg-white/90 text-[#111827] text-[clamp(11px,1.3vmin,12px)]">
+            {meal.mealType}
+          </div>
         </div>
       </div>
 
