@@ -1,19 +1,30 @@
-//상단 버튼 두개
-
 import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../../../assets/login/login1.svg";
 
 export default function DailyHeader() {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const isDaily = pathname.startsWith("/dailyfood");
+  const isRefood = pathname.startsWith("/refood");
+
+  //기존 스타일을 그대로 “active/inactive”로만 분리
+  const activeCls =
+    "bg-[#1E2939] text-white shadow-sm";
+  const inactiveCls =
+    "border border-[#D1D5DB] text-[#4B5563] bg-white/70 hover:bg-white transition-colors";
+
   return (
     <header className="flex items-center justify-between">
       <div className="flex items-center gap-[clamp(8px,1.4vmin,10px)]">
         <img
           src={logo}
           alt="Care View 로고"
-          className="w-[clamp(28px,3vmin,36px)] h-auto"
+          className="w-[clamp(35px,4vmin,80px)] h-auto"
           draggable="false"
         />
-        <span className="text-[clamp(18px,2.1vmin,22px)] font-semibold text-[#111827]">
+        <span className="text-[clamp(20px,2.4vmin,40px)] font-semibold text-[#111827]">
           Care View
         </span>
       </div>
@@ -21,16 +32,19 @@ export default function DailyHeader() {
       <div className="flex items-center gap-[clamp(8px,1.3vmin,12px)]">
         <button
           type="button"
-          className="px-[clamp(16px,2vmin,20px)] py-[clamp(8px,1.4vmin,10px)] rounded-full text-[clamp(12px,1.4vmin,14px)] font-medium bg-[#1E2939] text-white shadow-sm"
+          onClick={() => navigate("/dailyfood")}
+          className={`px-[clamp(16px,2vmin,20px)] py-[clamp(8px,1.4vmin,10px)] rounded-full text-[clamp(12px,1.4vmin,14px)] font-medium ${isDaily ? activeCls : inactiveCls}`}
         >
           금일 추천 식단
         </button>
-        <a
-          href="#"
-          className="px-[clamp(16px,2vmin,20px)] py-[clamp(8px,1.4vmin,10px)] rounded-full text-[clamp(12px,1.4vmin,14px)] font-medium border border-[#D1D5DB] text-[#4B5563] bg-white/70 hover:bg-white transition-colors"
+
+        <button
+          type="button"
+          onClick={() => navigate("/refood")}
+          className={`px-[clamp(16px,2vmin,20px)] py-[clamp(8px,1.4vmin,10px)] rounded-full text-[clamp(12px,1.4vmin,14px)] font-medium ${isRefood ? activeCls : inactiveCls}`}
         >
           맞춤형 식단
-        </a>
+        </button>
       </div>
     </header>
   );

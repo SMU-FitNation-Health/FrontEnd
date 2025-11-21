@@ -6,6 +6,7 @@ import SignPage from "../pages/sign/SignPage.jsx";
 import OnboardingPage from "../pages/onboarding/OnboardingPage.jsx";
 import DashBoardPage from "../pages/dashboard/DashBoardPage.jsx";
 import DailyFoodPage from '../pages/dailyfood/DailyFoodPage.jsx';
+import ReFoodPage from '../pages/refood/ReFoodPage.jsx';
 
 const router = createBrowserRouter([
 
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
   { path: "/onboarding", element: <OnboardingPage /> },
   { path: "/dashboard", element: <DashBoardPage /> },
   { path: "/dailyfood", element: <DailyFoodPage /> },
+  { path: "/refood", element: <ReFoodPage /> },
 
 ]);
 export default router;
