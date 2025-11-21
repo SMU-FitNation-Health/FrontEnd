@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import DailyHeader from "../dailyfood/components/DailyHeader";
 import ReFoodTabs from "./components/common/ReFoodTabs";
-import IngredientInputCard from "./components/IngredientInputCard";
-import TipsCard from "./components/TipsCard";
-import RecipeResultsSection, { MOCK_RECIPES } from "./components/RecipeResultsSection";
+import IngredientInputCard from "./components/refrigerator/IngredientInputCard.jsx";
+import TipsCard from "./components//refrigerator/TipsCard";
+import RecipeResultsSection from "./components/refrigerator/RecipeResultsSection.jsx";
+import { MOCK_RECIPES } from "./data/mockRecipes";
 import ReFoodTitle from "./components/common/ReFoodTitle";
 import ConveniencePlaceholder from "./components/market/ConveniencePlaceholder";
 import Footer from "../../layout/footer/Footer.jsx";
@@ -12,7 +13,7 @@ import useReFoodSearch from "./hooks/useReFoodSearch";
 export default function ReFoodPage() {
   const [tab, setTab] = useState("fridge");
 
-  //재료/검색 로직 전부 훅
+  // 재료/검색 로직 전부 훅
   const {
     items,
     results,

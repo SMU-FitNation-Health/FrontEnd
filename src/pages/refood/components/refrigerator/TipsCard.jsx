@@ -1,5 +1,5 @@
 import React from "react";
-import iconRe1 from "../../../assets/refood/re1.svg";
+import iconRe1 from "../../../../assets/refood/re1.svg";
 
 const S = {
   cardPad: "clamp(20px, 2.8vmin, 30px)",

@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 
 export default function useReFoodSearch(recipes = []) {
   const [items, setItems] = useState([]);
@@ -40,12 +40,12 @@ export default function useReFoodSearch(recipes = []) {
 
   return {
     items,
-    results: results || [],
-    searched,
+    results: results || [], // 검색 전(null)이면 []로 내려줌
+    searched,               // 검색 전/후 판단용
     addItem,
     removeItem,
     search,
-    setItems,   // 필요하면 외부에서 초기화/세팅 가능
-    setResults, // 필요하면 외부에서 초기화/세팅 가능
+    setItems,
+    setResults,
   };
 }
