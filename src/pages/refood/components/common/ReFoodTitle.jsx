@@ -1,8 +1,9 @@
+//상단 제목. 편의점 조합에서도 재사용 할 예정
 import React from "react";
 
 export default function ReFoodTitle({
   title = "맞춤형 식단 추천",
-  subtitle = "냉장고 재료로 만들수 있는 ~조합을 찾아보세요",
+  subtitle = "냉장고 재료로 만들 수 있는 요리와 편의점 건강 조합을 찾아보세요",
 }) {
   return (
     <div className="w-full flex flex-col items-center text-center gap-[clamp(6px,1.2vmin,10px)]">
