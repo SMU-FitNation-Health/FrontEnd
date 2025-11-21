@@ -9,9 +9,15 @@ const S = {
   inputFS: "clamp(12px, 1.6vmin, 15px)",
   chipFS: "clamp(11px, 1.4vmin, 14px)",
   gap: "clamp(8px, 1.5vmin, 14px)",
+  searchH: "clamp(46px, 6vmin, 56px)",
 };
 
-export default function IngredientInputCard({ items = [], onAdd, onRemove }) {
+export default function IngredientInputCard({
+  items = [],
+  onAdd,
+  onRemove,
+  onSearch,
+}) {
   const [val, setVal] = useState("");
 
   const handleAdd = () => {
@@ -27,12 +33,17 @@ export default function IngredientInputCard({ items = [], onAdd, onRemove }) {
   };
 
   return (
-    <section className="bg-white/70 border border-[#D1D5DC] rounded-2xl"
+    <section
+      className="bg-white/70 border border-[#D1D5DC] rounded-2xl"
       style={{ padding: S.cardPad }}
     >
       {/* 제목 */}
       <div className="flex items-start gap-[clamp(8px,1.2vmin,10px)]">
-        <img src={iconRe2} alt="" className="w-[clamp(18px,2.2vmin,22px)] h-auto select-none" />
+        <img
+          src={iconRe2}
+          alt=""
+          className="w-[clamp(18px,2.2vmin,22px)] h-auto select-none"
+        />
         <div className="flex-1">
           <div
             className="text-[#1E2939] font-semibold"
@@ -74,27 +85,56 @@ export default function IngredientInputCard({ items = [], onAdd, onRemove }) {
         </button>
       </div>
 
-      {/* 재료 칩 리스트 */}
-      {items.length > 0 && (
-        <div
-          className="mt-[clamp(10px,1.6vmin,14px)] flex flex-wrap"
-          style={{ gap: "clamp(6px,1.2vmin,10px)" }}
-        >
-          {items.map((it) => (
-            <button
-              key={it}
-              onClick={() => onRemove?.(it)}
-              className="bg-white border border-[#D1D5DC] rounded-full
-                         px-[clamp(10px,1.6vmin,14px)] py-[clamp(4px,0.9vmin,6px)]
-                         text-[#1E2939] hover:bg-[#F9FAFB] transition"
-              style={{ fontSize: S.chipFS }}
-              title="클릭하면 삭제"
-            >
-              {it}
-            </button>
-          ))}
+      {/* 선택된 재료 컨테이너 (배경 F3F4F6) */}
+      <div
+        className="mt-[clamp(12px,2vmin,16px)] rounded-xl bg-[#F3F4F6]
+                   p-[clamp(10px,1.8vmin,14px)]"
+      >
+        <div className="text-[#1E2939] font-medium text-[clamp(12px,1.5vmin,14px)]">
+          선택된 재료 ({items.length}개)
         </div>
-      )}
+
+        {items.length > 0 ? (
+          <div
+            className="mt-[clamp(8px,1.2vmin,10px)] flex flex-wrap"
+            style={{ gap: "clamp(6px,1.2vmin,10px)" }}
+          >
+            {items.map((it) => (
+              <button
+                key={it}
+                onClick={() => onRemove?.(it)}
+                className="bg-white border border-[#D1D5DC] rounded-full
+                           px-[clamp(10px,1.6vmin,14px)] py-[clamp(4px,0.9vmin,6px)]
+                           text-[#1E2939] hover:bg-[#F9FAFB] transition"
+                style={{ fontSize: S.chipFS }}
+                title="클릭하면 삭제"
+              >
+                {it} <span className="ml-[4px] opacity-60">×</span>
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-[clamp(6px,1vmin,8px)] text-[#4A5565] text-[clamp(11px,1.4vmin,13px)]">
+            아직 추가된 재료가 없어요.
+          </div>
+        )}
+      </div>
+
+      {/* 레시피 검색 버튼 (추가 버튼과 동일 색) */}
+      <button
+        type="button"
+        onClick={() => onSearch?.()}
+        disabled={items.length === 0}
+        className={`mt-[clamp(12px,2vmin,16px)] w-full rounded-xl font-medium transition
+          ${
+            items.length === 0
+              ? "bg-[#1E2939]/40 text-white cursor-not-allowed"
+              : "bg-[#1E2939] text-white hover:bg-[#111827]"
+          }`}
+        style={{ height: S.searchH, fontSize: S.inputFS }}
+      >
+        레시피 검색하기
+      </button>
     </section>
   );
 }

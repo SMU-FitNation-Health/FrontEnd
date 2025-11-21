@@ -16,7 +16,7 @@ export default function DailyHeader() {
     "border border-[#D1D5DB] text-[#4B5563] bg-white/70 hover:bg-white transition-colors";
 
   return (
-    <header className="flex items-center justify-between">
+    <header className="flex items-center justify-between mb-[clamp(18px,6vmin,60px)]">
       <div className="flex items-center gap-[clamp(8px,1.4vmin,10px)]">
         <img
           src={logo}
@@ -24,7 +24,7 @@ export default function DailyHeader() {
           className="w-[clamp(35px,4vmin,80px)] h-auto"
           draggable="false"
         />
-        <span className="text-[clamp(20px,2.4vmin,40px)] font-semibold text-[#111827]">
+        <span className="text-[clamp(20px,3vmin,40px)] font-semibold text-[#111827]">
           Care View
         </span>
       </div>
