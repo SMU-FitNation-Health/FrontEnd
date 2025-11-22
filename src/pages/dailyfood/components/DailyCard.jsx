@@ -36,7 +36,7 @@ export default function DailyCard({ meal, onRefresh }) {
           <img
             src={refreshIcon}
             alt={`${meal.mealType} 식단 새로 추천`}
-            className="w-[clamp(20px,6vmin,60px)] h-auto cursor-pointer select-none"
+            className="w-[clamp(10px,4vmin,30px)] h-auto cursor-pointer select-none"
             onClick={onRefresh}
             role="button"
             tabIndex={0}
@@ -58,17 +58,17 @@ export default function DailyCard({ meal, onRefresh }) {
       <div className="p-[clamp(16px,2.4vmin,20px)] flex flex-col gap-[clamp(12px,1.8vmin,16px)] flex-1">
         {/* 칼로리 */}
         <div className="flex items-center justify-between">
-          <div className="text-[clamp(13px,1.5vmin,14px)] text-[#6B7280]">
+          <div className="text-[clamp(13px,2vmin,40px)] font-semibold">
             칼로리
           </div>
-          <div className="text-[clamp(16px,1.8vmin,18px)] font-semibold text-[#111827]">
+          <div className="text-[clamp(16px,1.8vmin,40px)] font-semibold text-[#111827]">
             {meal.calories} kcal
           </div>
         </div>
 
         {/* 영양성분 */}
         <div className="space-y-[6px]">
-          <div className="text-[clamp(13px,1.5vmin,14px)] text-[#6B7280]">
+          <div className="text-[clamp(13px,1.5vmin,40px)] font-semibold text-[#6B7280]">
             영양성분
           </div>
           <div className="grid grid-cols-3 gap-[clamp(6px,1vmin,10px)]">

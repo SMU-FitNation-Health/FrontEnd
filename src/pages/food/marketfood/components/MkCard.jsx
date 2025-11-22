@@ -1,20 +1,30 @@
 import React from "react";
 
 const S = {
-  bodyPad: "clamp(12px, 2.2vmin, 18px)",
-  titleFS: "clamp(13px, 1.8vmin, 16px)",
-  kcalFS: "clamp(11px, 1.5vmin, 13px)",
-  itemFS: "clamp(11px, 1.45vmin, 13px)",
-  macroFS: "clamp(10px, 1.3vmin, 12px)",
+  imgH: "clamp(110px, 22vmin, 220px)", //이미지 높이
+  bodyPad: "clamp(14px, 2.6vmin, 22px)", // 아래 본문 영역 더 여유 있게
+  bodyMinH: "clamp(210px, 28vmin, 280px)",
+  titleFS: "clamp(15px, 2.2vmin, 30px)",//이미지안 제목
+  kcalFS: "clamp(13px, 1.8vmin, 16px)",
+  itemFS: "clamp(13px, 1.8vmin, 20px)",
+  macroLabelFS: "clamp(12px, 1.7vmin, 20px)", //한글
+  macroValueFS: "clamp(13px, 1.9vmin, 16px)", //g
+  macroPadY: "clamp(8px, 1.8vmin, 12px)",
 };
 
 function MacroPill({ label, value }) {
   return (
-    <div className="flex flex-col items-center px-[clamp(8px,1.6vmin,12px)] py-[clamp(6px,1.2vmin,8px)] bg-white rounded-xl border border-[#E5E7EB]">
-      <div className="text-[#4A5565]" style={{ fontSize: S.macroFS }}>
+    <div
+      className="flex flex-col items-center justify-center bg-white rounded-xl border border-[#E5E7EB]"
+      style={{ paddingBlock: S.macroPadY }}
+    >
+      <div className="text-[#4A5565]" style={{ fontSize: S.macroLabelFS }}>
         {label}
       </div>
-      <div className="text-[#101828] font-semibold" style={{ fontSize: S.macroFS }}>
+      <div
+        className="text-[#101828] font-semibold"
+        style={{ fontSize: S.macroValueFS }}
+      >
         {value}g
       </div>
     </div>
@@ -25,42 +35,72 @@ export default function MkCard({ set }) {
   const { title, calories, items = [], macros, image } = set;
 
   return (
-    <article className="bg-white/70 border border-[#E5E7EB] rounded-2xl overflow-hidden shadow-sm">
-      <div className="w-full aspect-[16/9] bg-[#EEF2F6]">
+    <article className="bg-white/70 border-2 border-[#E5E7EB] rounded-2xl overflow-hidden shadow-sm">
+      {/* ✅ 이미지 영역 */}
+      <div
+        className="relative w-full bg-[#EEF2F6] overflow-hidden"
+        style={{ height: S.imgH }}
+      >
         {image ? (
-          <img src={image} alt={title} className="w-full h-full object-cover" />
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover"
+            draggable="false"
+          />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-[#9AA4B2] text-[clamp(11px,1.4vmin,13px)]">
+          <div className="w-full h-full flex items-center justify-center text-[#9AA4B2] text-[clamp(12px,1.6vmin,14px)]">
             이미지 준비중
           </div>
         )}
-      </div>
-
-      <div style={{ padding: S.bodyPad }} className="space-y-[clamp(8px,1.6vmin,12px)]">
-        <div className="font-semibold text-[#101828]" style={{ fontSize: S.titleFS }}>
+        <div
+          className="absolute left-[clamp(10px,2vmin,14px)] bottom-[clamp(8px,1.6vmin,12px)] text-white font-semibold"
+          style={{ fontSize: S.titleFS }}
+        >
           {title}
         </div>
+      </div>
 
-        <div className="text-[#4A5565] flex items-center gap-[6px]" style={{ fontSize: S.kcalFS }}>
+      {/*아래 본문*/}
+      <div
+        className="space-y-[clamp(11px,2vmin,20px)]"
+        style={{ padding: S.bodyPad, minHeight: S.bodyMinH }}
+      >
+        {/* kcal */}
+        <div
+          className="text-[#101828] font-semibold flex items-center gap-[6px]"
+          style={{ fontSize: S.kcalFS }}
+        >
           🔥 {calories} kcal
         </div>
 
-        <div className="space-y-[clamp(4px,1vmin,6px)]">
-          <div className="text-[#101828] font-medium" style={{ fontSize: S.itemFS }}>
+        {/* 포함 상품 */}
+        <div className="space-y-[clamp(6px,1.2vmin,8px)]">
+          <div
+            className="text-[#101828] font-semibold"
+            style={{ fontSize: S.itemFS }}
+          >
             포함 상품
           </div>
-          <ul className="list-disc pl-[clamp(14px,2vmin,18px)] text-[#4A5565]" style={{ fontSize: S.itemFS }}>
+
+          <ul
+            className="list-disc pl-[clamp(16px,2.2vmin,20px)] text-[#4A5565] leading-relaxed"
+            style={{ fontSize: S.itemFS }}
+          >
             {items.map((it, i) => (
               <li key={i}>{it}</li>
             ))}
           </ul>
         </div>
 
+        {/* 탄/단/지 */}
         {macros && (
-          <div className="flex items-center gap-[clamp(6px,1.2vmin,10px)] pt-[clamp(4px,1vmin,6px)]">
-            <MacroPill label="탄수화물" value={macros.carbs} />
-            <MacroPill label="단백질" value={macros.protein} />
-            <MacroPill label="지방" value={macros.fat} />
+          <div className="pt-[clamp(6px,1.2vmin,8px)]">
+            <div className="grid grid-cols-3 gap-[clamp(8px,1.6vmin,12px)]">
+              <MacroPill label="탄수화물" value={macros.carbs} />
+              <MacroPill label="단백질" value={macros.protein} />
+              <MacroPill label="지방" value={macros.fat} />
+            </div>
           </div>
         )}
       </div>

@@ -7,7 +7,7 @@ export default function DailyHeader() {
   const { pathname } = useLocation();
 
   const isDaily = pathname.startsWith("/dailyfood");
-  const isRefood = pathname.startsWith("/refood");
+  const isRefood = pathname.startsWith("/food");
 
   //기존 스타일을 그대로 “active/inactive”로만 분리
   const activeCls =
