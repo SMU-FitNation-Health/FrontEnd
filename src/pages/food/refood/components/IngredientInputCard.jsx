@@ -1,3 +1,4 @@
+// food/refood/components/IngredientInputCard.jsx
 import React, { useState } from "react";
 import iconRe2 from "../../../../assets/refood/re2.svg";
 
@@ -21,7 +22,9 @@ export default function IngredientInputCard({
   const [val, setVal] = useState("");
 
   const handleAdd = () => {
-    onAdd?.(val);
+    const v = val.trim();
+    if (!v) return;
+    onAdd?.(v);
     setVal("");
   };
 
@@ -43,6 +46,7 @@ export default function IngredientInputCard({
           src={iconRe2}
           alt=""
           className="w-[clamp(18px,2.2vmin,22px)] h-auto select-none"
+          draggable="false"
         />
         <div className="flex-1">
           <div
@@ -70,26 +74,22 @@ export default function IngredientInputCard({
           onChange={(e) => setVal(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="재료를 입력하세요 (예: 계란, 토마토, 닭가슴살)"
-          className="flex-1 bg-white/60 border border-[#D1D5DC] rounded-xl outline-none
-                     px-[clamp(10px,1.8vmin,14px)]"
+          className="flex-1 bg-white/60 border border-[#D1D5DC] rounded-xl outline-none px-[clamp(10px,1.8vmin,14px)]"
           style={{ height: S.inputH, fontSize: S.inputFS }}
         />
 
         <button
+          type="button"
           onClick={handleAdd}
-          className="bg-[#1E2939] text-white rounded-xl font-medium shrink-0
-                     px-[clamp(12px,2vmin,16px)]"
+          className="bg-[#1E2939] text-white rounded-xl font-medium shrink-0 px-[clamp(12px,2vmin,16px)]"
           style={{ height: S.inputH, fontSize: S.inputFS }}
         >
           + 추가
         </button>
       </div>
 
-      {/* 선택된 재료 컨테이너 (배경 F3F4F6) */}
-      <div
-        className="mt-[clamp(12px,2vmin,16px)] rounded-xl bg-[#F3F4F6]
-                   p-[clamp(10px,1.8vmin,14px)]"
-      >
+      {/* 선택된 재료 컨테이너 */}
+      <div className="mt-[clamp(12px,2vmin,16px)] rounded-xl bg-[#F3F4F6] p-[clamp(10px,1.8vmin,14px)]">
         <div className="text-[#1E2939] font-medium text-[clamp(12px,1.5vmin,14px)]">
           선택된 재료 ({items.length}개)
         </div>
@@ -102,10 +102,9 @@ export default function IngredientInputCard({
             {items.map((it) => (
               <button
                 key={it}
+                type="button"
                 onClick={() => onRemove?.(it)}
-                className="bg-white border border-[#D1D5DC] rounded-full
-                           px-[clamp(10px,1.6vmin,14px)] py-[clamp(4px,0.9vmin,6px)]
-                           text-[#1E2939] hover:bg-[#F9FAFB] transition"
+                className="bg-white border border-[#D1D5DC] rounded-full px-[clamp(10px,1.6vmin,14px)] py-[clamp(4px,0.9vmin,6px)] text-[#1E2939] hover:bg-[#F9FAFB] transition"
                 style={{ fontSize: S.chipFS }}
                 title="클릭하면 삭제"
               >
@@ -120,7 +119,7 @@ export default function IngredientInputCard({
         )}
       </div>
 
-      {/* 레시피 검색 버튼 (추가 버튼과 동일 색) */}
+      {/* 검색 버튼 */}
       <button
         type="button"
         onClick={() => onSearch?.()}

@@ -31,7 +31,7 @@ function ListBlock({ title, children }) {
 function RecipeCard({ r }) {
   return (
     <article
-      className="bg-white/70 border border-[#D1D5DC] rounded-2xl"
+      className="bg-white/70 border-2 border-[#D1D5DC] rounded-2xl"
       style={{ padding: S.cardPad }}
     >
       <div className="flex items-center justify-between">

@@ -1,3 +1,4 @@
+// 냉장고 재료 검색 유틸 및 훅
 import { useCallback, useState } from "react";
 
 export default function useReFoodSearch(recipes = []) {
@@ -8,44 +9,50 @@ export default function useReFoodSearch(recipes = []) {
 
   const addItem = useCallback(
     (value) => {
-      const raw = value.trim();
       const v = normalize(value);
       if (!v) return;
 
       setItems((prev) => {
-        if (prev.some((x) => normalize(x) === v)) return prev; // 중복 방지
-        return [...prev, raw];
+        if (prev.includes(v)) return prev; // 중복 방지
+        return [...prev, v];
       });
     },
     [normalize]
   );
 
-  const removeItem = useCallback((value) => {
-    setItems((prev) => prev.filter((x) => x !== value));
-  }, []);
+  const removeItem = useCallback(
+    (value) => {
+      const v = normalize(value);
+      setItems((prev) => prev.filter((x) => x !== v));
+    },
+    [normalize]
+  );
 
   const search = useCallback(() => {
+    if (!items.length) {
+      setResults([]);
+      return;
+    }
+
     const lower = items.map(normalize);
 
-    const filtered = recipes.filter((r) =>
+    const matched = recipes.filter((r) =>
       lower.every((it) =>
-        r.keywords.some((k) => normalize(k).includes(it))
+        (r.keywords || []).some((k) => normalize(k).includes(it))
       )
     );
 
-    setResults(filtered);
-  }, [items, normalize, recipes]);
+    setResults(matched);
+  }, [items, recipes, normalize]);
 
   const searched = results !== null;
 
   return {
     items,
-    results: results || [], // 검색 전(null)이면 []로 내려줌
-    searched,               // 검색 전/후 판단용
+    results: results || [],
+    searched,
     addItem,
     removeItem,
     search,
-    setItems,
-    setResults,
   };
 }

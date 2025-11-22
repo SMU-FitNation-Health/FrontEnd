@@ -40,7 +40,7 @@ export default function DailyHeader() {
 
         <button
           type="button"
-          onClick={() => navigate("/refood")}
+          onClick={() => navigate("/food")}
           className={`px-[clamp(16px,2vmin,20px)] py-[clamp(8px,1.4vmin,10px)] rounded-full text-[clamp(12px,1.4vmin,14px)] font-medium ${isRefood ? activeCls : inactiveCls}`}
         >
           맞춤형 식단
