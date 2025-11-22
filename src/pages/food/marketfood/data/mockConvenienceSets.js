@@ -1,4 +1,3 @@
-// food/marketfood/data/mockConvenienceSets.js
 export const MOCK_CONVENIENCE_SETS = [
   {
     id: 1,

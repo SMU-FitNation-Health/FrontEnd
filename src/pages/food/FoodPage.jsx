@@ -1,4 +1,3 @@
-// food/FoodPage.jsx
 import React, { useState } from "react";
 import DailyHeader from "../dailyfood/components/DailyHeader.jsx";
 import Footer from "../../layout/footer/Footer.jsx";

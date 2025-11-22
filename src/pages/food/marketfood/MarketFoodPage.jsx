@@ -1,4 +1,3 @@
-// food/marketfood/MarketFoodPage.jsx
 import React from "react";
 import ConvenienceIntroCard from "./components/ConvenienceIntroCard";
 import ConvenienceSetGrid from "./components/ConvenienceSetGrid";

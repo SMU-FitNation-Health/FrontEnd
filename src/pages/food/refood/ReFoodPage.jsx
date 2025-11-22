@@ -1,8 +1,7 @@
-// food/refood/ReFoodPage.jsx
 import React from "react";
-import IngredientInputCard from "./components/IngredientInputCard.jsx";
-import TipsCard from "./components/TipsCard.jsx";
-import RecipeResultsSection from "./components/RecipeResultsSection.jsx";
+import ReInputCard from "./components/ReInputCard.jsx";
+import ReTipCard from "./components/ReTipCard.jsx";
+import ReResults from "./components/ReResults.jsx";
 import { MOCK_RECIPES } from "./data/mockRecipes.js";
 import useReFoodSearch from "./hooks/useReFoodSearch.js";
 
@@ -18,14 +17,14 @@ export default function ReFoodPage() {
 
   return (
     <div className="space-y-[clamp(14px,3vmin,24px)]">
-      <IngredientInputCard
+      <ReInputCard
         items={items}
         onAdd={addItem}
         onRemove={removeItem}
         onSearch={search}
       />
-      <RecipeResultsSection searched={searched} results={results} />
-      <TipsCard />
+      <ReResults searched={searched} results={results} />
+      <ReTipCard />
     </div>
   );
 }

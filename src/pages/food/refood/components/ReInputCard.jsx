@@ -1,4 +1,3 @@
-// food/refood/components/IngredientInputCard.jsx
 import React, { useState } from "react";
 import iconRe2 from "../../../../assets/refood/re2.svg";
 
@@ -13,7 +12,7 @@ const S = {
   searchH: "clamp(46px, 6vmin, 56px)",
 };
 
-export default function IngredientInputCard({
+export default function ReInputCard({
   items = [],
   onAdd,
   onRemove,
@@ -37,7 +36,7 @@ export default function IngredientInputCard({
 
   return (
     <section
-      className="bg-white/70 border border-[#D1D5DC] rounded-2xl"
+      className="bg-white/70 border-2 border-[#D1D5DC] rounded-2xl"
       style={{ padding: S.cardPad }}
     >
       {/* 제목 */}
@@ -45,7 +44,7 @@ export default function IngredientInputCard({
         <img
           src={iconRe2}
           alt=""
-          className="w-[clamp(18px,2.2vmin,22px)] h-auto select-none"
+          className="h-auto select-none flex-none"
           draggable="false"
         />
         <div className="flex-1">
@@ -74,7 +73,7 @@ export default function IngredientInputCard({
           onChange={(e) => setVal(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="재료를 입력하세요 (예: 계란, 토마토, 닭가슴살)"
-          className="flex-1 bg-white/60 border border-[#D1D5DC] rounded-xl outline-none px-[clamp(10px,1.8vmin,14px)]"
+          className="flex-1 bg-white/60 border-2 border-[#D1D5DC] rounded-xl outline-none px-[clamp(10px,1.8vmin,14px)]"
           style={{ height: S.inputH, fontSize: S.inputFS }}
         />
 

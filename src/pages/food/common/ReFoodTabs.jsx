@@ -13,7 +13,7 @@ export default function ReFoodTabs({ value = "fridge", onChange }) {
 
   return (
     <div
-      className="w-full bg-white border border-[#D1D5DC] rounded-full p-[clamp(2px,0.6vmin,4px)] flex"
+      className="w-full bg-white border-2 border-[#D1D5DC] rounded-full p-[clamp(2px,0.6vmin,4px)] flex"
       style={{ height: S.tabH, borderRadius: S.radius }}
     >
       <button

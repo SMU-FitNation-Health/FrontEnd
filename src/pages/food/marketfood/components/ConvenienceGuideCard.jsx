@@ -38,7 +38,7 @@ export default function ConvenienceGuideCard() {
               편의점 도시락을 선택할 때는 영양 성분표를 확인하세요.
               나트륨이 낮고 단백질이 풍부한 제품을 고르는 것이 좋습니다.
             </p>
-            <p className="bg-white/60 border border-[#E5E7EB] rounded-xl p-[clamp(8px,1.6vmin,12px)]">
+            <p className="bg-white/60 font-semibold border-2 border-[#E5E7EB] rounded-xl p-[clamp(8px,1.6vmin,12px)]">
               ✔ 편의점 식품은 간편하지만 나트륨이 높을 수 있으니,
               하루 권장 섭취량을 고려해 선택해주세요.
             </p>

@@ -74,7 +74,7 @@ function RecipeCard({ r }) {
   );
 }
 
-export default function RecipeResultsSection({ searched, results }) {
+export default function ReResults({ searched, results }) {
   if (!searched) return null;
 
   return (

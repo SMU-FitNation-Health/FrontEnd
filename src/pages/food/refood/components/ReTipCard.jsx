@@ -8,7 +8,7 @@ const S = {
   iconW: "clamp(40px, 6vmin, 70px)",
 };
 
-export default function TipsCard() {
+export default function ReTipCard() {
   return (
     <section
       className="bg-white/70 border-2 border-[#D1D5DC] rounded-2xl"
