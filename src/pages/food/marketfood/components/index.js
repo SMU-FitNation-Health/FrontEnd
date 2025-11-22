@@ -1,5 +1,3 @@
-// src/pages/food/marketfood/components/index.js
-
-export { default as ConvenienceIntroCard } from "./ConvenienceIntroCard";
-export { default as ConvenienceSetGrid } from "./ConvenienceSetGrid";
-export { default as ConvenienceGuideCard } from "./ConvenienceGuideCard";
+export { default as MkTipCard } from "./MkTipCard";
+export { default as MkGrid } from "./MkGrid";
+export { default as MkGuideCard } from "./MkGuideCard";

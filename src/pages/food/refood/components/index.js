@@ -5,4 +5,3 @@ export { default as ReInputCard } from "./ReInputCard";
 export { default as ReTipCard } from "./ReTipCard";
 export { default as ReResults } from "./ReResults";
 
-export { default as ConveniencePlaceholder } from "../../marketfood/components/ConveniencePlaceholder";

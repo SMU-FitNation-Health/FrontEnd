@@ -21,7 +21,7 @@ function MacroPill({ label, value }) {
   );
 }
 
-export default function ConvenienceSetCard({ set }) {
+export default function MkCard({ set }) {
   const { title, calories, items = [], macros, image } = set;
 
   return (
