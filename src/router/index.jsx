@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import Main from '../pages/main'; //폴더 명만 적어도 알아서 Min을 찾아서 import한다
+import Main from '../pages/main'; //폴더 명만 적어도 알아서 Min을 찾아서 import함
 import LoginPage from "../pages/login/LoginPage.jsx";
 import SignPage from "../pages/sign/SignPage.jsx";
 import OnboardingPage from "../pages/onboarding/OnboardingPage.jsx";
@@ -8,6 +8,8 @@ import DashBoardPage from "../pages/dashboard/DashBoardPage.jsx";
 import DailyFoodPage from '../pages/dailyfood/DailyFoodPage.jsx';
 import ReFoodPage from '../pages/food/refood/ReFoodPage.jsx';
 import FoodPage from '../pages/food/FoodPage.jsx';
+import RecodePage from '../pages/recode/RecodePage.jsx';
+import SportsPage from '../pages/sports/SportsPage.jsx';
 
 const router = createBrowserRouter([
 
@@ -19,6 +21,7 @@ const router = createBrowserRouter([
   { path: "/dailyfood", element: <DailyFoodPage /> },
   { path: "/refood", element: <ReFoodPage /> },
   { path: "/food", element: <FoodPage /> },
-
+  { path: "/recode", element: <RecodePage /> },
+  { path: "/sports", element: <SportsPage /> },
 ]);
 export default router;

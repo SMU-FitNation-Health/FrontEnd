@@ -56,9 +56,9 @@ export default function QuickLinks() {
         marginBottom: S.marginY,
       }}
     >
-      <SvgButton Svg={Das2} to="#"          label="Sports" />
+      <SvgButton Svg={Das2} to="/sports"          label="Sports" />
       <SvgButton Svg={Das3} to="/dailyfood" label="Food" />
-      <SvgButton Svg={Das4} to="#"          label="Record" />
+      <SvgButton Svg={Das4} to="/recode"          label="Record" />
     </section>
   );
 }

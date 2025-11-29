@@ -1,32 +1,33 @@
-import React from "react";
-import topLogo from "../../../assets/login/login1.svg";
-import loginBtn from "../../../assets/login/login5.svg";  
+
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import loginBtn from "../../../assets/login/login5.svg";
 import googleBtn from "../../../assets/login/login6.svg";
+import { loginUser } from "../../../api/login";
 
+const W = "clamp(240px, 62vw, 382px)"; // 인풋/버튼 가로
+const H = "clamp(40px, 7.2vh, 48px)"; // 인풋/버튼 높이
+const CARD_W = "clamp(280px, 68vw, 448px)"; // 카드 가로
+const CARD_H = "clamp(340px, 66vh, 505px)"; // 카드 최소 높이
+const VPAD = "clamp(16px, 11dvh, 190px)"; // 상·하 여백
+const BOTPAD = "max(env(safe-area-inset-bottom), 0)";
 
-const W      = "clamp(240px, 62vw, 382px)";   // 인풋/버튼 가로
-const H      = "clamp(40px, 7.2vh, 48px)";    // 인풋/버튼 높이
-const CARD_W = "clamp(280px, 68vw, 448px)";   // 카드 가로
-const CARD_H = "clamp(340px, 66vh, 505px)";   // 카드 최소 높이(작은 화면에서 잘 줄어듦)
-const LOGO   = "clamp(30px, 8vmin, 50px)";   // 상단 로고 크기
-const VPAD   = "clamp(16px, 11dvh, 190px)";      // 상·하 여백(dvh로 툴바 변동 대응)
-const BOTPAD = "max(env(safe-area-inset-bottom), 0)"; // ↓ 하단은 안전영역만
-
-const GAP_LOGIN_TO_OR  = "clamp(24px, 6vh, 44px)";
+const GAP_LOGIN_TO_OR = "clamp(24px, 6vh, 44px)";
 const GAP_OR_TO_GOOGLE = "clamp(18px, 5vh, 36px)";
 
 // 공통 SVG 버튼
-function ClickableSvg({ src, alt, onClick, style = {} }) {
+function ClickableSvg({ src, alt, onClick, style = {}, disabled = false }) {
   return (
     <img
       src={src}
       alt={alt}
       role="button"
-      tabIndex={0}
+      tabIndex={disabled ? -1 : 0}
       aria-label={alt}
-      onClick={onClick}
+      aria-disabled={disabled}
+      onClick={disabled ? undefined : onClick}
       onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
+        if (!disabled && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
           onClick?.(e);
         }
@@ -40,6 +41,8 @@ function ClickableSvg({ src, alt, onClick, style = {} }) {
         margin: 0,
         boxSizing: "border-box",
         objectFit: "contain",
+        opacity: disabled ? 0.6 : 1,
+        pointerEvents: disabled ? "none" : "auto",
         ...style,
       }}
     />
@@ -47,20 +50,59 @@ function ClickableSvg({ src, alt, onClick, style = {} }) {
 }
 
 export default function LoginLeft() {
-  const handleLogin = () => {};
-  const handleGoogle = () => {};
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [keepLogin, setKeepLogin] = useState(false); // UI 유지
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+
+  const canSubmit = email.trim() && password;
+
+  const handleLogin = async () => {
+    if (!canSubmit || loading) return;
+
+    try {
+      setLoading(true);
+      setError("");
+
+      const data = await loginUser({ email: email.trim(), password });
+
+      // 백엔드 응답: { access_token, token_type }
+      localStorage.setItem(
+        "cv-auth",
+        JSON.stringify({
+          accessToken: data.access_token,
+          tokenType: data.token_type,
+          keepLogin,
+        })
+      );
+
+      // TODO: 필요에 따라 경로 변경 (/onboarding 등)
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message || "로그인에 실패했어요. 다시 시도해 주세요.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogle = () => {
+    // TODO: 구글 로그인 붙이면 여기 구현
+    console.log("Google 로그인은 아직 준비 중입니다.");
+  };
 
   return (
-    // 항상 상단 정렬 + 내부 스크롤 제거(페이지 스크롤만 사용)
     <aside
       className="w-full min-h-dvh lg:min-h-dvh lg:box-border flex items-start justify-center bg-[#F8FAFC] min-h-0 lg:overflow-hidden"
       style={{
-       paddingTop: `calc(${VPAD} + env(safe-area-inset-top))`,
-       paddingBottom: BOTPAD,
-     }}
-   >
+        paddingTop: `calc(${VPAD} + env(safe-area-inset-top))`,
+        paddingBottom: BOTPAD,
+      }}
+    >
       <div className="w-full max-w-[720px] px-[clamp(12px,3vw,24px)]">
-        {/* 상단 로고/타이틀 */}
+        {/* 상단 타이틀 */}
         <div className="flex flex-col items-center">
           <h1
             className="mt-2 text-center font-semibold text-[#0F172A]"
@@ -79,7 +121,7 @@ export default function LoginLeft() {
           </p>
         </div>
 
-        {/* 카드: 반응형 축소 */}
+        {/* 카드 */}
         <div
           className="mx-auto mt-4 rounded-[16px] bg-white shadow-[0_8px_24px_rgba(2,6,23,0.06)] border border-[#E5E7EB] flex flex-col items-center"
           style={{
@@ -136,6 +178,8 @@ export default function LoginLeft() {
                 paddingRight: "clamp(12px, 2.2vmin, 16px)",
                 fontSize: "clamp(12px, 2.2vmin, 16px)",
               }}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -187,6 +231,13 @@ export default function LoginLeft() {
                 fontSize: "clamp(12px, 2.2vmin, 16px)",
               }}
               placeholder="••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleLogin();
+                }
+              }}
             />
           </div>
 
@@ -209,6 +260,8 @@ export default function LoginLeft() {
                   width: "clamp(13px, 2.2vmin, 15px)",
                   height: "clamp(13px, 2.2vmin, 15px)",
                 }}
+                checked={keepLogin}
+                onChange={(e) => setKeepLogin(e.target.checked)}
               />
               로그인 상태 유지
             </label>
@@ -221,9 +274,31 @@ export default function LoginLeft() {
             </a>
           </div>
 
+          {/* 에러 메시지 */}
+          {error && (
+            <p
+              className="self-center text-center text-[#DC2626]"
+              style={{
+                width: W,
+                marginTop: "clamp(10px, 2.4vmin, 16px)",
+                fontSize: "clamp(12px, 2.3vmin, 14px)",
+              }}
+            >
+              {error}
+            </p>
+          )}
+
           {/* 로그인 버튼 */}
-          <div className="self-center" style={{ width: W, marginTop: "clamp(14px, 3vmin, 20px)" }}>
-            <ClickableSvg src={loginBtn} alt="로그인하기" onClick={handleLogin} />
+          <div
+            className="self-center"
+            style={{ width: W, marginTop: "clamp(14px, 3vmin, 20px)" }}
+          >
+            <ClickableSvg
+              src={loginBtn}
+              alt="로그인하기"
+              onClick={handleLogin}
+              disabled={!canSubmit || loading}
+            />
           </div>
 
           {/* 구분선/문구 */}
@@ -250,7 +325,12 @@ export default function LoginLeft() {
 
           {/* Google 버튼 */}
           <div className="self-center" style={{ width: W }}>
-            <ClickableSvg src={googleBtn} alt="Google로 계속하기" onClick={handleGoogle} />
+            <ClickableSvg
+              src={googleBtn}
+              alt="Google로 계속하기"
+              onClick={handleGoogle}
+              disabled={loading}
+            />
           </div>
         </div>
 
