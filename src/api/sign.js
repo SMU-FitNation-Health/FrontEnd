@@ -1,15 +1,6 @@
 import { api, getErrorMessage } from "./client";
 
-/**
- * 회원가입: POST /api/user/register
- * @param {{
- *  name: string;
- *  email: string;
- *  password: string;
- *  agreeTerms: boolean;
- *  agreePrivacy: boolean;
- * }} payload
- */
+
 export async function signUpUser({ name, email, password, agreeTerms, agreePrivacy }) {
   try {
     const body = {
