@@ -6,25 +6,22 @@ import MainStartButton from "./MainStartButton.jsx";
 
 const S = {
   imgW: "clamp(260px, 40vw, 900px)",
-  padX: "clamp(16px, 7vw, 80px)", //양옆
+  padX: "clamp(4px, 6vw, 80px)", //양옆
   padY: "clamp(24px, 8vh, 80px)", //위아래
   colGap: "clamp(40px, 10vw, 160px)", //간격
   rowGap: "clamp(32px, 7vh, 70px)",
-
-  // 제목/본문 폰트 & 줄간격
+  // 제목,본문 폰트,줄간격
   titleFS: "clamp(20px, 6vmin, 80px)",
-  titleLH: "clamp(28px, 7vmin, 96px)",
-
+  titleLH: "clamp(28px, 6vmin, 80px)",
   bodyFS: "clamp(12px, 2.5vmin, 40px)",
-  bodyLH: "clamp(20px, 2.5vmin, 27px)",
-
+  bodyLH: "clamp(20px, 2.5vmin, 40px)",
   // 내부 간격
-  titleToBody: "clamp(10px, 3vh, 40px)",
+  titleToBody: "clamp(10px, 4.5vh, 60px)",
   bodyToButtons: "clamp(24px, 5vh, 60px)",
   loginToSignup: "clamp(20px, 4vh, 50px)",
 };
 
-/** 하단 CTA 영역 */
+//하단영역
 export default function MainCta({
   loginHref = "/login",
   signupHref = "/sign",
