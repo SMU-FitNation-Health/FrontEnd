@@ -4,12 +4,32 @@ import MainLoginButton from "./MainLoginButton.jsx";
 import MainSignupButton from "./MainSignupButton.jsx";
 import MainStartButton from "./MainStartButton.jsx";
 
-/** 하단 698px 영역 */
+const S = {
+  imgW: "clamp(260px, 40vw, 900px)",
+  padX: "clamp(16px, 7vw, 80px)", //양옆
+  padY: "clamp(24px, 8vh, 80px)", //위아래
+  colGap: "clamp(40px, 10vw, 160px)", //간격
+  rowGap: "clamp(32px, 7vh, 70px)",
+
+  // 제목/본문 폰트 & 줄간격
+  titleFS: "clamp(20px, 6vmin, 80px)",
+  titleLH: "clamp(28px, 7vmin, 96px)",
+
+  bodyFS: "clamp(12px, 2.5vmin, 40px)",
+  bodyLH: "clamp(20px, 2.5vmin, 27px)",
+
+  // 내부 간격
+  titleToBody: "clamp(10px, 3vh, 40px)",
+  bodyToButtons: "clamp(24px, 5vh, 60px)",
+  loginToSignup: "clamp(20px, 4vh, 50px)",
+};
+
+/** 하단 CTA 영역 */
 export default function MainCta({
   loginHref = "/login",
   signupHref = "/sign",
 }) {
-  //로컬스토리지 기반 로그인 여부 확인
+  // 로그인 여부: cv-auth 기준
   const isLoggedIn = (() => {
     if (typeof window === "undefined") return false;
     try {
@@ -23,61 +43,89 @@ export default function MainCta({
   })();
 
   return (
-    <div className="w-full flex items-center">
-      <div className="w-full grid grid-cols-2 gap-x-24 items-center">
-        
-        {/* 왼쪽 이미지: 525×395 (디자인 고정치 유지) */}
+    <div className="w-full">
+      <div
+        className="
+          w-full
+          grid
+          grid-cols-1
+          lg:grid-cols-2
+          items-center
+        "
+        style={{
+          paddingInline: S.padX,   // 양옆 여백
+          paddingBlock: S.padY,    // 위아래 여백
+          columnGap: S.colGap,     // 이미지 ↔ 텍스트 간격
+          rowGap: S.rowGap,        // 세로 간격
+        }}
+      >
+        {/* 왼쪽 이미지 */}
         <div className="flex justify-center">
           <img
             src={main2}
-            alt="Care View 메인"
-            className="max-w-[525px] w-full h-auto"
+            alt="메인 섹션 이미지"
+            style={{ width: S.imgW }}
+            className="h-auto rounded-2xl shadow-xl object-cover select-none"
             draggable="false"
           />
         </div>
 
-        {/* 오른쪽 텍스트 + 버튼 */}
+        {/* 텍스트 + 버튼 */}
         <div className="flex justify-center">
-          <div className="w-full max-w-[480px]">
-            <h2
-              className="font-semibold text-[#111827] mb-[clamp(12px,2vh,20px)]"
-              style={{ fontSize: "clamp(20px, 6vmin, 70px)" }}
+          <div className="flex flex-col items-center text-center">
+            {/* 제목 */}
+            <h3
+              className="font-bold text-gray-800"
+              style={{
+                fontSize: S.titleFS,
+                lineHeight: S.titleLH,
+                marginBottom: S.titleToBody,
+              }}
             >
               시작하기
-            </h2>
+            </h3>
 
+            {/* 설명 문구 */}
             <p
-              className="text-[#4B5563] mb-[clamp(12px,4vh,40px)]"
-              style={{ fontSize: "clamp(13px, 3vmin, 35px)", lineHeight: 1.6 }}
+              className="text-[#4B5563]"
+              style={{
+                fontSize: S.bodyFS,
+                lineHeight: S.bodyLH,
+                opacity: 0.9,
+                marginBottom: S.bodyToButtons,
+              }}
             >
-              Care View와 함께 건강한 삶을 관리하세요.
+              Care View와 함께 건강한 삶을 관리하세요
             </p>
 
-            {/*여기부터 버튼 영역 */}
-            {isLoggedIn ? (
-              //이미 로그인 한 사람은 대시보드 이동버튼만
-              <div style={{ lineHeight: 0 }}>
+            {/* 버튼 영역 */}
+            <div
+              className="flex flex-col items-center"
+              style={{ lineHeight: 0 }}
+            >
+              {isLoggedIn ? (
+                // 대시보드 버튼
                 <MainStartButton href="/dashboard" />
-              </div>
-            ) : (
-              <>
-                {/* 로그인 버튼*/}
-                <div
-                  className="mb-[clamp(20px,3vh,32px)]"
-                  style={{ lineHeight: 0 }}
-                >
-                  <MainLoginButton href={loginHref} />
-                </div>
-
-                {/*회원가입 버튼*/}
-                <div style={{ lineHeight: 0 }}>
-                  <MainSignupButton href={signupHref} />
-                </div>
-              </>
-            )}
+              ) : (
+                // 로그인 + 회원가입 버튼
+                <>
+                  <div
+                    style={{
+                      marginBottom: S.loginToSignup,
+                    }}
+                  >
+                    <MainLoginButton href={loginHref} />
+                  </div>
+                  <div>
+                    <MainSignupButton href={signupHref} />
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 }
+ 
