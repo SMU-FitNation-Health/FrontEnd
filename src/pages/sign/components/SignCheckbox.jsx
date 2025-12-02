@@ -1,7 +1,7 @@
 //약관 체크박스
 import React from "react";
 
-export default function AgreementCheckbox({
+export default function SignCheckbox({
   badgeLabel, // "필수" | "선택"
   text,
   checked,

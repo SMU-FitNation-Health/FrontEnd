@@ -3,9 +3,9 @@ import React from "react";
 import signBtn from "../../../assets/sign/sign.svg";
 import googleBtn from "../../../assets/login/login6.svg";
 import useSignForm from "../hooks/useSignForm";
-import ClickableSvg from "./ClickableSvg";
+import SignButton from "./SignButton";
 import SignTextField from "./SignTextField";
-import AgreementCheckbox from "./AgreementCheckbox";
+import SignCheckbox from "./SignCheckbox";
 import {
   SIGN_INPUT_WIDTH as W,
   SIGN_CARD_WIDTH as CARD_W,
@@ -113,21 +113,21 @@ export default function SignFormCard({ onSuccess }) {
         className="self-center"
         style={{ width: W, marginTop: "clamp(12px, 2.8vmin, 18px)" }}
       >
-        <AgreementCheckbox
+        <SignCheckbox
           badgeLabel="필수"
           text="이용약관 동의"
           checked={agreeTerms}
           onChange={setAgreeTerms}
           marginTop="clamp(4px, 1.2vmin, 6px)"
         />
-        <AgreementCheckbox
+        <SignCheckbox
           badgeLabel="필수"
           text="개인정보 처리방침 동의"
           checked={agreePrivacy}
           onChange={setAgreePrivacy}
           marginTop="clamp(6px, 1.4vmin, 8px)"
         />
-        <AgreementCheckbox
+        <SignCheckbox
           badgeLabel="선택"
           text="마케팅 정보 수신 동의"
           checked={agreeMarketing}
@@ -155,7 +155,7 @@ export default function SignFormCard({ onSuccess }) {
         className="self-center"
         style={{ width: W, marginTop: "clamp(14px, 3vmin, 20px)" }}
       >
-        <ClickableSvg
+        <SignButton
           src={signBtn}
           alt="회원가입하기"
           onClick={handleSubmit}
@@ -187,7 +187,7 @@ export default function SignFormCard({ onSuccess }) {
 
       {/* Google 버튼 */}
       <div className="self-center" style={{ width: W }}>
-        <ClickableSvg
+        <SignButton
           src={googleBtn}
           alt="Google로 계속하기"
           onClick={handleGoogle}

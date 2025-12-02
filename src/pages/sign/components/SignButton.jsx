@@ -5,7 +5,7 @@ import {
   SIGN_INPUT_HEIGHT as H,
 } from "../constants/signLayout";
 
-export default function ClickableSvg({
+export default function SignButton({
   src,
   alt,
   onClick,
