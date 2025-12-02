@@ -14,7 +14,8 @@ export const ALLERGY_NAMES = [
   "메추리고기","아티초크","케이퍼","피클","밤",
 ];
 
+//id는 1부터 시작임
 export const ALLERGY_NAME_TO_ID = ALLERGY_NAMES.reduce((acc, name, idx) => {
-  acc[name] = idx + 1; // id는 1부터 시작
+  acc[name] = idx + 1;
   return acc;
 }, {});

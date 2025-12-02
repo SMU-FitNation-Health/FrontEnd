@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";   // ⬅ 추가
+import { useNavigate } from "react-router-dom";
 import nextIcon  from "../../../../assets/onboarding/ob2.svg"; 
 import startIcon from "../../../../assets/onboarding/ob4.svg";
 
@@ -9,14 +9,16 @@ export default function Bottom({
   canNext,
   onPrev,
   onNext,
-  onStart, // 선택: 있으면 먼저 실행 후 이동
+  onStart,
   padX = "clamp(18px,4vw,72px)",
 }) {
-  const navigate = useNavigate();                 // ⬅ 추가
-
-  const handleStart = () => {                     // ⬅ 추가
-    if (typeof onStart === "function") onStart(); // 부모 콜백 보존
-    navigate("/dashboard");                       // 대시보드로 이동
+  const navigate = useNavigate();
+  const handleStart = async () => {
+    if (typeof onStart === "function") {
+      const ok = await onStart();   // onStart가 false를 리턴하면 이동 안 함
+      if (ok === false) return;
+    }
+    navigate("/dashboard");
   };
 
   return (
@@ -41,7 +43,7 @@ export default function Bottom({
         {/* 진행 바 */}
         <ProgressDots current={step} total={total} />
 
-        {/* 다음 / 시작하기 */}
+        {/* 다음,시작하기 */}
         {step < total ? (
           <img
             src={nextIcon}
@@ -49,7 +51,9 @@ export default function Bottom({
             onClick={canNext ? onNext : undefined}
             className={[
               "select-none",
-              canNext ? "cursor-pointer hover:opacity-90" : "opacity-40 pointer-events-none",
+              canNext
+                ? "cursor-pointer hover:opacity-90"
+                : "opacity-40 pointer-events-none",
             ].join(" ")}
             style={{ width: "clamp(72px,8vmin,96px)" }}
           />
@@ -57,7 +61,7 @@ export default function Bottom({
           <img
             src={startIcon}
             alt="시작하기"
-            onClick={handleStart}                
+            onClick={handleStart}
             className="select-none cursor-pointer hover:opacity-90"
             style={{ width: "clamp(96px,10vmin,120px)" }}
           />

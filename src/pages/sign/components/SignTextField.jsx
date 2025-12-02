@@ -40,6 +40,7 @@ export default function SignTextField({
   placeholder,
   iconVariant = "user",
   labelMarginTop,
+  inputProps = {},
 }) {
   return (
     <>
@@ -78,12 +79,20 @@ export default function SignTextField({
         >
           {renderIconPaths(iconVariant)}
         </svg>
+
         <input
           type={type}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className="block rounded-[12px] border border-[#E5E7EB] outline-none focus:ring-2 focus:ring-[#D1E4FF] placeholder-[#717182]"
+          {...inputProps}
+          className="
+            block
+            rounded-[12px]
+            border border-[#E5E7EB]
+            outline-none
+            placeholder-[#717182]
+          "
           style={{
             width: "100%",
             height: "100%",
@@ -91,6 +100,7 @@ export default function SignTextField({
             paddingLeft: "clamp(40px, 5.5vmin, 52px)",
             paddingRight: "clamp(12px, 2.2vmin, 16px)",
             fontSize: "clamp(12px, 2.2vmin, 16px)",
+            backgroundColor: "#FFFFFF",
           }}
         />
       </div>

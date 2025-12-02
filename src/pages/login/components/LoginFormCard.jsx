@@ -1,13 +1,13 @@
-// src/pages/login/components/LoginFormCard.jsx
+//로그인 전체 카드
 import React from "react";
 import loginBtn from "../../../assets/login/login5.svg";
 import googleBtn from "../../../assets/login/login6.svg";
 import useLoginForm from "../hooks/useLoginForm";
 import SignButton from "../../sign/components/SignButton";
-
+import SignTextField from "../../sign/components/SignTextField";
+import LoginOptions from "./LoginOptions";
 import {
   LOGIN_INPUT_WIDTH as W,
-  LOGIN_INPUT_HEIGHT as H,
   LOGIN_CARD_WIDTH as CARD_W,
   LOGIN_CARD_MIN_HEIGHT as CARD_H,
   LOGIN_GAP_LOGIN_TO_OR as GAP_LOGIN_TO_OR,
@@ -43,147 +43,35 @@ export default function LoginFormCard({ onGoToMain, onGoToOnboarding }) {
       }}
     >
       {/* 이메일 */}
-      <label
-        className="self-center text-[#364153]"
-        style={{
-          width: W,
-          fontSize: "clamp(12px, 2.3vmin, 14px)",
-        }}
-      >
-        이메일
-      </label>
-
-      <div
-        className="relative self-center"
-        style={{ width: W, height: H, marginTop: "clamp(6px, 1.6vmin, 8px)" }}
-      >
-        {/* 왼쪽 아이콘 */}
-        <svg
-          aria-hidden="true"
-          className="absolute block text-[#9CA3AF]"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          style={{
-            left: "clamp(10px, 2.2vmin, 16px)",
-            top: "50%",
-            transform: "translateY(-50%)",
-            width: "clamp(18px, 2.6vmin, 22px)",
-            height: "clamp(18px, 2.6vmin, 22px)",
-          }}
-        >
-          <path d="M4 6h16v12H4z" />
-          <path d="m22 6-10 7L2 6" />
-        </svg>
-
-        <input
-          type="email"
-          placeholder="hello@example.com"
-          className="block rounded-[12px] border border-[#E5E7EB] outline-none focus:ring-2 focus:ring-[#D1E4FF] placeholder-[#717182]"
-          style={{
-            width: "100%",
-            height: "100%",
-            boxSizing: "border-box",
-            paddingLeft: "clamp(40px, 5.5vmin, 52px)",
-            paddingRight: "clamp(12px, 2.2vmin, 16px)",
-            fontSize: "clamp(12px, 2.2vmin, 16px)",
-          }}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
+      <SignTextField
+        label="이메일"
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="hello@example.com"
+        iconVariant="email"
+      />
 
       {/* 비밀번호 */}
-      <label
-        className="self-center text-[#364153]"
-        style={{
-          width: W,
-          marginTop: "clamp(12px, 2.8vmin, 18px)",
-          fontSize: "clamp(12px, 2.3vmin, 14px)",
-        }}
-      >
-        비밀번호
-      </label>
-
-      <div
-        className="relative self-center"
-        style={{ width: W, height: H, marginTop: "clamp(6px, 1.6vmin, 8px)" }}
-      >
-        {/* 자물쇠 아이콘 */}
-        <svg
-          aria-hidden="true"
-          className="absolute block text-[#9CA3AF]"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          style={{
-            left: "clamp(10px, 2.2vmin, 16px)",
-            top: "50%",
-            transform: "translateY(-50%)",
-            width: "clamp(18px, 2.6vmin, 22px)",
-            height: "clamp(18px, 2.6vmin, 22px)",
-          }}
-        >
-          <rect x="4" y="11" width="16" height="9" rx="2" />
-          <path d="M8 11V8a4 4 0 1 1 8 0v3" />
-        </svg>
-
-        <input
-          type="password"
-          className="block rounded-[12px] border border-[#E5E7EB] outline-none focus:ring-2 focus:ring-[#D1E4FF] placeholder-[#717182]"
-          style={{
-            width: "100%",
-            height: "100%",
-            boxSizing: "border-box",
-            paddingLeft: "clamp(40px, 5.5vmin, 52px)",
-            paddingRight: "clamp(12px, 2.2vmin, 16px)",
-            fontSize: "clamp(12px, 2.2vmin, 16px)",
-          }}
-          placeholder="••••••"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          onKeyDown={(e) => {
+      <SignTextField
+        label="비밀번호"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="••••••"
+        iconVariant="password"
+        labelMarginTop="clamp(12px, 2.8vmin, 18px)"
+        inputProps={{
+          onKeyDown: (e) => {
             if (e.key === "Enter") {
               handleSubmit();
             }
-          }}
-        />
-      </div>
+          },
+        }}
+      />
 
-      {/* 옵션 라인 */}
-      <div
-        className="self-center flex items-center justify-between"
-        style={{ width: W, marginTop: "clamp(10px, 2.4vmin, 14px)" }}
-      >
-        <label
-          className="flex items-center text-[#4A5565]"
-          style={{
-            gap: "clamp(8px, 2.2vmin, 11px)",
-            fontSize: "clamp(12px, 2.3vmin, 14px)",
-          }}
-        >
-          <input
-            type="checkbox"
-            className="accent-[#111827]"
-            style={{
-              width: "clamp(13px, 2.2vmin, 15px)",
-              height: "clamp(13px, 2.2vmin, 15px)",
-            }}
-            checked={keepLogin}
-            onChange={(e) => setKeepLogin(e.target.checked)}
-          />
-          로그인 상태 유지
-        </label>
-        <a
-          className="text-[#4A5565] hover:text-[#111827]"
-          style={{ fontSize: "clamp(12px, 2.3vmin, 14px)" }}
-          href="#"
-        >
-          비밀번호 찾기
-        </a>
-      </div>
+      {/* 옵션 라인 (로그인 상태 유지 / 비밀번호 찾기) */}
+      <LoginOptions keepLogin={keepLogin} setKeepLogin={setKeepLogin} />
 
       {/* 에러 메시지 */}
       {error && (
