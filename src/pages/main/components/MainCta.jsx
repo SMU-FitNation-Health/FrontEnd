@@ -2,12 +2,26 @@ import React from "react";
 import main2 from "../../../assets/main/main2.svg";
 import MainLoginButton from "./MainLoginButton.jsx";
 import MainSignupButton from "./MainSignupButton.jsx";
+import MainStartButton from "./MainStartButton.jsx";
 
 /** 하단 698px 영역 */
 export default function MainCta({
   loginHref = "/login",
   signupHref = "/sign",
 }) {
+  //로컬스토리지 기반 로그인 여부 확인
+  const isLoggedIn = (() => {
+    if (typeof window === "undefined") return false;
+    try {
+      const raw = window.localStorage.getItem("cv-auth");
+      if (!raw) return false;
+      const parsed = JSON.parse(raw);
+      return !!parsed?.accessToken;
+    } catch {
+      return false;
+    }
+  })();
+
   return (
     <div className="w-full flex items-center">
       <div className="w-full grid grid-cols-2 gap-x-24 items-center">
@@ -16,36 +30,51 @@ export default function MainCta({
         <div className="flex justify-center">
           <img
             src={main2}
-            alt="메인 섹션 이미지"
-            className="w-[525px] h-[395px] rounded-2xl shadow-xl object-cover"
+            alt="Care View 메인"
+            className="max-w-[525px] w-full h-auto"
             draggable="false"
           />
         </div>
 
-        {/* 오른쪽 텍스트 + 버튼들 */}
-        <div className="flex flex-col items-center text-center -mt-[50px]">
+        {/* 오른쪽 텍스트 + 버튼 */}
+        <div className="flex justify-center">
+          <div className="w-full max-w-[480px]">
+            <h2
+              className="font-semibold text-[#111827] mb-[clamp(12px,2vh,20px)]"
+              style={{ fontSize: "clamp(20px, 6vmin, 70px)" }}
+            >
+              시작하기
+            </h2>
 
-          {/* 제목 */}
-          <h3 className="text-[42px] leading-[60px] font-bold text-gray-800 mb-[clamp(8px,1.2vh,16px)]">
-            시작하기
-          </h3>
+            <p
+              className="text-[#4B5563] mb-[clamp(12px,4vh,40px)]"
+              style={{ fontSize: "clamp(13px, 3vmin, 35px)", lineHeight: 1.6 }}
+            >
+              Care View와 함께 건강한 삶을 관리하세요.
+            </p>
 
-          {/* 문구: 제목과의 간격, 아래 버튼과의 간격도 반응형으로 */}
-          <p className="text-[18px] leading-[27px] text-[#4A5565] opacity-90 mt-[clamp(8px,1.5vh,20px)] mb-[clamp(24px,4vh,40px)]">
-            Care View와 함께 건강한 삶을 관리하세요
-          </p>
+            {/*여기부터 버튼 영역 */}
+            {isLoggedIn ? (
+              //이미 로그인 한 사람은 대시보드 이동버튼만
+              <div style={{ lineHeight: 0 }}>
+                <MainStartButton href="/dashboard" />
+              </div>
+            ) : (
+              <>
+                {/* 로그인 버튼*/}
+                <div
+                  className="mb-[clamp(20px,3vh,32px)]"
+                  style={{ lineHeight: 0 }}
+                >
+                  <MainLoginButton href={loginHref} />
+                </div>
 
-          {/* 버튼  */}
-          <div className="flex flex-col items-center">
-            {/* 로그인 버튼: 아래 간격 반응형 */}
-            <div className="mb-[clamp(20px,3vh,32px)]" style={{ lineHeight: 0 }}>
-              <MainLoginButton href={loginHref} />
-            </div>
-
-            {/* 회원가입 버튼 */}
-            <div style={{ lineHeight: 0 }}>
-              <MainSignupButton href={signupHref} />
-            </div>
+                {/*회원가입 버튼*/}
+                <div style={{ lineHeight: 0 }}>
+                  <MainSignupButton href={signupHref} />
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

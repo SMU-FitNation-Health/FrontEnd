@@ -17,18 +17,22 @@ export const api = axios.create({
   },
 });
 
-//cv-auth 기반 Authorization 헤더 생성
+// cv-auth 기반 Authorization 헤더 생성
 export function getAuthHeader() {
   if (typeof window === "undefined") return {};
-
   try {
     const raw = window.localStorage.getItem("cv-auth");
     if (!raw) return {};
+
     const parsed = JSON.parse(raw);
     const token = parsed?.accessToken;
     const type = parsed?.tokenType || "Bearer";
+
     if (!token) return {};
-    return { Authorization: `${type} ${token}` };
+
+    return {
+      Authorization: `${type} ${token}`,
+    };
   } catch {
     return {};
   }

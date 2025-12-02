@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import loginBtn from "../../../assets/login/login5.svg";
 import googleBtn from "../../../assets/login/login6.svg";
-import { loginUser } from "../../../api/login";
+import { loginUser } from "../../../api/user/login";
+import { getOnboardingStatus } from "../../../api/onboarding";
 
 const W = "clamp(240px, 62vw, 382px)"; // 인풋/버튼 가로
 const H = "clamp(40px, 7.2vh, 48px)"; // 인풋/버튼 높이
@@ -60,16 +61,17 @@ export default function LoginLeft() {
 
   const canSubmit = email.trim() && password;
 
-  const handleLogin = async () => {
+    const handleLogin = async () => {
     if (!canSubmit || loading) return;
 
     try {
       setLoading(true);
       setError("");
 
+      // 1) 로그인 요청
       const data = await loginUser({ email: email.trim(), password });
 
-      // 백엔드 응답: { access_token, token_type }
+      // 2) 액세스 토큰 로컬스토리지 저장 (cv-auth)
       localStorage.setItem(
         "cv-auth",
         JSON.stringify({
@@ -79,14 +81,35 @@ export default function LoginLeft() {
         })
       );
 
-      // TODO: 필요에 따라 경로 변경 (/onboarding 등)
-      navigate("/dashboard");
+      // 3) 온보딩 상태 조회 후, 경로 분기
+      try {
+        const status = await getOnboardingStatus();
+
+        // 백엔드 응답에서 온보딩 완료 여부 추출
+        const isComplete =
+          status?.is_onboarding_complete ??
+          status?.isOnboardingComplete ??
+          status?.onboarding_complete;
+
+        if (isComplete) {
+          // ✅ 온보딩을 이미 완료한 유저 → 메인페이지로
+          //   메인 페이지 path가 /가 아니라 /main 이라면 여기를 "/main" 으로 바꿔줘
+          navigate("/");
+        } else {
+          // ✅ 회원가입 후 첫 로그인 등, 온보딩 미완료 → 온보딩 페이지로
+          navigate("/onboarding");
+        }
+      } catch (e) {
+        // 온보딩 상태 조회가 실패하면 "안전하게" 온보딩으로 보냄
+        navigate("/onboarding");
+      }
     } catch (err) {
       setError(err.message || "로그인에 실패했어요. 다시 시도해 주세요.");
     } finally {
       setLoading(false);
     }
   };
+
 
   const handleGoogle = () => {
     // TODO: 구글 로그인 붙이면 여기 구현

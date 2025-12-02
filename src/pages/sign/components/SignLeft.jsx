@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import signBtn from "../../../assets/sign/sign.svg";
 import googleBtn from "../../../assets/login/login6.svg";
-import { signUpUser } from "../../../api/sign";
+import { signUpUser } from "../../../api/user/sign";
 
 const W = "clamp(240px, 62vw, 382px)";
 const H = "clamp(40px, 7.2vh, 48px)";

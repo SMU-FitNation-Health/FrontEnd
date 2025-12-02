@@ -1,4 +1,4 @@
-import { api, getErrorMessage } from "./client";
+import { api, getErrorMessage } from "../client";
 
 
 export async function signUpUser({ name, email, password, agreeTerms, agreePrivacy }) {
@@ -20,7 +20,7 @@ export async function signUpUser({ name, email, password, agreeTerms, agreePriva
     throw new Error(
       getErrorMessage(
         error,
-        "회원가입에 실패했어요. 입력값을 다시 확인하거나 잠시 후 다시 시도해 주세요."
+        "회원가입에 실패했어요. 잠시 후 다시 시도해 주세요."
       )
     );
   }

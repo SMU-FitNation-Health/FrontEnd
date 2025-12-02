@@ -1,10 +1,6 @@
-// src/api/login.js
-import { api, getErrorMessage } from "./client";
+import { api, getErrorMessage } from "../client";
 
-/**
- * 로그인: POST /api/user/login
- * @param {{ email: string; password: string }} payload
- */
+//로그인
 export async function loginUser({ email, password }) {
   try {
     const res = await api.post("/api/user/login", {
@@ -23,11 +19,7 @@ export async function loginUser({ email, password }) {
   }
 }
 
-/**
- * 내 정보 조회: GET /api/user/me
- * @param {string} accessToken
- * @param {string} tokenType 기본값 "bearer"
- */
+//내정보 조회
 export async function fetchMe(accessToken, tokenType = "bearer") {
   try {
     const res = await api.get("/api/user/me", {
