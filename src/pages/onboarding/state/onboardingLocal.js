@@ -1,4 +1,3 @@
-// src/pages/onboarding/state/onboardingLocal.js
 export const onboardingLocal = {
   goal: null,                              
   schedule: { days: [], time: null },      // 2단계

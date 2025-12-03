@@ -1,29 +1,9 @@
-import React, { useMemo } from "react";
-
-/** BMI 계산 (cm, kg) */
-function computeBMI(heightCm, weightKg) {
-  if (!heightCm || !weightKg) return null;
-  const h = Number(heightCm) / 100;
-  if (!h || !Number(weightKg)) return null;
-  const bmi = Number(weightKg) / (h * h);
-  return Number.isFinite(bmi) ? Number(bmi.toFixed(1)) : null;
-}
-
-/** WHO 기준 간단 분류 */
-function bmiLabel(bmi) {
-  if (bmi == null) return "—";
-  if (bmi < 18.5) return "저체중";
-  if (bmi < 23)   return "정상";
-  if (bmi < 25)   return "과체중";
-  return "비만";
-}
+//메인 대시보드 카드하나
+import React from "react";
+import useBodySummary from "../../hooks/useBodySummary"; 
 
 export default function BodySummaryCard({ className = "" }) {
-  const age    = localStorage.getItem("onboardingAge");
-  const height = localStorage.getItem("onboardingHeightCm");
-  const weight = localStorage.getItem("onboardingWeightKg");
-
-  const bmi = useMemo(() => computeBMI(height, weight), [height, weight]);
+  const { age, height, weight, bmiText, hasAnyData } = useBodySummary();
 
   return (
     <article
@@ -48,18 +28,27 @@ export default function BodySummaryCard({ className = "" }) {
       </p>
 
       <div className="mt-[clamp(12px,2vmin,18px)]">
-        <Row label="나이"    value={age ? `${age}세` : "—"} />
-        <Row label="키"      value={height ? `${height}cm` : "—"} />
-        <Row label="몸무게"  value={weight ? `${weight}kg` : "—"} />
+        <Row
+          label="나이"
+          value={age != null ? `${age}세` : "—"}
+        />
+        <Row
+          label="키"
+          value={height ? `${height}cm` : "—"}
+        />
+        <Row
+          label="몸무게"
+          value={weight ? `${weight}kg` : "—"}
+        />
         <Row
           label="BMI"
-          value={bmi != null ? `${bmi}` : "—"}
+          value={bmiText}
           highlightBMI
           isLast
         />
       </div>
 
-      {!age && !height && !weight && (
+      {!hasAnyData && (
         <p className="mt-[10px] text-[clamp(11px,1.3vmin,13px)] text-[#6B7280]">
           온보딩에서 나이/신장/체중을 입력하면 자동 계산됩니다.
         </p>
