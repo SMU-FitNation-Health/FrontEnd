@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../assets/dailyfood/df2.svg"; 
 
 const S = {
-  h:        "clamp(52px, 7vh, 72px)",
-  logoBox:  "clamp(32px, 4.2vmin, 40px)",
-  titleFs:  "clamp(16px, 2vmin, 20px)",
-  btnPx:    "clamp(14px, 2vmin, 20px)",
-  btnPy:    "clamp(6px, 1.2vmin, 10px)",
+  h:        "clamp(52px, 9vh, 72px)",
+  logoBox:  "clamp(30px, 5vmin, 60px)",
+  titleFs:  "clamp(15px, 3vmin, 40px)",
+  btnPx:    "clamp(14px, 2.5vmin, 20px)", //로그아웃 너비
+  btnPy:    "clamp(6px, 1.2vmin, 10px)",  //그럼이건 높이겠지
   btnGap:   "clamp(4px, 1vmin, 8px)",
   btnFs:    "clamp(13px, 1.7vmin, 16px)",
 };
@@ -30,11 +30,11 @@ export default function Header() {
   return (
     <header className="w-full bg-white border-b border-[#E5E7EB]">
       <div
-        className="flex items-center justify-between"
+        className="flex items-center justify-between px-[clamp(15px,5vw,60px)]"
         style={{ minHeight: S.h }}
       >
         {/* 왼쪽 로고 + 텍스트 */}
-        <div className="flex items-center gap-[clamp(8px,1.2vmin,14px)]">
+        <div className="flex items-center gap-[clamp(8px,1.5vmin,20px)] ml-[4px]">
           <img
             src={logo}
             alt="Care View 로고"
