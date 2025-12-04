@@ -1,7 +1,7 @@
 // 3개 요약카드
 import React from "react";
 import summaryIcon from "../../../assets/recode/re1.svg";
-import { useWeeklySummaryMetrics } from "../hooks/useWeeklySummary.js";
+import { useWeeklySummary } from "../hooks/useWeeklySummary.js";
 
 const S = {
   wrapGap:   "clamp(10px, 6vmin, 50px)", // 카드 간격
@@ -51,7 +51,7 @@ function SummaryCard({ label, value }) {
 }
 
 export default function WeeklySummary({ summary }) {
-  const metrics = useWeeklySummaryMetrics(summary);
+  const metrics = useWeeklySummary(summary);
 
   return (
     <section className="mt-[clamp(40px,20vmin,150px)]">
