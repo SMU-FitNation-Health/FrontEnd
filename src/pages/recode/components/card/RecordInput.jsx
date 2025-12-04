@@ -6,30 +6,54 @@ export default function RecordInput({
   value,
   onChange,
   unit,
-  placeholder,
-  min = 0,
-  step = 0.5,
   pillPy,
   pillPx,
-  pillFs,
+  labelFs,
+  valueFs,
+  min = 0,
+  step = 0.5,
+  placeholder = "",
 }) {
+  const handleChange = (e) => {
+    // 항상 문자열로 관리 (상위에서 Number()로 변환)
+    onChange?.(e.target.value);
+  };
+
   return (
     <div
-      className="rounded-xl bg-[#F9FAFB] flex items-center justify-between"
-      style={{ padding: `${pillPy} ${pillPx}`, fontSize: pillFs }}
+      className="bg-white border border-[#E5E7EB] rounded-xl
+                 flex flex-col gap-[clamp(4px,0.6vmin,8px)]"
+      style={{
+        paddingBlock: pillPy,
+        paddingInline: pillPx,
+      }}
     >
-      <span className="text-[#6B7280]">{label}</span>
-      <div className="flex items-center gap-1">
+      {/* 라벨 (윗줄) */}
+      <span
+        className="text-[#6B7280] font-semibold"
+        style={{ fontSize: labelFs }}
+      >
+        {label}
+      </span>
+
+      {/* 입력 필드 (아랫줄) */}
+      <div className="flex items-center gap-[clamp(4px,1vmin,10px)]">
         <input
           type="number"
           min={min}
           step={step}
-          value={value ?? ""}
-          onChange={(e) => onChange?.(e.target.value)}
+          value={value ?? ""} // null/undefined면 빈 문자열
+          onChange={handleChange}
           placeholder={placeholder}
-          className="w-[70px] bg-transparent text-right outline-none text-[inherit] text-[#111827] placeholder:text-[#D1D5DC]"
+          className="w-full bg-transparent outline-none text-[#111827] placeholder:text-[#D1D5DC]"
+          style={{ fontSize: valueFs }}
         />
-        <span className="text-[#6B7280]">{unit}</span>
+        <span
+          className="text-[#6B7280] whitespace-nowrap"
+          style={{ fontSize: valueFs }}
+        >
+          {unit}
+        </span>
       </div>
     </div>
   );

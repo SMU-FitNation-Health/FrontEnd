@@ -1,4 +1,4 @@
-//요약 3개 카드 훇
+//데이터를 카드용 배열로
 import { useMemo } from "react";
 
 export function useWeeklySummary(summary) {

@@ -9,15 +9,19 @@ export const S = {
   cardGap:  "clamp(14px, 2.2vmin, 18px)",    // 헤더 ↔ 내용 간격
 
   // 내용(필) 공통 패딩
-  pillPy: "clamp(10px, 1.5vmin, 14px)",
+  pillPy: "clamp(10px, 1.8vmin, 14px)",
   pillPx: "clamp(12px, 2vmin, 18px)",
-
   // 헤더 텍스트
-  dayFs:  "clamp(12px, 1.3vmin, 14px)",      // 요일
-  dateFs: "clamp(26px, 3vmin, 32px)",        // 날짜 숫자
+  dayFs:  "clamp(12px, 2.3vmin, 20px)",      // 요일
+  dateFs: "clamp(26px, 4vmin, 50px)",        // 날짜 숫자
+
+  inputLabelFs: "clamp(12px, 2vmin, 20px)",   // 라벨용
+  inputValueFs: "clamp(14px, 2vmin, 18px)",     // 입력 숫자/단위용
+  readLabelFs:  "clamp(12px, 2vmin, 20px)", //읽기 모드
+  readValueFs:  "clamp(16px, 2.5vmin, 30px)",
 };
 
-// 체중 / 수면 / 운동 공통 설정
+// 체중,수면,운동 공통 설정
 export const METRIC_CONFIG = [
   {
     key: "weight",

@@ -1,6 +1,6 @@
-//record 날짜 유틸
+//record 날짜, 데이터 존재여부
 
-// "2025-12-01" → 1
+//닐찌
 export function getDayOfMonth(dateStr) {
   if (!dateStr) return "";
   const d = new Date(`${dateStr}T00:00:00`);

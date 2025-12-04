@@ -1,4 +1,4 @@
-// src/pages/recode/RecodePage.jsx
+//기록실 메인 페이지
 
 import React, { useEffect, useMemo, useState } from "react";
 import DailyHeader from "../dailyfood/components/DailyHeader.jsx";

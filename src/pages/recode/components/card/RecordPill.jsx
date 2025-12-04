@@ -6,15 +6,30 @@ export default function RecordPill({
   value,
   pillPy,
   pillPx,
-  pillFs,
+  labelFs,
+  valueFs,
 }) {
   return (
     <div
-      className="rounded-xl bg-[#F9FAFB] text-[#111827] flex items-center justify-between"
-      style={{ padding: `${pillPy} ${pillPx}`, fontSize: pillFs }}
+      className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl
+                 flex flex-col gap-[clamp(4px,0.8vmin,8px)]"
+      style={{
+        paddingBlock: pillPy,
+        paddingInline: pillPx,
+      }}
     >
-      <span className="text-[#6B7280]">{label}</span>
-      <span className="font-semibold">{value}</span>
+      <span
+        className="text-[#6B7280] font-semibold"
+        style={{ fontSize: labelFs }}
+      >
+        {label}
+      </span>
+      <span
+        className="text-[#111827]"
+        style={{ fontSize: valueFs }}
+      >
+        {value}
+      </span>
     </div>
   );
 }

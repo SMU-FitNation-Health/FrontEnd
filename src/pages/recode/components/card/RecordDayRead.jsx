@@ -15,6 +15,8 @@ export default function RecordDayRead({ metric }) {
           pillPy={S.pillPy}
           pillPx={S.pillPx}
           pillFs={S.pillFs}
+          labelFs={S.readLabelFs} 
+          valueFs={S.readValueFs} 
         />
       ))}
     </div>
