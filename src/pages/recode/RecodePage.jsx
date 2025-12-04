@@ -4,17 +4,17 @@ import React, { useEffect, useMemo, useState } from "react";
 import DailyHeader from "../dailyfood/components/DailyHeader.jsx";
 import Footer from "../../layout/footer/Footer.jsx";
 
-import RecordDayCard from "./components/RecordDayCard.jsx";
+import RecordDayCard from "./components/card/RecordDayCard.jsx";
 import WeeklySummary from "./components/WeeklySummary.jsx";
 import RecodeSection from "./components/RecodeSection.jsx";
 import { getRecordPage, saveRecordMetric } from "../../api/recode/recode.js";
 
 const S = {
   weekGap:     "clamp(10px, 1.4vmin, 16px)",
-  titleGap:    "clamp(6px, 1vmin, 10px)",
+  titleGap:    "clamp(6px, 2.5vmin, 30px)",
   weekCtrlGap: "clamp(10px, 1.4vmin, 14px)",
-  titleFs:     "clamp(18px, 2.2vmin, 22px)",
-  subFs:       "clamp(13px, 1.5vmin, 14px)",
+  titleFs:     "clamp(18px, 3.5vmin, 40px)",
+  subFs:       "clamp(13px, 2.5vmin, 30px)",
 };
 
 const WEEK_LABEL = ["일", "월", "화", "수", "목", "금", "토"];
@@ -185,7 +185,7 @@ export default function RecodePage() {
                   건강 기록실
                 </h1>
                 <p
-                  className="text-[#6B7280]"
+                  className="text-[#6B7280] mb-4"
                   style={{ fontSize: S.subFs }}
                 >
                   나의 건강 여정을 기록하고 분석해요
@@ -193,7 +193,7 @@ export default function RecodePage() {
               </div>
 
               <div
-                className="mt-[clamp(16px,2.2vmin,20px)] flex items-center text-[#6B7280]"
+                className="mt-[clamp(16px,2.2vmin,20px)] flex items-center text-[#6B7280] mb-4"
                 style={{ gap: S.weekCtrlGap, fontSize: S.subFs }}
               >
                 <button
