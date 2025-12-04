@@ -6,8 +6,8 @@ import Footer from "../../layout/footer/Footer.jsx";
 
 import RecordDayCard from "./components/RecordDayCard.jsx";
 import WeeklySummary from "./components/WeeklySummary.jsx";
-import EncouragementSection from "./components/EncouragementSection.jsx";
-import { getRecordPage } from "../../api/recode/recode.js";
+import RecodeSection from "./components/RecodeSection.jsx";
+import { getRecordPage, saveRecordMetric } from "../../api/recode/recode.js";
 
 const S = {
   weekGap:     "clamp(10px, 1.4vmin, 16px)",
@@ -37,7 +37,7 @@ function getWeekTitle(startDate) {
   const d = toDate(startDate);
   const year = d.getFullYear();
   const month = d.getMonth() + 1;
-  const weekOfMonth = Math.floor((d.getDate() - 1) / 7) + 1; // 1주차, 2주차...
+  const weekOfMonth = Math.floor((d.getDate() - 1) / 7) + 1;
 
   return `${year}년 ${month}월 ${weekOfMonth}주차`;
 }
@@ -45,9 +45,18 @@ function getWeekTitle(startDate) {
 export default function RecodePage() {
   const [weeklyRecords, setWeeklyRecords] = useState(null);
   const [weeklySummary, setWeeklySummary] = useState(null);
+
   const [selectedDate, setSelectedDate] = useState(null);
+
+  // 선택된 날짜용 입력 값
+  const [editingWeight, setEditingWeight] = useState("");
+  const [editingSleep, setEditingSleep] = useState("");
+  const [editingExercise, setEditingExercise] = useState("");
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const [saving, setSaving] = useState(false);
 
   async function loadWeek(targetDate) {
     try {
@@ -60,14 +69,31 @@ export default function RecodePage() {
       setWeeklyRecords(wr);
       setWeeklySummary(ws);
 
-      const firstWithMetric = wr?.daily_records?.find(
-        (d) =>
-          d.metric &&
-          (d.metric.weight_kg != null ||
-            d.metric.sleep_duration_hours != null ||
-            d.metric.exercise_duration_hours != null)
-      );
-      setSelectedDate(firstWithMetric?.date || wr?.start_date || null);
+      if (targetDate) {
+        const found = wr?.daily_records?.find((d) => d.date === targetDate);
+        const metric = found?.metric || null;
+
+        setSelectedDate(targetDate);
+        setEditingWeight(metric?.weight_kg ?? "");
+        setEditingSleep(metric?.sleep_duration_hours ?? "");
+        setEditingExercise(metric?.exercise_duration_hours ?? "");
+      } else {
+        const firstWithMetric = wr?.daily_records?.find(
+          (d) =>
+            d.metric &&
+            (d.metric.weight_kg != null ||
+              d.metric.sleep_duration_hours != null ||
+              d.metric.exercise_duration_hours != null)
+        );
+
+        const initialDate = firstWithMetric?.date || wr?.start_date || null;
+        const metric = firstWithMetric?.metric || null;
+
+        setSelectedDate(initialDate);
+        setEditingWeight(metric?.weight_kg ?? "");
+        setEditingSleep(metric?.sleep_duration_hours ?? "");
+        setEditingExercise(metric?.exercise_duration_hours ?? "");
+      }
     } catch (e) {
       console.error(e);
       if (e?.response?.status === 401) {
@@ -81,7 +107,7 @@ export default function RecodePage() {
   }
 
   useEffect(() => {
-    loadWeek(undefined); // target_date 없으면 오늘 기준
+    loadWeek(undefined);
   }, []);
 
   const weekTitle = useMemo(
@@ -103,10 +129,44 @@ export default function RecodePage() {
     loadWeek(next);
   };
 
+  // 카드 클릭 시 선택 날짜 + 입력 값 세팅
+  const handleSelectDay = (dateStr) => {
+    setSelectedDate(dateStr);
+    const found = days.find((d) => d.date === dateStr);
+    const metric = found?.metric || null;
+
+    setEditingWeight(metric?.weight_kg ?? "");
+    setEditingSleep(metric?.sleep_duration_hours ?? "");
+    setEditingExercise(metric?.exercise_duration_hours ?? "");
+  };
+
+  // 카드 내부 작은 "저장" 버튼에서 호출
+  const handleSave = async () => {
+    if (!selectedDate) return;
+    try {
+      setSaving(true);
+
+      const payload = {
+        date: selectedDate,
+        weight_kg: editingWeight ? Number(editingWeight) : 0,
+        sleep_duration_hours: editingSleep ? Number(editingSleep) : 0,
+        exercise_duration_hours: editingExercise
+          ? Number(editingExercise)
+          : 0,
+      };
+
+      await saveRecordMetric(payload);
+      await loadWeek(selectedDate);
+    } catch (e) {
+      console.error(e);
+      // 필요하면 토스트나 오류 메시지 추가
+    } finally {
+      setSaving(false);
+    }
+  };
+
   return (
-    // 전체 배경 흰색 + 세로 플렉스, 푸터는 전체 폭
     <div className="min-h-dvh bg-white flex flex-col">
-      {/* 중앙 1440px 본문 영역 */}
       <div className="flex-1 flex justify-center px-[clamp(16px,4vw,40px)]">
         <div className="w-full max-w-[1440px] py-[clamp(24px,4vh,40px)] space-y-[clamp(24px,4vh,36px)]">
           <DailyHeader />
@@ -179,14 +239,32 @@ export default function RecodePage() {
                       const day = toDate(dateStr);
                       const weekday = WEEK_LABEL[day.getDay()];
 
+                      const hasMetric =
+                        d.metric &&
+                        (d.metric.weight_kg != null ||
+                          d.metric.sleep_duration_hours != null ||
+                          d.metric.exercise_duration_hours != null);
+
+                      const isSelected = selectedDate === dateStr;
+                      const editing = isSelected && !hasMetric;
+
                       return (
                         <RecordDayCard
                           key={dateStr || idx}
                           date={dateStr}
                           metric={d.metric}
                           weekdayLabel={weekday}
-                          isSelected={selectedDate === dateStr}
-                          onClick={() => setSelectedDate(dateStr)}
+                          isSelected={isSelected}
+                          onClick={() => handleSelectDay(dateStr)}
+                          editing={editing}
+                          weight={editing ? editingWeight : ""}
+                          sleep={editing ? editingSleep : ""}
+                          exercise={editing ? editingExercise : ""}
+                          onChangeWeight={setEditingWeight}
+                          onChangeSleep={setEditingSleep}
+                          onChangeExercise={setEditingExercise}
+                          onSave={handleSave}
+                          saving={saving}
                         />
                       );
                     })}
@@ -195,16 +273,13 @@ export default function RecodePage() {
               )}
             </section>
 
-            {/* 이번 주 요약 카드 */}
+            {/* 이번 주 요약 카드 & 아래 섹션 */}
             <WeeklySummary summary={weeklySummary} />
-
-            {/* “훌륭해요! 꾸준히 기록하고 있어요” 섹션 */}
-            <EncouragementSection />
+            <RecodeSection />
           </main>
         </div>
       </div>
 
-      {/* 전체 폭 푸터 */}
       <Footer />
     </div>
   );

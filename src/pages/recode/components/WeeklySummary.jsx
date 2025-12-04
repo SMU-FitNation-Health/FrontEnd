@@ -1,35 +1,48 @@
-// src/pages/record/components/WeeklySummary.jsx
+// 3개 요약카드
 import React from "react";
-import summaryIcon from "../../../assets/recode/re1.svg"; // 경로는 프로젝트 구조에 맞게 조정
+import summaryIcon from "../../../assets/recode/re1.svg";
+import { useWeeklySummaryMetrics } from "../hooks/useWeeklySummary.js";
 
 const S = {
-  wrapGap: "clamp(10px, 1.8vmin, 18px)",
-  cardPy:  "clamp(14px, 1.8vmin, 18px)",
-  cardPx:  "clamp(16px, 2.2vmin, 22px)",
-  titleFs: "clamp(13px, 1.5vmin, 15px)",
-  valueFs: "clamp(16px, 1.9vmin, 18px)",
+  wrapGap:   "clamp(10px, 6vmin, 50px)", // 카드 간격
+  cardPy:    "clamp(12px, 2.1vmin, 18px)",
+  cardPx:    "clamp(14px, 4vmin, 40px)",
+  cardMinH:  "clamp(72px, 27vmin, 110px)",
+  iconBox:   "clamp(32px, 6vmin, 50px)", // 아이콘 크기
+  titleFs:   "clamp(12px, 2vmin, 20px)",   // 라벨
+  valueFs:   "clamp(15px, 3vmin, 30px)",   // 값
+  headingFs: "clamp(14px, 2.4vmin, 20px)", // '이번 주 요약'
+  headingMb: "clamp(10px, 5vmin, 50px)",   // 제목 아래 간격
 };
 
 function SummaryCard({ label, value }) {
   return (
     <div
       className="flex items-center rounded-2xl bg-[#009689CC] text-white"
-      style={{ padding: `${S.cardPy} ${S.cardPx}`, gap: "clamp(10px,1.4vmin,14px)" }}
+      style={{
+        padding: `${S.cardPy} ${S.cardPx}`,
+        gap: "clamp(10px,4vmin,30px)",
+        minHeight: S.cardMinH,
+      }}
     >
-      <div className="flex h-[clamp(34px,3.4vmin,40px)] w-[clamp(34px,3.4vmin,40px)] items-center justify-center rounded-xl bg-white/10">
-        <img src={summaryIcon} alt="" className="h-[60%] w-[60%]" />
-      </div>
+      <img
+        src={summaryIcon}
+        alt=""
+        style={{
+          width: S.iconBox,
+          height: S.iconBox,
+        }}
+        className="flex-shrink-0"
+      />
+
       <div className="flex flex-col">
         <span
-          className="opacity-90"
+          className="opacity-90 font-semibold"
           style={{ fontSize: S.titleFs }}
         >
           {label}
         </span>
-        <span
-          className="font-semibold"
-          style={{ fontSize: S.valueFs }}
-        >
+        <span style={{ fontSize: S.valueFs }}>
           {value ?? "-"}
         </span>
       </div>
@@ -38,24 +51,17 @@ function SummaryCard({ label, value }) {
 }
 
 export default function WeeklySummary({ summary }) {
-  const latestWeight =
-    summary?.latest_weight_kg != null
-      ? `${summary.latest_weight_kg.toFixed(1)} kg`
-      : "-";
-
-  const totalExercise =
-    summary?.total_exercise_hours != null
-      ? `${summary.total_exercise_hours} 시간`
-      : "-";
-
-  const totalSleep =
-    summary?.total_sleep_hours != null
-      ? `${summary.total_sleep_hours} 시간`
-      : "-";
+  const metrics = useWeeklySummaryMetrics(summary);
 
   return (
-    <section className="mt-[clamp(26px,3.2vmin,34px)]">
-      <h2 className="mb-[clamp(10px,1.5vmin,14px)] text-[clamp(15px,1.7vmin,17px)] font-semibold text-[#111827]">
+    <section className="mt-[clamp(40px,20vmin,150px)]">
+      <h2
+        className="font-semibold text-[#101828]"
+        style={{
+          fontSize: S.headingFs,
+          marginBottom: S.headingMb,
+        }}
+      >
         이번 주 요약
       </h2>
 
@@ -63,9 +69,13 @@ export default function WeeklySummary({ summary }) {
         className="grid grid-cols-1 md:grid-cols-3"
         style={{ gap: S.wrapGap }}
       >
-        <SummaryCard label="체중" value={latestWeight} />
-        <SummaryCard label="운동시간" value={totalExercise} />
-        <SummaryCard label="수면시간" value={totalSleep} />
+        {metrics.map((m) => (
+          <SummaryCard
+            key={m.key}
+            label={m.label}
+            value={m.value}
+          />
+        ))}
       </div>
     </section>
   );
