@@ -9,7 +9,6 @@ export default function DailyHeader() {
   const isDaily = pathname.startsWith("/dailyfood");
   const isRefood = pathname.startsWith("/food");
 
-  //기존 스타일을 그대로 “active/inactive”로만 분리
   const activeCls =
     "bg-[#1E2939] text-white shadow-sm";
   const inactiveCls =
@@ -21,8 +20,9 @@ export default function DailyHeader() {
         <img
           src={logo}
           alt="Care View 로고"
-          className="w-[clamp(35px,4vmin,80px)] h-auto"
+          className="w-[clamp(35px,4vmin,80px)] h-auto cursor-pointer"
           draggable="false"
+          onClick={() => navigate("/dashboard")}
         />
         <span className="text-[clamp(20px,3vmin,40px)] font-semibold text-[#111827]">
           Care View
