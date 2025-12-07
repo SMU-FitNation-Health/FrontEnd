@@ -28,8 +28,15 @@ export default function DailyFoodPage() {
   return (
     <div className="min-h-dvh bg-[#F9FAFB] flex justify-center px-[clamp(16px,4vw,40px)]">
       <div className="w-full max-w-[1440px] py-[clamp(24px,4vh,40px)] space-y-[clamp(24px,4vh,36px)]">
+        {/* 상단 헤더 */}
         <DailyHeader />
-        <DailyHero dateLabel={dateLabel} />
+
+        {/* 상단 히어로 + 새로고침 버튼 */}
+        <DailyHero
+          dateLabel={dateLabel}
+          onRefresh={refreshMeal}
+        />
+
         {/* 상단 4개 요약 카드 */}
         <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-[clamp(10px,2vmin,18px)]">
           <SummaryCard
@@ -50,7 +57,6 @@ export default function DailyFoodPage() {
             <DailyCard
               key={meal.recipe_id}
               meal={meal}
-              onRefresh={() => refreshMeal(meal.meal_type)}
             />
           ))}
         </section>

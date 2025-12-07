@@ -1,5 +1,4 @@
 import React from "react";
-import refreshIcon from "../../../assets/dailyfood/df1.svg";
 
 function MacroPill({ label, value, unit }) {
   return (
@@ -15,7 +14,7 @@ function MacroPill({ label, value, unit }) {
   );
 }
 
-export default function DailyCard({ meal, onRefresh }) {
+export default function DailyCard({ meal }) {
   if (!meal) return null;
 
   // 백엔드 nutrition 구조 그대로 사용
@@ -39,22 +38,8 @@ export default function DailyCard({ meal, onRefresh }) {
           />
         )}
 
-        {/* 왼쪽 하단: 새로고침 아이콘, 끼니 로고 */}
-        <div className="absolute left-[clamp(10px,1.6vmin,14px)] bottom-[clamp(10px,1.6vmin,14px)] flex flex-col gap-[clamp(6px,0.9vmin,8px)] items-start">
-          <img
-            src={refreshIcon}
-            alt={`${meal.meal_type} 식단 새로 추천`}
-            className="w-[clamp(10px,4vmin,30px)] h-auto cursor-pointer select-none"
-            onClick={onRefresh}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                onRefresh?.();
-              }
-            }}
-          />
+        {/* 왼쪽 하단: 끼니 로고만 남김 */}
+        <div className="absolute left-[clamp(10px,1.6vmin,14px)] bottom-[clamp(10px,1.6vmin,14px)]">
           <div className="px-3 py-1 rounded-full bg-white/90 text-[#111827] text-[clamp(11px,1.3vmin,12px)]">
             {meal.meal_type}
           </div>
@@ -63,14 +48,14 @@ export default function DailyCard({ meal, onRefresh }) {
 
       {/* 본문 */}
       <div className="p-[clamp(16px,2.4vmin,20px)] flex flex-col gap-[clamp(12px,1.8vmin,16px)] flex-1">
-        {/*식단 이름*/}
+        {/* 식단 이름 */}
         {meal.name && (
           <div className="text-[clamp(16px,2.5vmin,50px)] font-semibold text-[#111827] mb-[10px]">
             {meal.name}
           </div>
         )}
 
-        {/*칼로리*/}
+        {/* 칼로리 */}
         <div className="flex items-center justify-between">
           <div className="text-[clamp(13px,2vmin,40px)] font-semibold">
             칼로리
@@ -92,7 +77,7 @@ export default function DailyCard({ meal, onRefresh }) {
           </div>
         </div>
 
-        {/*식단 구성*/}
+        {/* 식단 구성 */}
         <div>
           <div className="text-[clamp(13px,1.5vmin,14px)] font-semibold text-[#6B7280] mb-[4px]">
             식단 구성
@@ -110,7 +95,7 @@ export default function DailyCard({ meal, onRefresh }) {
           </ul>
         </div>
 
-        {/*추천 이유*/}
+        {/* 추천 이유 */}
         <div className="mt-auto">
           <div className="text-[clamp(13px,1.5vmin,14px)] font-semibold text-[#6B7280] mb-[4px]">
             추천 이유
