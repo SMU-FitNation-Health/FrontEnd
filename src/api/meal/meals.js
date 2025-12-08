@@ -29,3 +29,11 @@ export async function fetchMealsByIngredients(ingredientNames = []) {
   // 응답
   return res.data;
 }
+//편의점 조합
+export async function fetchConvenienceSets() {
+  const res = await api.get(
+    "/api/meals/convenience/sets",
+    withAuth()
+  );
+  return res.data;
+}

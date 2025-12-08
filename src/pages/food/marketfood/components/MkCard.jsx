@@ -1,14 +1,14 @@
 import React from "react";
 
 const S = {
-  imgH: "clamp(110px, 22vmin, 220px)", //이미지 높이
-  bodyPad: "clamp(14px, 2.6vmin, 22px)", // 아래 본문 영역 더 여유 있게
+  imgH: "clamp(110px, 22vmin, 220px)", // 이미지 높이
+  bodyPad: "clamp(14px, 2.6vmin, 22px)", // 아래 본문 영역
   bodyMinH: "clamp(210px, 28vmin, 280px)",
-  titleFS: "clamp(15px, 2.2vmin, 30px)",//이미지안 제목
+  titleFS: "clamp(15px, 2.2vmin, 30px)", // 이미지 안 제목
   kcalFS: "clamp(13px, 1.8vmin, 16px)",
   itemFS: "clamp(13px, 1.8vmin, 20px)",
-  macroLabelFS: "clamp(12px, 1.7vmin, 20px)", //한글
-  macroValueFS: "clamp(13px, 1.9vmin, 16px)", //g
+  macroLabelFS: "clamp(12px, 1.7vmin, 20px)", // 한글
+  macroValueFS: "clamp(13px, 1.9vmin, 16px)", // g
   macroPadY: "clamp(8px, 1.8vmin, 12px)",
 };
 
@@ -32,19 +32,27 @@ function MacroPill({ label, value }) {
 }
 
 export default function MkCard({ set }) {
-  const { title, calories, items = [], macros, image } = set;
+  const {
+    name,
+    image_url,
+    total_calorie,
+    total_carbs,
+    total_protein,
+    total_fat,
+    composition = [],
+  } = set || {};
 
   return (
     <article className="bg-white/70 border-2 border-[#E5E7EB] rounded-2xl overflow-hidden shadow-sm">
-      {/* ✅ 이미지 영역 */}
+      {/* 이미지 영역 */}
       <div
         className="relative w-full bg-[#EEF2F6] overflow-hidden"
         style={{ height: S.imgH }}
       >
-        {image ? (
+        {image_url ? (
           <img
-            src={image}
-            alt={title}
+            src={image_url}
+            alt={name}
             className="w-full h-full object-cover"
             draggable="false"
           />
@@ -57,11 +65,11 @@ export default function MkCard({ set }) {
           className="absolute left-[clamp(10px,2vmin,14px)] bottom-[clamp(8px,1.6vmin,12px)] text-white font-semibold"
           style={{ fontSize: S.titleFS }}
         >
-          {title}
+          {name}
         </div>
       </div>
 
-      {/*아래 본문*/}
+      {/* 아래 본문 */}
       <div
         className="space-y-[clamp(11px,2vmin,20px)]"
         style={{ padding: S.bodyPad, minHeight: S.bodyMinH }}
@@ -71,7 +79,7 @@ export default function MkCard({ set }) {
           className="text-[#101828] font-semibold flex items-center gap-[6px]"
           style={{ fontSize: S.kcalFS }}
         >
-          🔥 {calories} kcal
+          🔥 {total_calorie} kcal
         </div>
 
         {/* 포함 상품 */}
@@ -87,22 +95,24 @@ export default function MkCard({ set }) {
             className="list-disc pl-[clamp(16px,2.2vmin,20px)] text-[#4A5565] leading-relaxed"
             style={{ fontSize: S.itemFS }}
           >
-            {items.map((it, i) => (
-              <li key={i}>{it}</li>
+            {composition.map((c, i) => (
+              <li key={c.item?.item_id ?? i}>
+                {/* "상품이름 amount+unit" 형태로 표기 */}
+                {c.item?.name || "상품"} {c.amount}
+                {c.unit || ""}
+              </li>
             ))}
           </ul>
         </div>
 
         {/* 탄/단/지 */}
-        {macros && (
-          <div className="pt-[clamp(6px,1.2vmin,8px)]">
-            <div className="grid grid-cols-3 gap-[clamp(8px,1.6vmin,12px)]">
-              <MacroPill label="탄수화물" value={macros.carbs} />
-              <MacroPill label="단백질" value={macros.protein} />
-              <MacroPill label="지방" value={macros.fat} />
-            </div>
+        <div className="pt-[clamp(6px,1.2vmin,8px)]">
+          <div className="grid grid-cols-3 gap-[clamp(8px,1.6vmin,12px)]">
+            <MacroPill label="탄수화물" value={total_carbs} />
+            <MacroPill label="단백질" value={total_protein} />
+            <MacroPill label="지방" value={total_fat} />
           </div>
-        )}
+        </div>
       </div>
     </article>
   );
