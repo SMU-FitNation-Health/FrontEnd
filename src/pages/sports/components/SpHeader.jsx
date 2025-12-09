@@ -2,49 +2,53 @@
 import React from "react";
 
 const S = {
-  gap: "clamp(12px,2vmin,18px)",
-  radius: "clamp(18px,2vmin,22px)",
-  padX: "clamp(14px,2.4vmin,22px)",
-  padY: "clamp(22px,3.4vmin,32px)",
-  iconBox: "clamp(40px,4vmin,48px)",
-  iconSize: "clamp(22px,2.7vmin,28px)",
+  outerY: "clamp(30px, 6vmin, 70px)",// 카드 바깥 위·아래 간격
+  radius: "clamp(20px, 2.4vmin, 26px)",
+  padTopBottom: "clamp(22px, 3.4vmin, 32px)",// 카드 안 패딩 (살짝 오른쪽으로 가도록 left를 더 줌)
+  padLeft: "clamp(32px, 5vmin, 60px)",
+  padRight: "clamp(20px, 3vmin, 36px)",
+  gap: "clamp(10px, 4vmin, 30px)",   // 아이콘 + 텍스트 간 간격
+  iconSize: "clamp(28px, 7vmin, 60px)",// 아이콘 크기
 };
 
 export default function SpHeader({ icon, label, value, unit }) {
   return (
     <div
-      className={`
-        flex items-center gap-[${S.gap}]
-        rounded-[${S.radius}]
+      className="
+        flex items-center
         border border-[#E5E7EB]
-        bg-white
-        px-[${S.padX}] py-[${S.padY}]
-        shadow-sm
-        w-full
-        max-w-[clamp(220px,50vmin,620px)]
+        bg-white shadow-sm
+        w-full max-w-[clamp(220px,50vmin,620px)]
         mx-auto
-      `}
+      "
+      style={{
+        borderRadius: S.radius,          
+        paddingTop: S.padTopBottom,
+        paddingBottom: S.padTopBottom,
+        paddingLeft: S.padLeft,               
+        paddingRight: S.padRight,
+        marginTop: S.outerY,                  
+        marginBottom: S.outerY,               
+      }}
     >
-      <div
-        className={`
-          flex items-center justify-center
-          rounded-xl bg-[#0096890D]
-          w-[${S.iconBox}] h-[${S.iconBox}]
-        `}
-      >
-        <img
-          src={icon}
-          alt=""
-          className={`w-[${S.iconSize}] h-auto`}
-        />
-      </div>
+      {/* 아이콘: 감싸는 div 없이, svg 그대로 + 크기만 통일 */}
+      <img
+        src={icon}
+        alt=""
+        style={{
+          width: S.iconSize,
+          height: "auto",
+          marginRight: S.gap,                
+        }}
+      />
 
+      {/* 텍스트 영역 */}
       <div className="flex flex-col">
-        <span className="text-[clamp(12px,1.4vmin,14px)] text-[#98A2B3]">
+        <span className="text-[clamp(12px,2vmin,30px)] font-semibold text-[#98A2B3]">
           {label}
         </span>
-        <div className="flex items-baseline gap-[4px]">
-          <span className="text-[clamp(20px,2.7vmin,26px)] font-semibold text-[#101828]">
+        <div className="flex items-baseline gap-[4px] mt-[clamp(4px,1vmin,8px)]">
+          <span className="text-[clamp(20px,4vmin,50px)] text-[#101828]">
             {value ?? "-"}
           </span>
           {unit && (

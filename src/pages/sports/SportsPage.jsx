@@ -8,7 +8,7 @@ import SpHero from "./components/SpHero.jsx";
 import useSports from "./hooks/useSports.js";
 
 const S = {
-  gridGap: "clamp(14px,3vmin,24px)",
+  gridGap: "clamp(10px,2vmin,15px)",
 };
 
 export default function SportsPage() {

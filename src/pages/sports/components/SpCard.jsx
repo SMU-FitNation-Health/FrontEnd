@@ -11,15 +11,15 @@ const IMAGE_MAP = {
 };
 
 const S = {
-  cardMaxW: "clamp(240px,34vw,400px)",       // 카드 전체 최대 너비
-  imgH: "clamp(160px,24vmin,220px)",         // 이미지 영역 높이
-  bodyMinH: "clamp(200px,34vmin,350px)",     // 텍스트 영역 최소 높이
+  cardMaxW: "clamp(240px,34vw,400px)",  // 카드 전체 최대 너비
+  imgH: "clamp(160px,24vmin,220px)",    // 이미지 영역 높이
+  bodyMinH: "clamp(220px,40vmin,350px)",// 텍스트 영역 최소 높이
   bodyPx: "clamp(18px,2.5vmin,22px)",
-  bodyPy: "clamp(14px,2vmin,18px)",
-  bodyGap: "clamp(8px,1.4vmin,12px)",
-  detailTop: "clamp(4px,2.5vmin,30px)",
-  lineGap: "clamp(8px,1.4vmin,15px)",
-  fsMain: "clamp(12px,1.6vmin,20px)",
+  bodyPy: "clamp(14px,2.2vmin,18px)",
+  bodyGap: "clamp(8px,1.3vmin,12px)",
+  detailTop: "clamp(8px,4vmin,70px)",
+  lineGap: "clamp(8px,2vmin,15px)",
+  fsMain: "clamp(12px,1.8vmin,30px)",
 };
 
 export default function SpCard({ slotLabel, data }) {
@@ -32,19 +32,17 @@ export default function SpCard({ slotLabel, data }) {
     <div
       className={`
         flex flex-col h-full
-        w-full max-w-[${S.cardMaxW}] mx-auto
+        w-full mx-auto
         rounded-[clamp(8px,1.5vmin,22px)]
         border-2 border-[#009689]
         bg-white overflow-hidden shadow-sm
       `}
+      style={{ maxWidth: S.cardMaxW }}
     >
-      {/* 상단 이미지 영역: 높이 고정(반응형) */}
+      {/* 상단 이미지 영역 */}
       <div
-        className={`
-          relative
-          h-[${S.imgH}]
-          bg-[#E5F4F2] overflow-hidden
-        `}
+        className="relative bg-[#E5F4F2] overflow-hidden"
+        style={{ height: S.imgH }}
       >
         {image && (
           <img
@@ -54,21 +52,21 @@ export default function SpCard({ slotLabel, data }) {
           />
         )}
 
-        {/* 아침/점심/저녁 라벨: 왼쪽 하단 + 흰 배경 + 검정 텍스트 */}
+        {/* 아침/점심/저녁 라벨 */}
         <div className="absolute left-[clamp(12px,1.6vmin,16px)] bottom-[clamp(12px,1.6vmin,16px)] rounded-full bg-white text-[#101828] text-[clamp(11px,1.3vmin,13px)] px-[clamp(10px,1.6vmin,12px)] py-[clamp(4px,0.8vmin,6px)] border border-[#D0D5DD] shadow-sm">
           {slotLabel}
         </div>
       </div>
 
-      {/* 하단 텍스트 영역: 최소 높이 지정 + flex-1 */}
+      {/* 하단 텍스트 영역 */}
       <div
-        className={`
-          flex flex-col flex-1
-          gap-[${S.bodyGap}]
-          px-[${S.bodyPx}]
-          py-[${S.bodyPy}]
-          min-h-[${S.bodyMinH}]
-        `}
+        className="flex flex-col flex-1"
+        style={{
+          minHeight: S.bodyMinH,
+          paddingInline: S.bodyPx,
+          paddingBlock: S.bodyPy,
+          rowGap: S.bodyGap,
+        }}
       >
         {/* 카드 상단 요약 */}
         <div className="flex flex-wrap items-center gap-[clamp(6px,1vmin,8px)] text-[clamp(12px,1.6vmin,20px)] text-[#475467]">
@@ -85,12 +83,12 @@ export default function SpCard({ slotLabel, data }) {
 
         {/* 세부 운동 목록 */}
         <div
-          className={`
-            mt-[${S.detailTop}]
-            space-y-[${S.lineGap}]
-            text-[${S.fsMain}]
-            leading-relaxed
-          `}
+          className="leading-relaxed flex flex-col"
+          style={{
+            marginTop: S.detailTop, // 위 여백
+            rowGap: S.lineGap,      // 운동 블록 간 간격
+            fontSize: S.fsMain,     // 기본 폰트 크기
+          }}
         >
           {exercises.length === 0 ? (
             <p className="text-[#98A2B3]">
@@ -108,15 +106,27 @@ export default function SpCard({ slotLabel, data }) {
                   </p>
                 )}
 
-                <p className="text-[#475467]">
-                  <span className="text-[#101828]">
-                    {ex.movement_name}
-                  </span>
-                  <span className="text-[#667085] font-semibold">
-                    {" "}
-                    ({ex.duration_min}분, {ex.calorie_kcal}kcal)
-                  </span>
-                </p>
+                {/*글머리 동그라미 ,텍스트 */}
+                <div className="flex items-start gap-[clamp(6px,1vmin,10px)]">
+                  {/* 글머리*/}
+                  <span
+                    className="mt-[0.7em] inline-block rounded-full bg-[#475467]"
+                    style={{
+                      width: "clamp(3px,0.5vmin,10px)",
+                      height: "clamp(3px,0.5vmin,10px)",
+                    }}
+                  />
+                  {/* 운동 이름 + 시간/칼로리 */}
+                  <p className="text-[#475467]">
+                    <span className="text-[#101828]">
+                      {ex.movement_name}
+                    </span>
+                    <span className="text-[#667085] font-semibold">
+                      {" "}
+                      ({ex.duration_min}분, {ex.calorie_kcal}kcal)
+                    </span>
+                  </p>
+                </div>
               </div>
             ))
           )}
