@@ -11,6 +11,7 @@ import FoodPage from '../pages/food/FoodPage.jsx';
 import RecodePage from '../pages/recode/RecodePage.jsx';
 import SportsPage from '../pages/sports/SportsPage.jsx';
 import MyPageButton from '../components/MyPageButton.jsx';
+import EffectPage from '../pages/effect/EffectPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
       { path: "food", element: <FoodPage /> },
       { path: "recode", element: <RecodePage /> },
       { path: "sports", element: <SportsPage /> },
+      { path: "effect", element: <EffectPage /> },
     ],
   },
 ]);
