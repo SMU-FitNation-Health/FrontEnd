@@ -1,4 +1,4 @@
-// src/pages/expected/ExpectedEffectPage.jsx
+//기록실 페이지 전체
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api, withAuth, getErrorMessage, getAuthHeader } from "../../api/client";
