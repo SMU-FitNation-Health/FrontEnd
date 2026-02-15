@@ -5,7 +5,9 @@ export default function MyPageButton() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  if (location.pathname.startsWith("/onboarding")) { //온보딩은 제외
+  const HIDE_PATHS = ["/", "/login", "/sign", "/onboarding"]; //버튼 숨김 페이지
+
+  if (HIDE_PATHS.includes(location.pathname)) {
     return null;
   }
 
