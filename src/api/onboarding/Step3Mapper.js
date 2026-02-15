@@ -6,7 +6,7 @@ export function buildStep3Payload(basic) {
   const height = Number(basic?.heightCm);
   const weight = Number(basic?.weightKg);
 
-  //나이 → date_of_birth(대략적인 생년월일)로 변환
+  //나이는 date_of_birth(대략적인 생년월일)로 변환
   let date_of_birth = basic?.date_of_birth || basic?.dateOfBirth || null;
 
   if (!date_of_birth && Number.isFinite(age) && age > 0) {
