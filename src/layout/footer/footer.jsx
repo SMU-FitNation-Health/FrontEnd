@@ -26,8 +26,8 @@ export default function Footer({ year = new Date().getFullYear() }) {
               </div>
               <div className="space-y-[0.7vw] text-[clamp(10px,0.9vw,24px)] leading-relaxed">
                 <p>회사명: Care View Inc.</p>
-                <p>대표자: 이원준</p>
-                <p>사업자등록번호: 123-45-67890</p>
+                <p>대표자: 김태우</p>
+                <p>사업자등록번호: 010-3722-5989</p>
                 <p>주소: 충청남도 천안시 상명대학교</p>
               </div>
             </div>
