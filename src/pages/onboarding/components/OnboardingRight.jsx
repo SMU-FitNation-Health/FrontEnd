@@ -6,7 +6,7 @@ import Step4 from "./step/Step4.jsx";
 import Step5 from "./step/Step5.jsx";
 import Bottom from "./bottom/Bottom.jsx";
 
-// 🔹 온보딩 API + 에러 메시지 유틸 추가
+// 온보딩 API + 에러 메시지 유틸 추가
 import {
   saveOnboardingStep1,
   saveOnboardingStep2,
@@ -70,8 +70,8 @@ export default function OnboardingRight({ step: stepProp, onStepChange, onComple
   const [state, setState] = useState(initialState);
   const setS = (fn) => setState(prev => (typeof fn === "function" ? fn(prev) : fn));
 
-  const [submitting, setSubmitting] = useState(false);   // 🔹 API 요청 중 여부
-  const [error, setError] = useState("");                // 🔹 에러 메시지
+  const [submitting, setSubmitting] = useState(false);   // API 요청 중 여부
+  const [error, setError] = useState("");                // 에러 메시지
 
   const canNext = useMemo(
     () => isStepComplete(state, step),
@@ -140,7 +140,7 @@ export default function OnboardingRight({ step: stepProp, onStepChange, onComple
     <section className="min-h-dvh grid grid-rows-[1fr_auto] bg-white">
       {/* 본문 */}
       <div className="min-w-0 overflow-y-auto" style={{ padding: TK.outer }}>
-        {/* ⬇️ 헤더를 아래/오른쪽으로 이동 */}
+        {/* 헤더를 아래/오른쪽으로 이동 */}
         <header
           className="mb-[clamp(12px,3vh,24px)]"
           style={{ marginTop: HEAD.offsetY, marginLeft: HEAD.offsetX }}

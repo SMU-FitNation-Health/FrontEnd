@@ -16,7 +16,7 @@ export default function DailyFoodPage() {
 
   const dateLabel = DailyDate();
 
-  // totals가 로딩 전에는 null일 수 있으므로 안전하게 처리
+  // totals가 로딩 전에는 null일 수 있으므로 안전하게 수정
   const totalCalories = totals?.calories ?? 0;
   const totalCarbs = totals?.carbohydrates ?? 0;
   const totalProtein = totals?.protein ?? 0;
