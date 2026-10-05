@@ -12,3 +12,5 @@ export default function OnboardingPage() {
     </div>
   );
 }
+
+// 온보딩 페이지 기능 구현 및 개발 완료하였습니다
