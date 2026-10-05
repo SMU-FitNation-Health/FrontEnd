@@ -13,7 +13,7 @@ import SportsPage from '../pages/sports/SportsPage.jsx';
 import MyPageButton from '../components/MyPageButton.jsx';
 import EffectPage from '../pages/effect/EffectPage.jsx'
 
-// 민경아 밥먹어라
+
 const router = createBrowserRouter([
   {
     path: "/",
