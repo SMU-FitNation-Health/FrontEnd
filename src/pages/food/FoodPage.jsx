@@ -25,3 +25,5 @@ export default function FoodPage() {
     </div>
   );
 }
+
+// 주간 식단 

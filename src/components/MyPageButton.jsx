@@ -36,3 +36,5 @@ export default function MyPageButton() {
     </button>
   );
 }
+
+// 공용 컴포넌트
