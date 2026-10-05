@@ -65,3 +65,5 @@ export default function DailyFoodPage() {
     </div>
   );
 }
+
+// 하루 일과 식단
